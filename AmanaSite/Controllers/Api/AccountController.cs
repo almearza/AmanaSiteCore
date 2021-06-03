@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Linq;
 using System.Threading.Tasks;
 using AmanaSite.Interfaces;
@@ -14,8 +15,8 @@ using Microsoft.Extensions.Configuration;
 
 namespace AmanaSite.Controllers.Api
 {
-    //[Authorize(Policy = "AdminLevel")]
-    [AllowAnonymous]
+    [Authorize]
+    //[AllowAnonymous]
     public class AccountController : ApiBaseController
     {
         private readonly ITokenService _tokenService;
@@ -48,15 +49,16 @@ namespace AmanaSite.Controllers.Api
             var user = _mapper.Map<AppUser>(registerVm);
             var userResult = await _userManager.CreateAsync(user, _config["DefaultPassword"].ToString());
             if (!userResult.Succeeded) return BadRequest(userResult.Errors);
-            if (!await _roleManager.RoleExistsAsync("NormalLevel"))
-            {
-                await _roleManager.CreateAsync(new AppRole
-                {
-                    Name = "NormalLevel"
-                });
-            }
-            var roleResult = await _userManager.AddToRoleAsync(user, "NormalLevel");
-            if (!roleResult.Succeeded) return BadRequest(roleResult.Errors);
+            
+            // if (!await _roleManager.RoleExistsAsync("HasNoRole"))
+            // {
+            //     await _roleManager.CreateAsync(new AppRole
+            //     {
+            //         Name = "HasNoRole"
+            //     });
+            // }
+            // var roleResult = await _userManager.AddToRoleAsync(user, "HasNoRole");
+            // if (!roleResult.Succeeded) return BadRequest(roleResult.Errors);
 
             return new UserVM
             {
@@ -66,7 +68,21 @@ namespace AmanaSite.Controllers.Api
                 Phonenumber = user.PhoneNumber
             };
         }
+        [HttpPut("update-user")]
+        public async Task<ActionResult<UserVM>> UpdateUser(UserDto userDto){
+            if(string.IsNullOrEmpty(userDto.Phonenumber)||string.IsNullOrEmpty(userDto.Fullname))
+            return BadRequest("الرجاء التأكد من إدخال بيانات صحيحة");
+            var user =await _userManager.FindByNameAsync(userDto.Username);
+            if(user==null) return NotFound("المستخدم المراد تعديله غير موجود");
+            
+            user.PhoneNumber=userDto.Phonenumber;
+            user.FullName=userDto.Fullname;
+            var result  = await _userManager.UpdateAsync(user);
+            if(result.Succeeded) return NoContent();
+            return BadRequest ("حدث خطأ أثناء تعديل المستخدم");
+        }
         [HttpPost("login")]
+        [AllowAnonymous]
         public async Task<ActionResult<UserVM>> Login(LoginVM loginVM)
         {
             var user = await _userManager.FindByNameAsync(loginVM.UserName);
@@ -90,11 +106,14 @@ namespace AmanaSite.Controllers.Api
             var users = await _userManager.Users
             .Include(u => u.UserRoles)
             .ThenInclude(u => u.Role)
-            .Select(u => new
+            .Select(u => new UserDto
             {
-                u.Id,
-                username = u.UserName,
-                roles = u.UserRoles.Select(u => u.Role.Name).ToList()
+               Id= u.Id,
+               Username  = u.UserName,
+                Fullname=u.FullName,
+                Phonenumber=u.PhoneNumber,
+                Locked=(u.LockoutEnd != null && u.LockoutEnd > DateTime.Now),
+                Roles = u.UserRoles.Select(u => u.Role.Name).ToList()
             })
             .ToListAsync();
             return Ok(users);
@@ -106,6 +125,11 @@ namespace AmanaSite.Controllers.Api
             if (user == null) return NotFound("لا يوجد مستخدم بهذا الاسم");
             var selectedRoles = roles.Split(',').ToArray();
             var userRoles = await _userManager.GetRolesAsync(user);
+            foreach (var role in selectedRoles)
+            {
+                if (!await _roleManager.RoleExistsAsync(role))
+                    await _roleManager.CreateAsync(new AppRole { Name = role });
+            }
             var addingResult = await _userManager.AddToRolesAsync(user, selectedRoles.Except(userRoles));
             if (!addingResult.Succeeded)
                 return BadRequest("غير قادر على اضافة الصلاحية");
@@ -130,7 +154,7 @@ namespace AmanaSite.Controllers.Api
                 user.LockoutEnd = newDate;
             }
             var result = await _userManager.UpdateAsync(user);
-            if (result.Succeeded) return Ok("Done");
+            if (result.Succeeded) return NoContent();
 
             return BadRequest("خطأ أثناء تحديث بيانات المستخدم");
 
@@ -166,10 +190,19 @@ namespace AmanaSite.Controllers.Api
             }
             return BadRequest("خطأ أثناء تحديث بيانات المستخدم");
         }
+        [HttpGet("{username}")]
+        public async Task<ActionResult<UserDto>> GetUser(string username)
+        {
+            var user = await _userManager.FindByNameAsync(username);
+            var userDto = _mapper.Map<UserDto>(user);
+            // var userToReturn = _mapper.Map<MemberDto>(user);
+            return Ok(userDto);
+        }
 
         private async Task<bool> IsRegistered(string username)
         {
-            return await _userManager.Users.AnyAsync(u => u.UserName == username);
+            var result = await _userManager.Users.AnyAsync(u => u.UserName == username);
+            return result;
         }
 
     }

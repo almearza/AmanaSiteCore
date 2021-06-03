@@ -1,0 +1,31 @@
+<div *ngIf="user">
+    <div class="col-8">
+        <div class="alert alert-info" *ngIf="editForm.dirty">
+            <strong>تنبيه: </strong> اذا لم تقم بالضغط على حفظ ستفقد البيانات المدخلة
+        </div>
+    </div>
+    <div class="card mt-5">
+        <div class="col-8 mt-2">
+            <p class="d-inline">تعديل المستخدم </p>
+            <p class="text-primary d-inline">({{user.fullname}})</p>
+        </div>
+        <div class="card-body">
+            <form #editForm="ngForm" id="editForm" (ngSubmit)="updateUser()">
+                <input class="form-control mt-2" type="text" placeholder="الاسم بالكامل" name="fullname"
+                    [(ngModel)]="user.fullname">
+                <input class="form-control mt-2" placeholder="رقم الجوال" type="text" name="phonenumber"
+                    [(ngModel)]="user.phonenumber">
+            </form>
+
+        </div>
+        <div class="card-footer">
+            <div class="form-group">
+                <button form="editForm" type="submit" [disabled]="!editForm.dirty" class="btn btn-primary">حفظ</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>

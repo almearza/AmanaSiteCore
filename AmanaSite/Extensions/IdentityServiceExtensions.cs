@@ -52,10 +52,10 @@ namespace API.Extensions
             services.AddAuthorization(opt =>
             {
                 opt.AddPolicy("AdminLevel", p => p.RequireRole("AdminLevel"));
-                opt.AddPolicy("NewsLevel", p => p.RequireRole("NormalLevel"));
-                opt.AddPolicy("MobFaLevel", p => p.RequireRole("MobFaLevel"));
-                opt.AddPolicy("AdsLevel", p => p.RequireRole("AdsLevel"));
-                opt.AddPolicy("SurveyLevel", p => p.RequireRole("SurveyLevel"));
+                opt.AddPolicy("NewsLevel", p => p.RequireRole("AdminLevel","NormalLevel"));
+                opt.AddPolicy("MobFaLevel", p => p.RequireRole("AdminLevel","MobFaLevel"));
+                opt.AddPolicy("AdsLevel", p => p.RequireRole("AdminLevel","AdsLevel"));
+                opt.AddPolicy("SurveyLevel", p => p.RequireRole("AdminLevel","SurveyLevel"));
                 opt.AddPolicy("AllLevels", p => p.RequireRole("AdminLevel", "NormalLevel", "MobFaLevel", "AdsLevel", "SurveyLevel"));
             });
             return services;

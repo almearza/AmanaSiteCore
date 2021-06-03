@@ -1,0 +1,31 @@
+<div class="card mt-5">
+
+</div>
+<form [formGroup]='registerForm' (ngSubmit)="registerForm.valid && register()" autocomplete="off">
+    <div class="card">
+        <div class="col-4 mt-2">
+            <p class="text-primary">
+                تسجيل مستخدم
+            </p>
+        </div>
+        <div class="card-body">
+            <app-text-input [formControl]='registerForm.controls["userName"]' [label]='"إسم المستخدم"'></app-text-input>
+            <app-text-input [formControl]='registerForm.controls["fullName"]' [label]='"الاسم كاملا"'></app-text-input>
+            <app-text-input [formControl]='registerForm.controls["phoneNumber"]' [label]='"رقم الجوال"'>
+            </app-text-input>
+
+            <div class="row" *ngIf="validationErrors.length>0">
+                <ul class="text-danger">
+                    <li *ngFor="let error of validationErrors">
+                        {{error}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit" [disabled]='!registerForm.valid'>حفظ</button>
+        </div>
+    </div>
+</form>

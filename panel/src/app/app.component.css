@@ -1,0 +1,6 @@
+::ng-deep body{
+    background-image: url(../assets/bg.png);
+    background-attachment: fixed !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

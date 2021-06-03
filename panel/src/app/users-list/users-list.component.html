@@ -1,0 +1,37 @@
+<div class="row mt-5">
+    <div class="col-2">
+        <button routerLink='/user/new' class="btn btn-primary mb-2">مستخدم جديد</button>
+    </div>
+    <h5 class="mb-2"><i class="fa fa-users"></i> قائمة المستخدمين </h5>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <td>اسم المستخدم</td>
+                    <td>الاسم بالكامل</td>
+                    <td>رقم الجوال</td>
+                    <td>حالة المستخدم</td>
+                    <td>الصلاحيات</td>
+                    <td>تعديل الصلاحيات</td>
+                    <td>تعديل</td>
+                    <td>تعطيل</td>
+                </tr>
+            </thead>
+            <tr *ngFor="let user of users">
+                <td>{{user.username}}</td>
+                <td>{{user.fullname}}</td>
+                <td>{{user.phonenumber}}</td>
+                <td>{{user.locked?"معطل":"مفعل"}}</td>
+                <td>{{user.roles}}</td>
+                <td><button class="btn btn-primary" (click)="openRolesModal(user)"><i class="fa fa-cog"></i>
+                        إدارة</button>
+                </td>
+                <td><button class="btn btn-warning"  routerLink="/users/{{user.username}}"><i class="fa fa-edit"></i> </button> </td>
+                <td><button class="btn btn-danger" (click)="lockUser(user)">
+                    <i class="fa fa-unlock" *ngIf="user.locked"></i>
+                    <i class="fa fa-lock" *ngIf="!user.locked"></i>
+                </button> </td>
+            </tr>
+        </table>
+    </div>
+</div>

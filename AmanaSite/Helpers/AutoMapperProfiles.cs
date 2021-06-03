@@ -9,6 +9,9 @@ namespace API.Helpers
         {
             CreateMap<UserVM, AppUser>().ReverseMap();
             CreateMap<RegisterVM, AppUser>().ReverseMap();
+            CreateMap<AppUser, UserDto>();
+            CreateMap<NewsVM, New>().ReverseMap();
+            
             // CreateMap<New, CustomNewsVM>();
             // CreateMap<BaladyaDescr, BaladyaVM>().ReverseMap();
             // CreateMap<AmanaLink, AmanaLinkVM>();
