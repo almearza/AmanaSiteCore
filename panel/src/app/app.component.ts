@@ -9,10 +9,10 @@ import { AccountService } from './_services/account.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title='الموقع الخارجي - لوحة التحكم';
+  // title='الموقع الخارجي - لوحة التحكم';
   ngOnInit(): void {
     this.setCurrentUser();
-    this.titleService.setTitle(this.title);
+    // this.titleService.setTitle(this.title);
   }
   setCurrentUser() {
     //if we close browser and open it agian we get this value from storage and set the observable

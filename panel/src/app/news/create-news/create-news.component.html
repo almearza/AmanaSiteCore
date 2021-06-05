@@ -1,10 +1,7 @@
-<div class="card mt-5">
-
-</div>
 <form [formGroup]='newsForm' (ngSubmit)="newsForm.valid && create()" autocomplete="off">
-    <div class="card">
-        <div class="col-4 mt-2">
-            <p class="text-primary">
+    <div class="card mt-5">
+        <div class="card-header bg-dark">
+            <p class="text-light">
                 إنشاء خبر
             </p>
         </div>
@@ -12,15 +9,17 @@
             <app-text-input [formControl]='newsForm.controls["title"]' [label]='"عنوان الخبر"'></app-text-input>
             <!-- <app-text-input [formControl]='newsForm.controls["descr"]' [label]='"وصف الخبر"'></app-text-input> -->
             <!-- <angular-editor [formControl]='newsForm.controls["descr"]' [(ngModel)]="htmlContent" [config]="editorConfig"></angular-editor> -->
-            <div [froalaEditor]>Hello, Froala!</div>
+            <quill-editor [formControl]='newsForm.controls["descr"]' [placeholder]="''" [modules]="quillConfiguration"
+                [styles]="{'min-height': '120px'}" class="content-editor">
+            </quill-editor>
             <br>
             <app-text-input [formControl]='newsForm.controls["newsResource"]' [label]='"مصدر الخبر"'></app-text-input>
             <div class="form-group small-control">
                 <label class="control-label">صورة الخبر</label>
-                  <app-text-input [formControl]='newsForm.controls["newsImg"]' type="file" 
-                [label]='"صورة الخبر"'></app-text-input>   
+                <app-text-input [formControl]='newsForm.controls["newsImg"]' type="file" [label]='"صورة الخبر"'>
+                </app-text-input>
             </div>
-       
+
 
             <label class="control-label">نوع الخبر</label>
             <select class="form-control small-control">
@@ -39,9 +38,9 @@
                 </label>
             </div>
 
-<div class="html">
-    {{htmlContent}}
-</div>
+            <div class="html">
+                {{htmlContent}}
+            </div>
             <div class="row" *ngIf="validationErrors.length>0">
                 <ul class="text-danger">
                     <li *ngFor="let error of validationErrors">

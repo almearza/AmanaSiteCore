@@ -15,7 +15,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace AmanaSite.Controllers.Api
 {
-    [Authorize]
+    [Authorize(policy:"AdminLevel")]
     //[AllowAnonymous]
     public class AccountController : ApiBaseController
     {
@@ -50,15 +50,15 @@ namespace AmanaSite.Controllers.Api
             var userResult = await _userManager.CreateAsync(user, _config["DefaultPassword"].ToString());
             if (!userResult.Succeeded) return BadRequest(userResult.Errors);
             
-            // if (!await _roleManager.RoleExistsAsync("HasNoRole"))
-            // {
-            //     await _roleManager.CreateAsync(new AppRole
-            //     {
-            //         Name = "HasNoRole"
-            //     });
-            // }
-            // var roleResult = await _userManager.AddToRoleAsync(user, "HasNoRole");
-            // if (!roleResult.Succeeded) return BadRequest(roleResult.Errors);
+            if (!await _roleManager.RoleExistsAsync("AdminLevel"))
+            {
+                await _roleManager.CreateAsync(new AppRole
+                {
+                    Name = "AdminLevel"
+                });
+            }
+            var roleResult = await _userManager.AddToRoleAsync(user, "AdminLevel");
+            if (!roleResult.Succeeded) return BadRequest(roleResult.Errors);
 
             return new UserVM
             {

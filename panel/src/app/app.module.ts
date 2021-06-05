@@ -32,8 +32,8 @@ import { DateInputComponent } from './_forms/date-input/date-input.component';
 import { NewsListComponent } from './news/news-list/news-list.component';
 import { CreateNewsComponent } from './news/create-news/create-news.component';
 import { EditNewsComponent } from './news/edit-news/edit-news.component';
-import { AngularEditorModule } from '@kolkov/angular-editor';
-import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { QuillModule } from 'ngx-quill';
+import { RichTextEditorComponent } from './_forms/text-input/rich-text-editor/rich-text-editor.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +52,8 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     DateInputComponent,
     NewsListComponent,
     CreateNewsComponent,
-    EditNewsComponent
+    EditNewsComponent,
+    RichTextEditorComponent
   ],
   imports: [
     BrowserModule,
@@ -71,9 +72,7 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     }),
     ModalModule.forRoot(),
     ReactiveFormsModule,
-    AngularEditorModule,
-    FroalaEditorModule.forRoot(), 
-    FroalaViewModule.forRoot()
+    QuillModule.forRoot()
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS,useClass:ErrorInterceptor,multi:true},

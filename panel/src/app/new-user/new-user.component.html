@@ -1,18 +1,28 @@
-<div class="card mt-5">
-
-</div>
 <form [formGroup]='registerForm' (ngSubmit)="registerForm.valid && register()" autocomplete="off">
-    <div class="card">
-        <div class="col-4 mt-2">
-            <p class="text-primary">
+    <div class="card border-secondary col-lg-8 col-md-8 m-auto mt-5" style="padding: 0">
+        <div class="card-header bg-dark">
+            <p class="text-light">
                 تسجيل مستخدم
             </p>
         </div>
         <div class="card-body">
-            <app-text-input [formControl]='registerForm.controls["userName"]' [label]='"إسم المستخدم"'></app-text-input>
-            <app-text-input [formControl]='registerForm.controls["fullName"]' [label]='"الاسم كاملا"'></app-text-input>
-            <app-text-input [formControl]='registerForm.controls["phoneNumber"]' [label]='"رقم الجوال"'>
-            </app-text-input>
+            <div class="row">
+
+                <div class="col-lg-8 col-md-8 col-sm-12">
+                   
+                        <app-text-input [formControl]='registerForm.controls["userName"]' [label]='"إسم المستخدم"'>
+                        </app-text-input>
+                   
+                        <app-text-input [formControl]='registerForm.controls["fullName"]' [label]='"الاسم كاملا"'>
+                        </app-text-input>
+                    
+                        <app-text-input [formControl]='registerForm.controls["phoneNumber"]' [label]='"رقم الجوال"'>
+                        </app-text-input>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 text-center d-none d-md-block">
+                        <i class="fa fa-user" style="font-size:150px;color:gray"></i>
+                </div>
+            </div>
 
             <div class="row" *ngIf="validationErrors.length>0">
                 <ul class="text-danger">
@@ -22,10 +32,11 @@
                 </ul>
             </div>
         </div>
-    </div>
-    <div class="card-footer">
-        <div class="form-group">
-            <button class="btn btn-primary" type="submit" [disabled]='!registerForm.valid'>حفظ</button>
+        <div class="card-footer">
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit" [disabled]='!registerForm.valid'>حفظ</button>
+            </div>
         </div>
     </div>
+
 </form>
