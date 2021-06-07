@@ -23,7 +23,7 @@ namespace AmanaSite.Repositories
 
         public async Task<bool> Complete()
         {
-            return await _context.SaveChangesAsync() > 1;
+            return await _context.SaveChangesAsync() > 0;
         }
 
         public bool HasChanges()

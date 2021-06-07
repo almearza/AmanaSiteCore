@@ -10,7 +10,9 @@ namespace API.Helpers
             CreateMap<UserVM, AppUser>().ReverseMap();
             CreateMap<RegisterVM, AppUser>().ReverseMap();
             CreateMap<AppUser, UserDto>();
-            CreateMap<NewsVM, New>().ReverseMap();
+            CreateMap<New,NewsVM>()
+            .ForMember(des=>des.TypeName,opt=>opt.MapFrom(src=>src.Type.Type))
+            .ForMember(des=>des.Lang,opt=>opt.MapFrom(src=>src.LangCode==LangCode.Ar?"العربية":"English"));
             
             // CreateMap<New, CustomNewsVM>();
             // CreateMap<BaladyaDescr, BaladyaVM>().ReverseMap();

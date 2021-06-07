@@ -15,7 +15,8 @@
     "lib": [
       "ES2019",
       "es2018",
-      "dom"
+      "dom",
+      "dom.iterable"
     ]
   }
 }

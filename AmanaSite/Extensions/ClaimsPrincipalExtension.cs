@@ -1,7 +1,7 @@
 using System;
 using System.Security.Claims;
 
-namespace API.Extensions
+namespace AmanaSite.Extensions
 {
     public static class ClaimsPrincipalExtension
     {

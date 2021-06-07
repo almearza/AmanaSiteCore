@@ -16,14 +16,14 @@
             <app-text-input [formControl]='newsForm.controls["newsResource"]' [label]='"مصدر الخبر"'></app-text-input>
             <div class="form-group small-control">
                 <label class="control-label">صورة الخبر</label>
-                <app-text-input [formControl]='newsForm.controls["newsImg"]' type="file" [label]='"صورة الخبر"'>
+                <app-text-input [formControl]='newsForm.controls["newsImg"]' type="file"(change)="setFiles($event)" [label]='"صورة الخبر"'>
                 </app-text-input>
             </div>
 
 
             <label class="control-label">نوع الخبر</label>
-            <select class="form-control small-control">
-                <option *ngFor="let _type of newsTypes" value="_type.id">{{_type.type}}</option>
+            <select class="form-control small-control" formControlName="typeId">
+                <option *ngFor="let _type of newsTypes" value="{{_type.id}}">{{_type.type}}</option>
             </select>
 
             <br>
@@ -31,10 +31,10 @@
 
             <div class="form-group">
                 <label class="radio-inline">
-                    <input type="radio" value="Ar" formControlName="langCode">العربية
+                    <input type="radio" value="1" formControlName="langCode">العربية
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" value="En" formControlName="langCode" class="mr-3">English
+                    <input type="radio" value="2" formControlName="langCode" class="mr-3">English
                 </label>
             </div>
 

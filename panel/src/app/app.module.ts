@@ -33,7 +33,7 @@ import { NewsListComponent } from './news/news-list/news-list.component';
 import { CreateNewsComponent } from './news/create-news/create-news.component';
 import { EditNewsComponent } from './news/edit-news/edit-news.component';
 import { QuillModule } from 'ngx-quill';
-import { RichTextEditorComponent } from './_forms/text-input/rich-text-editor/rich-text-editor.component';
+import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
   declarations: [
@@ -53,7 +53,6 @@ import { RichTextEditorComponent } from './_forms/text-input/rich-text-editor/ri
     NewsListComponent,
     CreateNewsComponent,
     EditNewsComponent,
-    RichTextEditorComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +71,8 @@ import { RichTextEditorComponent } from './_forms/text-input/rich-text-editor/ri
     }),
     ModalModule.forRoot(),
     ReactiveFormsModule,
-    QuillModule.forRoot()
+    QuillModule.forRoot(),
+    DataTablesModule
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS,useClass:ErrorInterceptor,multi:true},

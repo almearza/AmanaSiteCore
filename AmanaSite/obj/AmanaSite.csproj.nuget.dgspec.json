@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\fawaz\\Desktop\\AmanaSiteCore\\AmanaSite\\AmanaSite.csproj": {}
+    "C:\\Users\\4418036\\Desktop\\Projects\\Core And Angular\\AmanaSite\\AmanaSite\\AmanaSite.csproj": {}
   },
   "projects": {
-    "C:\\Users\\fawaz\\Desktop\\AmanaSiteCore\\AmanaSite\\AmanaSite.csproj": {
+    "C:\\Users\\4418036\\Desktop\\Projects\\Core And Angular\\AmanaSite\\AmanaSite\\AmanaSite.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\fawaz\\Desktop\\AmanaSiteCore\\AmanaSite\\AmanaSite.csproj",
+        "projectUniqueName": "C:\\Users\\4418036\\Desktop\\Projects\\Core And Angular\\AmanaSite\\AmanaSite\\AmanaSite.csproj",
         "projectName": "AmanaSite",
-        "projectPath": "C:\\Users\\fawaz\\Desktop\\AmanaSiteCore\\AmanaSite\\AmanaSite.csproj",
-        "packagesPath": "C:\\Users\\fawaz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\fawaz\\Desktop\\AmanaSiteCore\\AmanaSite\\obj\\",
+        "projectPath": "C:\\Users\\4418036\\Desktop\\Projects\\Core And Angular\\AmanaSite\\AmanaSite\\AmanaSite.csproj",
+        "packagesPath": "C:\\Users\\4418036\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\4418036\\Desktop\\Projects\\Core And Angular\\AmanaSite\\AmanaSite\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\fawaz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\4418036\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

@@ -26,7 +26,7 @@ const routes: Routes = [
       
       
       {path:'news',component:NewsListComponent},
-      {path:'news/create',component:CreateNewsComponent},
+      {path:'news/create',component:CreateNewsComponent,canDeactivate:[PreventUnsavedChangesGuard]},
       {path:'news/:newsId',component:EditNewsComponent},
 
       //member here represnt key of resolver 

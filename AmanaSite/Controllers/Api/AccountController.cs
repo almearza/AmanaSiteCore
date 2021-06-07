@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using AmanaSite.Interfaces;
 using AmanaSite.Models;
 using AmanaSite.Models.VM;
-using API.Extensions;
+using AmanaSite.Extensions;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
