@@ -1,25 +1,47 @@
-
-<table datatable [dtOptions]="dtOptions" class="row-border hover">
+<div class="row mt-5 mb-5">
+  <table datatable [dtOptions]="dtOptions" class="row-border hover">
     <thead>
       <tr>
-        <th>ID</th>
-        <th>First name</th>
-        <th>Last name</th>
+        <td>الرقم</td>
+        <td>عنوان الخبر</td>
+        <td>تفاصيل الخبر</td>
+        <td>صورة الخبر</td>
+        <td>نوع الخبر</td>
+        <td>تاريخ الخبر</td>
+        <td>رفع بواسطة</td>
+        <td>حالة الخبر</td>
+        <td>المصدر</td>
+        <td>اللغة</td>
+        <td>تعديل</td>
+        <td>تعطيل</td>
       </tr>
     </thead>
-    <tbody *ngIf="news?.length != 0">
-      <tr *ngFor="let person of news">
-        <td>{{ person.id }}</td>
-        <td>{{ person.firstName }}</td>
-        <td>{{ person.lastName }}</td>
-      </tr>
-    </tbody>
-    <tbody *ngIf="news?.length == 0">
-      <tr>
-        <td colspan="3" class="no-data-available">No data!</td>
+    <tbody>
+      <tr *ngFor="let _new of news">
+        <td>{{ _new.id }}</td>
+        <td>{{ _new.title }}</td>
+        <td>
+          <button class="btn btn-primary" (click)="openModalForDescr(_new.descr)">عرض</button>
+          <!-- <div innerHtml= "{{_new.descr}}"></div> -->
+        </td>
+        <td>
+          <button class="btn btn-primary" (click)="openModalForImg(imgUrl + _new.imgUrl)">عرض</button>
+        </td>
+        <td>{{ _new.typeName }}</td>
+        <td>{{ _new.newsDate |date:"MMM dd yyyy HH:MM:ss" }}</td>
+        <td>{{ _new.uploadedBy }}</td>
+        <td>{{ _new.active?"مفعل":"معطل" }}</td>
+        <td>{{ _new.newsResource }}</td>
+        <td>{{ _new.lang }}</td>
+        <td><button class="btn btn-warning" routerLink="/news/{{+_new.id}}"><i class="fa fa-edit"></i> </button></td>
+        <td><button class="btn btn-danger" (click)="lockNews(_new)">
+            <i class="fa fa-lock" *ngIf="_new.active"></i>
+            <i class="fa fa-unlock" *ngIf="!_new.active"></i>
+          </button> </td>
       </tr>
     </tbody>
   </table>
+</div>
 <!-- <div class="row mt-5">
     <div class="col-2">
         <button routerLink='/news/create' class="btn btn-primary mb-2">إنشاء خبر</button>
@@ -31,7 +53,6 @@
                 <tr>
                     <td>عنوان الخبر</td>
                     <td>تفاصيل الخبر</td>
-                    <td>رقم الجوال</td>
                     <td>صورة الخبر</td>
                     <td>نوع الخبر</td>
                     <td>تاريخ الخبر</td>

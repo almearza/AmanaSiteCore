@@ -15,7 +15,4 @@ baseUrl=environment.baseUrl;
   createNews(news:any){
     return this.http.post<News>(this.baseUrl+'news/create-news',news);
   }
-  getNews(){
-    
-  }
 }

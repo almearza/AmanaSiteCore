@@ -34,6 +34,7 @@ import { CreateNewsComponent } from './news/create-news/create-news.component';
 import { EditNewsComponent } from './news/edit-news/edit-news.component';
 import { QuillModule } from 'ngx-quill';
 import { DataTablesModule } from 'angular-datatables';
+import { NewsDetailsModalComponent } from './modals/news-details-modal/news-details-modal.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { DataTablesModule } from 'angular-datatables';
     NewsListComponent,
     CreateNewsComponent,
     EditNewsComponent,
+    NewsDetailsModalComponent,
   ],
   imports: [
     BrowserModule,
