@@ -1,0 +1,43 @@
+<div class="mt-5 mb-5">
+    <button class="btn btn-primary mb-2" routerLink='create'>إنشاء خدمة</button>
+    <div class="table-responsive">
+    <table datatable [dtOptions]="dtOptions" class="table row-border table-hover">
+      <thead>
+        <tr>
+          <td>#</td>
+          <td>وصف الخدمة</td>
+          <td>صورة الخدمة</td>
+          <td>نوع الخدمة</td>
+          <td>رابط الخدمة</td>
+          <td>تاريخ العملية</td>
+          <td>رفع بواسطة</td>
+          <td>حالة الخدمة</td>
+          <td>اللغة</td>
+          <td>تعديل</td>
+          <td>تعطيل</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let _service of amanaservices">
+          <td>{{ _service.id }}</td>
+          <td>{{ _service.descr }}</td>
+          
+          <td>
+            <button class="btn btn-primary" (click)="openModalForImg(imgUrl + _service.imgUrl)">عرض</button>
+          </td>
+          <td>{{ _service.typeName}}</td>
+          <td><a class="btn btn-primary" target="_blank" href='{{ _service.link}}'>فتح</a></td>
+          <td>{{ _service.uploadedDate |date:"MMM dd yyyy HH:MM:ss" }}</td>
+          <td>{{ _service.uploadedBy }}</td>
+          <td>{{ _service.active?"مفعل":"معطل" }}</td>
+          <td>{{ _service.lang }}</td>
+          <td><button class="btn btn-warning" routerLink="edit/{{+_service.id}}"><i class="fa fa-edit"></i> </button></td>
+          <td><button class="btn btn-danger" (click)="lockads(_service)">
+              <i class="fa fa-lock" *ngIf="_service.active"></i>
+              <i class="fa fa-unlock" *ngIf="!_service.active"></i>
+            </button> </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>

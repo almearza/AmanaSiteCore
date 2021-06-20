@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using AmanaSite.Data;
 using AmanaSite.Interfaces;
+using AmanaSite.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
 
@@ -21,8 +22,14 @@ namespace AmanaSite.Repositories
 
         public INews News => new NewsRepository(_context, _mapper,_evn);
 
+        public IAds Ads => new AdsRepository(_context, _mapper,_evn);
+
+        public IAmanaService AmanaService => new AmanaServiceRepository(_context,_mapper,_evn);
+
+        public IMob Mob => new MobRepository(_context,_mapper,_evn);
         public async Task<bool> Complete()
         {
+            var state=_context.ChangeTracker.HasChanges();
             return await _context.SaveChangesAsync() > 0;
         }
 

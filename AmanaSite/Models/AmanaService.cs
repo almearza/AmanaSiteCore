@@ -24,17 +24,5 @@ namespace AmanaSite.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-    }
-    public class ServiceEval
-    {
-        public int Id { get; set; }
-        public AmanaService AmanaService { get; set; }
-        public int AmanaServiceId { get; set; }
-        public DateTime VoteDate { get; set; }
-        public EvalStar Eval { get; set; }
-    }
-    public enum EvalStar
-    {
-        poor=1,accepted=2,good=3,vgood=4,excellent=5
-    }
+    }   
 }

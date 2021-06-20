@@ -396,9 +396,6 @@ namespace AmanaSite.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ToolImgUrl")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("UploadDate")
                         .HasColumnType("datetime2");
 

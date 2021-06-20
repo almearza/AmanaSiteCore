@@ -12,7 +12,13 @@ baseUrl=environment.baseUrl;
   getNewsTypes(){
     return this.http.get<NewsTypes[]>(this.baseUrl+'news/get-types');
   }
-  createNews(news:any){
-    return this.http.post<News>(this.baseUrl+'news/create-news',news);
+  handleNews(news:any){
+   return this.http.post<News>(this.baseUrl+'news/handle-news',news)
+  }
+  active(id:number){
+    return this.http.put(this.baseUrl+'news/activate-news/'+id,{});
+  }
+  getNewsById(id:number){
+    return this.http.get<News>(this.baseUrl+'news/get-news/'+id);
   }
 }

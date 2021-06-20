@@ -10,3 +10,16 @@
   body{
       font-family: 'DroidArabicKufi' !important;
   }
+  .table{
+    width: 100% !important;
+  }
+  .dataTables_empty {
+    display: none;
+  } 
+  .ql-editor{
+    text-align: right !important;
+    font-family: 'DroidArabicKufi';
+  }
+  .small-control{
+    width: 300px;
+  }

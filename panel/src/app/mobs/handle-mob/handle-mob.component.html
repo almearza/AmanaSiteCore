@@ -1,0 +1,64 @@
+<form [formGroup]='mobForm' (ngSubmit)="mobForm.valid && handle()" autocomplete="off">
+    <div class="card mt-5">
+        <div class="card-header bg-dark">
+            <p class="text-light">
+                {{mob?.id==0?"تعديل مبادرة":"إنشاء مبادرة"}}
+            </p>
+        </div>
+        <div class="card-body">
+            <div class="col-lg-8 col-md-10 com-sm-12">
+                <app-text-input [formControl]='mobForm.controls["title"]' [label]='"عنوان المبادرة"'></app-text-input>
+                <br>
+                <quill-editor formControlName='descr' [placeholder]="'وصف المبادرة'" [modules]="quillConfiguration"
+                    class="content-editor">
+                </quill-editor>
+                <br>
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-12">
+                        <div class="form-group small-control">
+                            <label class="control-label">صورة المبادرة</label>
+                            <app-text-input [formControl]='mobForm.controls["mobImg"]' type="file" (change)="setFiles($event)"
+                                [label]='"صورة المبادرة"'>
+                            </app-text-input>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <img src="{{imgUrl}}" alt="صورة المبادرة" class="img-fluid">
+                    </div>
+                </div>
+               
+                <br>
+                <app-text-input [formControl]='mobForm.controls["link"]' [label]='"رابط المبادرة"'></app-text-input>
+                <label class="control-label">النوع </label>
+                <select class="form-control small-control" formControlName="typeId">
+                    <option *ngFor="let _type of mobTypes" value="{{_type.id}}">{{_type.type}}</option>
+                </select>
+                <br>
+                <label class="control-label">اللغة</label>
+
+                <div class="form-group">
+                    <label class="radio-inline">
+                        <input type="radio" value="1" formControlName="langCode">العربية
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" value="2" formControlName="langCode" class="mr-3">English
+                    </label>
+                </div>
+
+                <div class="row" *ngIf="validationErrors.length>0">
+                    <ul class="text-danger">
+                        <li *ngFor="let error of validationErrors">
+                            {{error}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit" [disabled]='!mobForm.valid'>حفظ</button>
+        </div>
+    </div>
+</form>

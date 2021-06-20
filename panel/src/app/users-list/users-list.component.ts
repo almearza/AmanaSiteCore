@@ -78,5 +78,10 @@ export class UsersListComponent implements OnInit {
       user.locked = !user.locked;
     })
   }
+  resetPassword(username:string){
+    this.accountService.resetPassword(username).subscribe(()=>{
+      this.toastr.success('تم إعادة تعيين كلمة السر');
+    })
+  }
 
 }

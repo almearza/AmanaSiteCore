@@ -168,7 +168,7 @@ namespace AmanaSite.Controllers.Api
 
             var _token = await _userManager.GeneratePasswordResetTokenAsync(user);
             var result = await _userManager.ResetPasswordAsync(user, _token, _config["DefaultPassword"]);
-            if (result.Succeeded) return Ok("Done");
+            if (result.Succeeded) return NoContent();
             return BadRequest("خطأ أثناء تحديث بيانات المستخدم");
         }
 
@@ -183,13 +183,13 @@ namespace AmanaSite.Controllers.Api
             if (user == null) return NotFound("لا يوجد مستخدم بهذا الاسم");
             string _token = await _userManager.GeneratePasswordResetTokenAsync(user);
             var result = await _userManager.ResetPasswordAsync(user, _token, newPassword);
-            if (result.Succeeded)
+           if (result.Succeeded)
             {
-                await _signInManager.SignOutAsync();
-                return Ok("Done");
+                return NoContent();
             }
             return BadRequest("خطأ أثناء تحديث بيانات المستخدم");
         }
+         
         [HttpGet("{username}")]
         public async Task<ActionResult<UserDto>> GetUser(string username)
         {

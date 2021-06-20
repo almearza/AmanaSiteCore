@@ -1,0 +1,62 @@
+<form [formGroup]='adsForm' (ngSubmit)="adsForm.valid && handle()" autocomplete="off">
+    <div class="card mt-5">
+        <div class="card-header bg-dark">
+            <p class="text-light">
+                {{ads?.id==0?"تعديل إعلان":"إنشاء إعلان"}}
+            </p>
+        </div>
+        <div class="card-body">
+            <app-text-input formControlName='title' [label]='"عنوان الإعلان"'></app-text-input>
+            <quill-editor formControlName='descr' [placeholder]="'وصف الإعلان'" [modules]="quillConfiguration"
+                class="content-editor">
+            </quill-editor>
+            <br>
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12">
+                    <div class="form-group small-control">
+                        <label class="control-label">صورة الإعلان</label>
+                        <app-text-input formControlName='adsImg' type="file" (change)="setFiles($event)"
+                            [label]='"صورة الإعلان"'>
+                        </app-text-input>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <img src="{{imgUrl}}" alt="صورة الإعلان" class="img-fluid">
+                </div>
+            </div>
+            <br>
+            <app-text-input formControlName='link' [label]='"رابط الإعلان ان وجد"'></app-text-input>
+            <br>
+            <input type="checkbox" formControlName='canExpire' class="ml-2" (change)="handleChange($event)">
+            <label class="control-label">له فترة صلاحية محددة</label>
+            <div class="form-group small-control">
+                <app-date-input formControlName='expireDate' [label]='"تاريخ إنتهاء الإعلان"' [minDate]="minDate">
+                </app-date-input>
+            </div>
+            <br>
+            <label class="control-label">اللغة</label>
+
+            <div class="form-group">
+                <label class="radio-inline">
+                    <input type="radio" value="1" formControlName="langCode">العربية
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" value="2" formControlName="langCode" class="mr-3">English
+                </label>
+            </div>
+            <div class="row" *ngIf="validationErrors.length>0">
+                <ul class="text-danger">
+                    <li *ngFor="let error of validationErrors">
+                        {{error}}
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit" [disabled]='!adsForm.valid'>حفظ</button>
+        </div>
+    </div>
+</form>

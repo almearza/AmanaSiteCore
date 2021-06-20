@@ -18,12 +18,18 @@
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/ads" routerLinkActive="active" *appHasRole='["AdminLevel","AdsLevel"]'>الإعلانات</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/services" routerLinkActive="active" *appHasRole='["AdminLevel"]'>الخدمات</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/mobs" routerLinkActive="active" *appHasRole='["AdminLevel"]'>المبادرات و الفعاليات</a>
+                </li>
             </ng-container>
         </ul>
         <div class="dropdown" *ngIf="(accountService.currentUser$|async)as user" dropdown>
             <a class="dropdown-toggle text-light text-decoration-none" dropdownToggle>مرحبا {{user?.fullname | titlecase}}</a>
             <div class="dropdown-menu mt-3" *dropdownMenu>
-                <a class="dropdown-item" routerLink="/changepassword">تغير كلمة السر</a>
+                <a class="dropdown-item" routerLink="/change-password">تغير كلمة السر</a>
                 <a class="dropdown-item" (click)="logout()">خروج</a>
             </div>
         </div>

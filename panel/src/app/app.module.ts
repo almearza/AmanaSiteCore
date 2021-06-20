@@ -30,11 +30,19 @@ import { NewUserComponent } from './new-user/new-user.component';
 import { TextInputComponent } from './_forms/text-input/text-input.component';
 import { DateInputComponent } from './_forms/date-input/date-input.component';
 import { NewsListComponent } from './news/news-list/news-list.component';
-import { CreateNewsComponent } from './news/create-news/create-news.component';
-import { EditNewsComponent } from './news/edit-news/edit-news.component';
+import { HandleNewsComponent } from './news/handle-news/handle-news.component';
 import { QuillModule } from 'ngx-quill';
 import { DataTablesModule } from 'angular-datatables';
 import { NewsDetailsModalComponent } from './modals/news-details-modal/news-details-modal.component';
+import { AdsListComponent } from './ads/ads-list/ads-list.component';
+import { HandleAdsComponent } from './ads/handle-ads/handle-ads.component';
+import { DatePipe } from '@angular/common';
+import { HandleServiceComponent } from './AmanaServices/handle-service/handle-service.component';
+import { ServicesListComponent } from './AmanaServices/services-list/services-list.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { HandleMobComponent } from './mobs/handle-mob/handle-mob.component';
+import { MobListComponent } from './mobs/mob-list/mob-list.component';
+import { SafeHtmlPipe } from './_pipes/safehtml';
 
 @NgModule({
   declarations: [
@@ -52,9 +60,16 @@ import { NewsDetailsModalComponent } from './modals/news-details-modal/news-deta
     TextInputComponent,
     DateInputComponent,
     NewsListComponent,
-    CreateNewsComponent,
-    EditNewsComponent,
+    HandleNewsComponent,
     NewsDetailsModalComponent,
+    AdsListComponent,
+    HandleAdsComponent,
+    HandleServiceComponent,
+    ServicesListComponent,
+    ChangePasswordComponent,
+    HandleMobComponent,
+    MobListComponent,
+    SafeHtmlPipe,
   ],
   imports: [
     BrowserModule,
@@ -69,7 +84,7 @@ import { NewsDetailsModalComponent } from './modals/news-details-modal/news-deta
     CollapseModule.forRoot(),
     NgxSpinnerModule,
     ToastrModule.forRoot({
-      positionClass:"toast-bottom-right"
+      positionClass: "toast-bottom-right"
     }),
     ModalModule.forRoot(),
     ReactiveFormsModule,
@@ -77,9 +92,10 @@ import { NewsDetailsModalComponent } from './modals/news-details-modal/news-deta
     DataTablesModule
   ],
   providers: [
-    {provide:HTTP_INTERCEPTORS,useClass:ErrorInterceptor,multi:true},
-    {provide:HTTP_INTERCEPTORS,useClass:JwtInterceptor,multi:true},
-    {provide:HTTP_INTERCEPTORS,useClass:LoadingInterceptor,multi:true}
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
+    DatePipe,
   ],
   bootstrap: [AppComponent]
 })

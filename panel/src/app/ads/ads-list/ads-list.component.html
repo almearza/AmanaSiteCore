@@ -1,0 +1,48 @@
+<div class="mt-5 mb-5">
+    <button class="btn btn-primary mb-2" routerLink='create'>إنشاء اعلان</button>
+    <div class="table-responsive">
+    <table datatable [dtOptions]="dtOptions" class="table row-border table-hover">
+      <thead>
+        <tr>
+          <td>#</td>
+          <td>عنوان الاعلان</td>
+          <td>تفاصيل الاعلان</td>
+          <td>صورة الاعلان</td>
+          <td>رابط الاعلان</td>
+          <td>تاريخ الاعلان</td>
+          <td>قابل للإنتهاء</td>
+          <td>تاريخ الإنتهاء</td>
+          <td>رفع بواسطة</td>
+          <td>حالة الاعلان</td>
+          <td>اللغة</td>
+          <td>تعديل</td>
+          <td>تعطيل</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let _ad of ads">
+          <td>{{ _ad.id }}</td>
+          <td>{{ _ad.title }}</td>
+          <td>
+            <button class="btn btn-primary" (click)="openModalForDescr(_ad.descr)">عرض</button>
+          </td>
+          <td>
+            <button class="btn btn-primary" (click)="openModalForImg(imgUrl + _ad.imgUrl)">عرض</button>
+          </td>
+          <td>{{ _ad.link}}</td>
+          <td>{{ _ad.uploadDate |date:"MMM dd yyyy HH:MM:ss" }}</td>
+          <td>{{ _ad.canExpire?"نعم":"لا" }}</td>
+          <td>{{ _ad.expireDate |date:"MMM dd yyyy HH:MM:ss" }}</td>
+          <td>{{ _ad.uploadedBy }}</td>
+          <td>{{ _ad.active?"مفعل":"معطل" }}</td>
+          <td>{{ _ad.lang }}</td>
+          <td><button class="btn btn-warning" routerLink="edit/{{+_ad.id}}"><i class="fa fa-edit"></i> </button></td>
+          <td><button class="btn btn-danger" (click)="lockads(_ad)">
+              <i class="fa fa-lock" *ngIf="_ad.active"></i>
+              <i class="fa fa-unlock" *ngIf="!_ad.active"></i>
+            </button> </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>

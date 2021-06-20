@@ -15,6 +15,7 @@
                     <td>تعديل الصلاحيات</td>
                     <td>تعديل</td>
                     <td>تعطيل</td>
+                    <td>إعادة تعيين كلمة السر</td>
                 </tr>
             </thead>
             <tr *ngFor="let user of users">
@@ -31,6 +32,10 @@
                     <i class="fa fa-unlock" *ngIf="user.locked"></i>
                     <i class="fa fa-lock" *ngIf="!user.locked"></i>
                 </button> </td>
+                <td><button class="btn btn-danger" (click)="resetPassword(user.username)">
+                    إعادة تعيين
+                </button> </td>
+
             </tr>
         </table>
     </div>

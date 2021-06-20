@@ -9,9 +9,11 @@ export interface News {
     descr: string;
     imgUrl: string;
     typeName: string;
+    typeId: number;
     newsDate: Date;
     uploadedBy: string;
     active: boolean;
     newsResource: string;
     lang: string;
+    langCode:number;
 }

@@ -1,18 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { NewsDetailsModalComponent } from 'src/app/modals/news-details-modal/news-details-modal.component';
+import { DataTablesResponse } from 'src/app/_models/datatable';
+import { DtOptions } from 'src/app/_models/generalconfig';
 import { News } from 'src/app/_models/news';
+import { NewsService } from 'src/app/_services/news.service';
 import { environment } from 'src/environments/environment';
-
-
-class DataTablesResponse {
-  data: any[];
-  draw: number;
-  recordsFiltered: number;
-  recordsTotal: number;
-}
 
 @Component({
   selector: 'app-news-list',
@@ -23,49 +19,18 @@ export class NewsListComponent implements OnInit {
 
   dtOptions: DataTables.Settings = {};
   news: News[] = [];
-  imgUrl ="https://amana-md.gov.sa/images/news/";//environment.baseUrl + '/images/news/';
+  baseUrl = environment.baseUrl;
+  imgUrl =//"https://amana-md.gov.sa/images/news/";//
+    environment.baseUrl.replace('api/', '') + 'images/news/';
 
-  // We use this trigger because fetching the list of news can be quite long,
-  // thus we ensure the data is fetched before rendering
-  // dtTrigger: Subject<any> = new Subject<any>();
-
-  constructor(private http: HttpClient, private modalService: BsModalService) { }
+  constructor(private http: HttpClient,
+    private modalService: BsModalService,
+    private newsService: NewsService,
+    private toastr: ToastrService) { }
   ngOnInit(): void {
-    // this.dtOptions = {
-    //   pagingType: 'full_numbers',
-    //   pageLength: 2
-    // };
-    // this.httpClient.get<News[]>( 'https://localhost:5001/api/temp')
-    //   .subscribe(data => {
-    //     this.news = (data as any).data;
-    //     // Calling the DT trigger to manually render the table
-    //     this.dtTrigger.next();
-    //   });
-    const that = this;
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 5,
-      serverSide: true,
-      processing: true,
-      ajax: (dataTablesParameters: any, callback) => {
-        that.http
-          .post<DataTablesResponse>(
-            'https://localhost:5001/api/temp',
-            dataTablesParameters, {}
-          ).subscribe(resp => {
-            that.news = resp.data;
-
-            callback({
-              recordsTotal: resp.recordsTotal,
-              recordsFiltered: resp.recordsFiltered,
-              data: []
-            });
-          });
-      },
-      columns: [{ data: 'id' }, { data: 'title' }, { data: 'descr' }, { data: 'imgUrl' }, { data: 'typeName' }, { data: 'newsDate' }
-        , { data: 'uploadedBy' }, { data: 'active' }, { data: 'newsResource' }, { data: 'lang' }]
-    };
+    this.configDataTable();
   }
+
   openModalForDescr(newsDetails: string) {
     const config = {
       class: "modal-dailog-centered",
@@ -85,10 +50,30 @@ export class NewsListComponent implements OnInit {
     this.modalService.show(NewsDetailsModalComponent, config);
   }
   lockNews(news: News) {
-
+    this.newsService.active(news.id).subscribe(() => {
+      const msg = news.active ? 'تعطيل' : 'تفعيل';
+      this.toastr.success('تم ' + msg + ' الخبر بنجاح');
+      news.active = !news.active;
+    })
   }
-  // ngOnDestroy(): void {
-  //   // Do not forget to unsubscribe the event
-  //   this.dtTrigger.unsubscribe();
-  // }
+
+  configDataTable() {
+    this.dtOptions = DtOptions;
+    this.dtOptions.ajax = (dataTablesParameters: any, callback) => {
+      this.http
+        .post<DataTablesResponse>(
+          this.baseUrl + 'news/get-pagged-news',
+          dataTablesParameters, {}
+        ).subscribe(resp => {
+          this.news = resp.data;
+          callback({
+            recordsTotal: resp.recordsTotal,
+            recordsFiltered: resp.recordsFiltered,
+            data: []
+          });
+        });
+    }
+    this.dtOptions.columns = [{ data: 'id' }, { data: 'title' }, { data: 'descr' }, { data: 'imgUrl' }, { data: 'typeName' }, { data: 'newsDate' },
+    { data: 'uploadedBy' }, { data: 'active' }, { data: 'newsResource' }, { data: 'lang' }]
+  }
 }

@@ -1,0 +1,62 @@
+<form [formGroup]='newsForm' (ngSubmit)="newsForm.valid && handle()" autocomplete="off">
+    <div class="card mt-5">
+        <div class="card-header bg-dark">
+            <p class="text-light">
+                {{news?.id==0?"إنشاء خبر":"تعديل خبر"}}
+            </p>
+        </div>
+        <div class="card-body">
+            <app-text-input [formControl]='newsForm.controls["title"]' [label]='"عنوان الخبر"'></app-text-input>
+            <quill-editor [formControl]='newsForm.controls["descr"]' [placeholder]="'وصف الخبر'"
+                [modules]="quillConfiguration" class="content-editor">
+            </quill-editor>
+            <br>
+
+            <app-text-input [formControl]='newsForm.controls["newsResource"]' [label]='"مصدر الخبر"'>
+            </app-text-input>
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12">
+                    <div class="form-group small-control">
+                        <label class="control-label">صورة الخبر</label>
+                        <app-text-input [formControl]='newsForm.controls["newsImg"]' type="file"
+                            (change)="setFiles($event)" [label]='"صورة الخبر"'>
+                        </app-text-input>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <img src="{{imgUrl}}" alt="{{news?.title}}" class="img-fluid">
+                </div>
+            </div>
+
+            <label class="control-label">نوع الخبر</label>
+            <select class="form-control small-control" formControlName="typeId">
+                <option *ngFor="let _type of newsTypes" value="{{_type.id}}">{{_type.type}}</option>
+            </select>
+
+            <br>
+            <label class="control-label">اللغة</label>
+
+            <div class="form-group">
+                <label class="radio-inline">
+                    <input type="radio" value="1" formControlName="langCode">العربية
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" value="2" formControlName="langCode" class="mr-3">English
+                </label>
+            </div>
+            <div class="row" *ngIf="validationErrors.length>0">
+                <ul class="text-danger">
+                    <li *ngFor="let error of validationErrors">
+                        {{error}}
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit" [disabled]='!newsForm.valid'>حفظ</button>
+        </div>
+    </div>
+</form>

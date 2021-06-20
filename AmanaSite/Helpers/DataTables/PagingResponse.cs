@@ -1,28 +1,33 @@
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace AmanaSite.Helpers.DataTables
 {
     public class PagingResponse<T>
     {
-        public int Draw
+        public int Draw { get; set; }
+        public int RecordsFiltered { get; set; }
+        public int RecordsTotal { get; set; }
+        public List<T> Data { get; set; }
+
+
+        public PagingResponse(int draw, int recordsFiltered, int recordsTotal, List<T> data)
         {
-            get;
-            set;
+            Draw = draw;
+            RecordsFiltered = recordsFiltered;
+            RecordsTotal = recordsTotal;
+            Data = data;
         }
-        public int RecordsFiltered
+        public static async Task<PagingResponse<T>> GetPaggedList(PagingRequest pagingRequest, IQueryable<T> source)
         {
-            get;
-            set;
+            var recordsTotal = await source.CountAsync();
+            var recordsFiltered = recordsTotal;
+            var data = await source.Skip(pagingRequest.start).Take(pagingRequest.length).ToListAsync();
+            return new PagingResponse<T>(pagingRequest.draw,recordsTotal,recordsFiltered,data);
         }
-        public int RecordsTotal
-        {
-            get;
-            set;
-        }
-        public List<T> Data
-        {
-            get;
-            set;
-        }
+
+
     }
 }

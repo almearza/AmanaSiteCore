@@ -60,4 +60,10 @@ export class AccountService {
   updateUser(user: User) {
     return this.http.put(this.baseUrl + 'account/update-user', user);
   }
+  changePassword(newPassword:string){
+    return this.http.post(this.baseUrl + 'account/change-password/' + newPassword, {});
+  }
+  resetPassword(username: string) {
+    return this.http.put(this.baseUrl + 'account/reset-password/' + username, {});
+  }
 }

@@ -1,8 +1,10 @@
-<div class="row mt-5 mb-5">
-  <table datatable [dtOptions]="dtOptions" class="row-border hover">
+<div class="mt-5 mb-5">
+  <button class="btn btn-primary mb-2" routerLink='create'>إنشاء خبر</button>
+  <div class="table-responsive">
+  <table datatable [dtOptions]="dtOptions" class="table row-border table-hover">
     <thead>
       <tr>
-        <td>الرقم</td>
+        <td>#</td>
         <td>عنوان الخبر</td>
         <td>تفاصيل الخبر</td>
         <td>صورة الخبر</td>
@@ -33,7 +35,7 @@
         <td>{{ _new.active?"مفعل":"معطل" }}</td>
         <td>{{ _new.newsResource }}</td>
         <td>{{ _new.lang }}</td>
-        <td><button class="btn btn-warning" routerLink="/news/{{+_new.id}}"><i class="fa fa-edit"></i> </button></td>
+        <td><button class="btn btn-warning" routerLink="edit/{{+_new.id}}"><i class="fa fa-edit"></i> </button></td>
         <td><button class="btn btn-danger" (click)="lockNews(_new)">
             <i class="fa fa-lock" *ngIf="_new.active"></i>
             <i class="fa fa-unlock" *ngIf="!_new.active"></i>
@@ -41,6 +43,7 @@
       </tr>
     </tbody>
   </table>
+  </div>
 </div>
 <!-- <div class="row mt-5">
     <div class="col-2">

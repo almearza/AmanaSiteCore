@@ -6,9 +6,9 @@ using AmanaSite.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
-using System;
 using AmanaSite.Extensions;
-using AmanaSite.Helpers;
+using AmanaSite.Helpers.DataTables;
+using AutoMapper;
 
 namespace AmanaSite.Controllers.Api
 {
@@ -16,50 +16,68 @@ namespace AmanaSite.Controllers.Api
     public class NewsController : ApiBaseController
     {
         private readonly IUnitOfWork _unitOfWork;
-        public NewsController(IUnitOfWork unitOfWork)
+        private readonly IMapper _mapper;
+
+        public NewsController(IUnitOfWork unitOfWork, IMapper mapper)
         {
             this._unitOfWork = unitOfWork;
-
+            this._mapper = mapper;
         }
 
-        [HttpPost("create-news")]
-        public async Task<ActionResult> CreateNews(IFormCollection model)
+        [HttpPost("handle-news")]
+        public async Task<ActionResult> HandleNews([FromForm] NewsVM newsVM)
         {
-            if (model == null) return BadRequest("الرجاء التأكد من إدخال كافة الحقول بالشكل الصحيح");
-            var _files = HttpContext.Request.Form.Files;
-            var files = model.Files;
-            if (files == null || files.Count == 0) return BadRequest("الرجاء ارفاق صورة الخبر");
-
-            var news = new New();
-            news.Title = model["title"].ToString();
-            news.Descr = model["descr"].ToString();
-            var typeIdStr = model["typeId"].ToString();
-            news.TypeId = Convert.ToInt32(typeIdStr);
-            news.LangCode = (LangCode)Convert.ToInt32(model["langCode"].ToString());
-            news.NewsResource = model["newsResource"].ToString();
-
-            news.UploadedBy = User.GetUsername();
-
-            if (string.IsNullOrEmpty(news.Title) || string.IsNullOrEmpty(news.Descr) || news.LangCode == 0 || string.IsNullOrEmpty(news.NewsResource))
+            // IFormCollection model;
+            if (newsVM == null) return BadRequest("الرجاء التأكد من إدخال كافة الحقول بالشكل الصحيح");
+            if (!ModelState.IsValid)
                 return BadRequest("الرجاء التأكد من إدخال كافة الحقول بالشكل الصحيح");
+            var newsId = newsVM.Id;
 
+            var _files = HttpContext.Request.Form.Files;
+            // var files = model.Files;
+            if ((_files == null || _files.Count == 0) && newsId == 0) return BadRequest("الرجاء ارفاق صورة الخبر");
 
-            await _unitOfWork.News.CreateNewsAsync(news, files);
+            newsVM.UploadedBy = User.GetUsername();
+
+            if (newsVM.Id == 0)
+                await _unitOfWork.News.CreateNewsAsync(newsVM, _files);
+            else
+            {
+                var news = await this._unitOfWork.News.GetNewsByIdAsync(newsVM.Id);
+                if (news == null)
+                    return BadRequest("لا يوجد خبر بهذا الرقم المرسل");
+                await _unitOfWork.News.UpdateNewsAsync(newsVM, news, _files);
+            }
+
             var result = await _unitOfWork.Complete();
-            if (result) return Created("", news);
-            return BadRequest("حدث خطأ أثناء انشاء الخبر");
+            if (result) return NoContent();
+            return BadRequest("حدث خطأ أثناء انشاء-تعديل الخبر");
         }
         [HttpGet("get-types")]
         public async Task<IEnumerable<NewsType>> GetNewsTypes()
         {
             return await _unitOfWork.News.GetTypesAsync();
         }
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<NewsVM>>> GetNews([FromQuery] PaginationParams paginationParams)
+        [HttpPost("get-pagged-news")]
+        public async Task<ActionResult<IEnumerable<NewsVM>>> GetNews([FromBody] PagingRequest pagingRequest)
         {
-            var news = await _unitOfWork.News.GetNewsAsync(paginationParams);
-            Response.AddPaginationHeader(news.CurrentPage, news.TotalPages, news.TotalCount, news.PageSize);
+            var news = await _unitOfWork.News.GetNewsAsync(pagingRequest);
             return Ok(news);
         }
+        [HttpGet("get-news/{id}")]
+        public async Task<ActionResult<NewsVM>> GetNews(int id)
+        {
+            var news = await _unitOfWork.News.GetNewsByIdAsync(id);
+            return Ok(news);
+        }
+        [HttpPut("activate-news/{id}")]
+        public async Task<ActionResult> Activate(int id)
+        {
+            await _unitOfWork.News.Activate(id);
+            if (await _unitOfWork.Complete())
+                return NoContent();
+            return BadRequest("حدث خطأ أثناء تعطيل - تفعيل الخبر");
+        }
+
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AmanaSite.Data;
 using AmanaSite.Helpers;
+using AmanaSite.Helpers.DataTables;
 using AmanaSite.Interfaces;
 using AmanaSite.Models;
 using AmanaSite.Models.VM;
@@ -35,7 +36,7 @@ namespace AmanaSite.Repositories
             news.Active = !news.Active;
         }
 
-        public async Task CreateNewsAsync(New model, IFormFileCollection files)
+        public async Task CreateNewsAsync(NewsVM model, IFormFileCollection files)
         {
             // foreach (var file in files)
             // {
@@ -62,32 +63,62 @@ namespace AmanaSite.Repositories
 
             model.NewsDate = DateTime.Now;
             model.Active = true;
-            await _context.News.AddAsync(model);
+
+            var news = _mapper.Map<New>(model);
+            await _context.News.AddAsync(news);
         }
 
-        public Task EditNewsAsync(int id, New model)
+        public async Task<PagingResponse<NewsVM>> GetNewsAsync(PagingRequest pagingRequest)
         {
-            throw new System.NotImplementedException();
+            var query = _context.News.OrderByDescending(n => n.NewsDate).AsQueryable();
+
+            //searching
+            if (!string.IsNullOrEmpty(pagingRequest.search.value))
+            {
+                query = query.Where(_new => _new.Title.Contains(pagingRequest.search.value));
+            }
+            //projecting and getting filtered list
+            return await PagingResponse<NewsVM>
+            .GetPaggedList(pagingRequest, query.ProjectTo<NewsVM>(_mapper.ConfigurationProvider).AsNoTracking());
         }
 
-        public async Task<PageList<NewsVM>> GetNewsAsync(PaginationParams paginationParams)
+        public async Task<New> GetNewsByIdAsync(int id)
         {
-            var query = _context.News.AsQueryable();
-            query.OrderByDescending(n=>n.NewsDate);
-            
-            return await PageList<NewsVM>.CreateAsync(query
-            .ProjectTo<NewsVM>(_mapper.ConfigurationProvider).AsNoTracking()
-            , paginationParams.PageNumber, paginationParams.PageSize);
-        }
-
-        public Task<New> GetNewsByIdAsync(int id)
-        {
-            throw new System.NotImplementedException();
+            return await _context.News.FindAsync(id);
         }
 
         public async Task<IEnumerable<NewsType>> GetTypesAsync()
         {
             return await _context.NewsTypes.ToListAsync();
+        }
+
+        public async Task UpdateNewsAsync(NewsVM newsVM, New news, IFormFileCollection files)
+        {
+            news.Title = newsVM.Title;
+            news.Descr = newsVM.Descr;
+            news.TypeId = newsVM.TypeId;
+            news.NewsResource = newsVM.NewsResource;
+            news.LangCode = newsVM.LangCode;
+            news.UploadedBy = newsVM.UploadedBy;
+            if (files.Count > 0 && files[0] != null)
+            {
+                var file = files[0];
+                var imgExt = file.FileName.Substring(file.FileName.LastIndexOf(".")).Replace("\"", "");
+                var imgTitle = "img_" + DateTime.Now.ToString("yyyyMMdd_hhmmss") + imgExt;
+                var img_ServerSavePath = Path.Combine(_env.ContentRootPath, "wwwroot", "images", "news");
+                if (!Directory.Exists(img_ServerSavePath))
+                {
+                    Directory.CreateDirectory(img_ServerSavePath);
+                }
+                var imgPathWithName = Path.Combine(img_ServerSavePath, imgTitle);
+                using (Stream fileStream = new FileStream(imgPathWithName, FileMode.Create))
+                {
+                    await file.CopyToAsync(fileStream);
+                }
+                news.ImgUrl = imgTitle;
+            }
+            _context.Entry(news).State=EntityState.Modified;
+
         }
     }
 }

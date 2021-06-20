@@ -1,0 +1,46 @@
+<div class="mt-5 mb-5">
+    <button class="btn btn-primary mb-2" routerLink='create'>إنشاء مبادرة</button>
+    <div class="table-responsive">
+    <table datatable [dtOptions]="dtOptions" class="table row-border table-hover">
+      <thead>
+        <tr>
+          <td>#</td>
+          <td>عنوان المبادرة</td>
+          <td>وصف المبادرة</td>
+          <td>صورة المبادرة</td>
+          <td>نوع المبادرة</td>
+          <td>رابط المبادرة</td>
+          <td>تاريخ العملية</td>
+          <td>رفع بواسطة</td>
+          <td>حالة المبادرة</td>
+          <td>اللغة</td>
+          <td>تعديل</td>
+          <td>تعطيل</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let _mob of mobs">
+          <td>{{ _mob.id }}</td>
+          <td>{{ _mob.title }}</td>
+          <td>
+            <button class="btn btn-primary" (click)="openModalForDescr(_mob.descr)">عرض</button>
+          </td>
+          <td>
+            <button class="btn btn-primary" (click)="openModalForImg(imgUrl + _mob.imgUrl)">عرض</button>
+          </td>
+          <td>{{ _mob.typeName}}</td>
+          <td><a class="btn btn-primary" target="_blank" href='{{ _mob.link}}'>فتح</a></td>
+          <td>{{ _mob.mAndFDate |date:"MMM dd yyyy HH:MM:ss" }}</td>
+          <td>{{ _mob.uploadedBy }}</td>
+          <td>{{ _mob.active?"مفعل":"معطل" }}</td>
+          <td>{{ _mob.lang }}</td>
+          <td><button class="btn btn-warning" routerLink="edit/{{+_mob.id}}"><i class="fa fa-edit"></i> </button></td>
+          <td><button class="btn btn-danger" (click)="lockads(_mob)">
+              <i class="fa fa-lock" *ngIf="_mob.active"></i>
+              <i class="fa fa-unlock" *ngIf="!_mob.active"></i>
+            </button> </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>

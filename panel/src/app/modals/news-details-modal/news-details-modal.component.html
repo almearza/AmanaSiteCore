@@ -1,12 +1,12 @@
 
  <div class="modal-header">
-    <h4 class="modal-title pull-left">تفاصيل الخبر</h4>
+    <h4 class="modal-title pull-left">{{newsDetails?"التفاصيل":"الصورة"}}</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <div *ngIf="newsDetails" innerHtml= "{{newsDetails}}"></div>
+    <div class="overflow-auto" *ngIf="newsDetails" [innerHtml]= "newsDetails | SafeHtml"></div>
     <div *ngIf="imgUrl" class="col-12">
         <img  class = "img-responsive" width = "100%"  src="{{imgUrl}}" alt="" class="img">
     </div>

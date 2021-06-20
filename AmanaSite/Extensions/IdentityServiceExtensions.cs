@@ -17,15 +17,16 @@ namespace API.Extensions
 
             services.AddIdentityCore<AppUser>(opt =>
             {
-                // opt.Password.RequireNonAlphanumeric = false;
-                // opt.Password.RequireUppercase=true;
+                opt.Password.RequireNonAlphanumeric = false;
+                opt.Password.RequireUppercase=true;
             }
             )
             .AddRoles<AppRole>()
             .AddRoleManager<RoleManager<AppRole>>()
             .AddSignInManager<SignInManager<AppUser>>()
             .AddRoleValidator<RoleValidator<AppRole>>()
-            .AddEntityFrameworkStores<DContext>();
+            .AddEntityFrameworkStores<DContext>()
+            .AddTokenProvider<DataProtectorTokenProvider<AppUser>>(TokenOptions.DefaultProvider);
 
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -52,11 +53,12 @@ namespace API.Extensions
             services.AddAuthorization(opt =>
             {
                 opt.AddPolicy("AdminLevel", p => p.RequireRole("AdminLevel"));
-                opt.AddPolicy("NewsLevel", p => p.RequireRole("AdminLevel","NormalLevel"));
-                opt.AddPolicy("MobFaLevel", p => p.RequireRole("AdminLevel","MobFaLevel"));
-                opt.AddPolicy("AdsLevel", p => p.RequireRole("AdminLevel","AdsLevel"));
-                opt.AddPolicy("SurveyLevel", p => p.RequireRole("AdminLevel","SurveyLevel"));
+                opt.AddPolicy("NewsLevel", p => p.RequireRole("AdminLevel", "NormalLevel"));
+                opt.AddPolicy("MobFaLevel", p => p.RequireRole("AdminLevel", "MobFaLevel"));
+                opt.AddPolicy("AdsLevel", p => p.RequireRole("AdminLevel", "AdsLevel"));
+                opt.AddPolicy("SurveyLevel", p => p.RequireRole("AdminLevel", "SurveyLevel"));
                 opt.AddPolicy("AllLevels", p => p.RequireRole("AdminLevel", "NormalLevel", "MobFaLevel", "AdsLevel", "SurveyLevel"));
+
             });
             return services;
         }

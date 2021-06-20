@@ -12,6 +12,6 @@ export class NewsDetailsModalComponent implements OnInit {
   constructor(public bsModalRef: BsModalRef) { }
 
   ngOnInit(): void {
+    console.log(this.newsDetails);
   }
-
 }

@@ -27,7 +27,7 @@ export class UserEditComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRouter.data.subscribe(data => {
       this.user = data.user;//user:key we used when we add resolver to route in approuting
-      console.log(this.user);
+      // console.log(this.user);
       
     });
   }
