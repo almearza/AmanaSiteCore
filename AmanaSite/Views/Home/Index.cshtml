@@ -1,8 +1,13 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@section styles{
+    <style>
+        .blog-item{
+            height: 500px;
+        }
+    </style>
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@await Component.InvokeAsync("Slider")
+@* , new { start=0,length=5 } *@
+@await Component.InvokeAsync("Video")
+@await Component.InvokeAsync("Project")
+@await Component.InvokeAsync("Counters")
+@await Component.InvokeAsync("News")

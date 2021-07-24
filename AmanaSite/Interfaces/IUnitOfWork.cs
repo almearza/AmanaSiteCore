@@ -8,6 +8,7 @@ namespace AmanaSite.Interfaces
         IAds Ads{get;}
         IAmanaService AmanaService{get;}
         IMob Mob{get;}
+        IVideo Video{get;}
         Task<bool> Complete();
         bool HasChanges();
     }

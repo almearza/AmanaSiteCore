@@ -43,6 +43,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { HandleMobComponent } from './mobs/handle-mob/handle-mob.component';
 import { MobListComponent } from './mobs/mob-list/mob-list.component';
 import { SafeHtmlPipe } from './_pipes/safehtml';
+import { HandleVideoComponent } from './video/handle-video/handle-video.component';
+import { VideoListComponent } from './video/video-list/video-list.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +72,8 @@ import { SafeHtmlPipe } from './_pipes/safehtml';
     HandleMobComponent,
     MobListComponent,
     SafeHtmlPipe,
+    HandleVideoComponent,
+    VideoListComponent,
   ],
   imports: [
     BrowserModule,

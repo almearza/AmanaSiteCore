@@ -1,0 +1,48 @@
+<!--// Counter Section Start //-->
+@model AmanaSite.Remote.CounterVM
+<section class="section pb-minus-70" id="counters" data-scroll-index="3">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+               
+                <div class="section-heading light">
+                    <h2>نخدم أكثر من 10,000 عميل المدينة أمانة</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-4 wow fadeInUp" data-wow-duration="0.7s" data-wow-delay="0.3s">
+                <div class="counter-item">
+                    <h3 class="counter">1,500</h3>
+                    <p>مشاريع منجزة</p>
+                </div>
+            </div>
+            <div class="col-md-4 wow fadeInUp" data-wow-duration="0.7s" data-wow-delay="0.1s">
+                <div class="counter-item">
+                    <h3 class="counter">250</h3>
+                    <p>مشاريع قيد التنفيذ</p>
+                </div>
+            </div>
+            <div class="col-md-4 wow fadeInUp" data-wow-duration="0.7s" data-wow-delay="0.1s">
+                <div class="counter-item">
+                    <h3 class="counter">200</h3>
+                    <p>خدمة الكترونية</p>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            @foreach (var item in Model.items)
+            {
+                <div class="col-md-4 wow fadeInUp" data-wow-duration="0.7s" data-wow-delay="0.1s">
+                <div class="counter-item">
+                    <div class="d-inline-flex">
+                        <h3 class="counter d-inline">@item.workdone_percent</h3><h3 class="d-inline">%</h3>
+                    </div>
+                    <p>@item.cntrnam</p>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</section>
+<!--// Counter Section End //-->

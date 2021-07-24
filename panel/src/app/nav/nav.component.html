@@ -12,9 +12,15 @@
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/users" routerLinkActive="active" *appHasRole='["AdminLevel"]'>المستخدمين</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/news" routerLinkActive="active" *appHasRole='["AdminLevel","NormalLevel"]'>الأخبار</a>
-                </li>
+                <ng-container *appHasRole='["AdminLevel","NormalLevel"]'>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/video" routerLinkActive="active" *appHasRole='["AdminLevel","NormalLevel"]'>فيديو</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/news" routerLinkActive="active" *appHasRole='["AdminLevel","NormalLevel"]'>الأخبار</a>
+                    </li>
+                </ng-container>
+               
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/ads" routerLinkActive="active" *appHasRole='["AdminLevel","AdsLevel"]'>الإعلانات</a>
                 </li>

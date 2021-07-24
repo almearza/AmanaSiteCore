@@ -65,6 +65,7 @@ namespace AmanaSite.Repositories
             model.Active = true;
 
             var news = _mapper.Map<New>(model);
+            news.Type=null;
             await _context.News.AddAsync(news);
         }
 
@@ -85,6 +86,21 @@ namespace AmanaSite.Repositories
         public async Task<New> GetNewsByIdAsync(int id)
         {
             return await _context.News.FindAsync(id);
+        }
+
+        public async Task<IEnumerable<NewsVM>> GetTop5NewsAsync()
+        {
+            //2:ksa , 3:Madina , 4:Amana
+            var topThreeNews = new List<NewsVM>();
+            var tops =await _context.News.ProjectTo<NewsVM>(_mapper.ConfigurationProvider).ToListAsync();
+            for (var i = 2; i < 5; i++)
+            {
+                var top =await _context.News.ProjectTo<NewsVM>(_mapper.ConfigurationProvider)
+                .OrderByDescending(n => n.NewsDate).Where(n => n.Active && n.TypeId == i).FirstOrDefaultAsync();
+                if (top != null)
+                    topThreeNews.Add(top);
+            }
+            return topThreeNews;
         }
 
         public async Task<IEnumerable<NewsType>> GetTypesAsync()

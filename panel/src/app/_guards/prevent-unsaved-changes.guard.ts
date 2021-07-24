@@ -7,6 +7,7 @@ import { HandleMobComponent } from '../mobs/handle-mob/handle-mob.component';
 import { NewUserComponent } from '../new-user/new-user.component';
 import { HandleNewsComponent } from '../news/handle-news/handle-news.component';
 import { UserEditComponent } from '../user-edit/user-edit.component';
+import { HandleVideoComponent } from '../video/handle-video/handle-video.component';
 import { ConfirmService } from '../_services/confirm.service';
 
 @Injectable({
@@ -16,7 +17,7 @@ export class PreventUnsavedChangesGuard implements CanDeactivate<unknown> {
   constructor(private confirmService:ConfirmService) {
   }
   canDeactivate(component: UserEditComponent|NewUserComponent|HandleNewsComponent|HandleAdsComponent
-    |HandleServiceComponent|HandleMobComponent): Observable<boolean> | boolean {
+    |HandleServiceComponent|HandleMobComponent | HandleVideoComponent): Observable<boolean> | boolean {
     if(component instanceof UserEditComponent){
       if (component.editForm.dirty)
       return this.confirmService.confirm("تعديل مستخدم" ,"هل تريد الخروج قبل حفظ هذه البيانات");
@@ -32,6 +33,9 @@ export class PreventUnsavedChangesGuard implements CanDeactivate<unknown> {
     }else if(component instanceof HandleServiceComponent){
       if (component.serviceForm.dirty)
       return this.confirmService.confirm("إضافة/تعديل خدمة" ,"هل تريد الخروج قبل حفظ هذه البيانات");
+    }else if(component instanceof HandleVideoComponent){
+      if (component.videoForm.dirty)
+      return this.confirmService.confirm("إضافة/تعديل فيديو" ,"هل تريد الخروج قبل حفظ هذه البيانات");
     }else{
       if (component.mobForm.dirty)
       return this.confirmService.confirm("إضافة/تعديل مبادرة - فعالية" ,"هل تريد الخروج قبل حفظ هذه البيانات");

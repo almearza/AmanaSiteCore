@@ -16,5 +16,6 @@ namespace AmanaSite.Interfaces
         Task Activate(int id);
         Task<IEnumerable<NewsType>> GetTypesAsync();
         Task<PagingResponse<NewsVM>> GetNewsAsync(PagingRequest pagingRequest);   
+        Task<IEnumerable<NewsVM>> GetTop5NewsAsync();   
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AmanaSite.Helpers.DataTables;
 using AmanaSite.Models;
@@ -12,5 +13,6 @@ namespace AmanaSite.Interfaces
         Task<SlidersShow> GetAdsByIdAsync(int id);
         Task Activate(int id);
         Task<PagingResponse<SlidersShowVM>> GetAdsAsync(PagingRequest pagingRequest);
+        Task <IEnumerable<SlidersShowVM>> GetTop5AdsAsync();
     }
 }

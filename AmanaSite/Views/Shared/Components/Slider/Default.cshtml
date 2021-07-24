@@ -1,0 +1,38 @@
+@using System.Globalization
+@model IEnumerable<AmanaSite.Models.VM.SlidersShowVM>
+            <!--// Testimonial Section Start //-->
+            <section class="section pb-minus-76 bg-primary-dark defined-slider" data-scroll-index="1">
+                <div class="container">
+                   
+                    <div class="owl-carousel owl-theme" id="testimonialCarousel">
+                        @foreach (var ads in Model)
+                        {
+                            <div class="item">
+                            <div class="testimonial-item">
+                               <div class="row">
+							   <div class="col-lg-6">
+							   <img src="images/ads/@ads.ImgUrl" alt="@ads.Title" title="@ads.Title" class="img-fluid defined-img-slider">
+							   
+							   </div>
+							   <div class="col-lg-6" >
+							   @* <h6>About Me</h6> *@
+                               <div style="min-height: 250px;display: table;">
+                               <h5 class="text-justify" style="display: table-cell;vertical-align: middle;">@ads.Title</h5>
+                               </div>
+                               <p>@ads.UploadDate.ToString("dddd, dd MMMM yyyy", new CultureInfo("ar-SA"))</p>
+                                <div class="col-lg-12 text-left mt-5" >
+                                    <a href="~/home/get-ads/@ads.Id" class="primary-btn">
+                                       <span class="text">عرض</span>
+                                       <span class="icon"><i class="fas fa-eye"></i></span>
+                                       </a>
+                                </div>
+							   </div>
+							   </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                </div>
+            </section>
+            <!--// Testimonial Section End //-->
+            

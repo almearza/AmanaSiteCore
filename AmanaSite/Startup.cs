@@ -51,7 +51,7 @@ namespace AmanaSite
            .AllowCredentials()//this because we recieve token as query pram in signalR
            .AllowAnyHeader()
            .AllowAnyMethod()
-           .WithOrigins("http://localhost:4200"));
+           .WithOrigins("https://localhost:4200"));
 
             app.UseAuthentication();
             app.UseAuthorization();

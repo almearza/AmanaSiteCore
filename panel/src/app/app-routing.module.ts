@@ -14,6 +14,8 @@ import { NewsListComponent } from './news/news-list/news-list.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
 import { UsersListComponent } from './users-list/users-list.component';
+import { HandleVideoComponent } from './video/handle-video/handle-video.component';
+import { VideoListComponent } from './video/video-list/video-list.component';
 import { AdminGuard } from './_guards/admin.guard';
 import { AdsGuard } from './_guards/ads.guard';
 import { AuthGuard } from './_guards/auth.guard';
@@ -23,6 +25,7 @@ import { AdsResolver } from './_resolvers/ads.resolver';
 import { MobResolver } from './_resolvers/mob.resolver';
 import { NewsResolver } from './_resolvers/news.resolver';
 import { UserDetailedResolver } from './_resolvers/user-detailed.reslover';
+import { VideoResolver } from './_resolvers/video.resolver';
 import { AmanaServicesResolver } from './_resolvers/_services.resolver';
 
 
@@ -54,6 +57,10 @@ const routes: Routes = [
       { path: 'news', component: NewsListComponent },
       { path: 'news/create', component: HandleNewsComponent, canDeactivate: [PreventUnsavedChangesGuard] },
       { path: 'news/edit/:id', component: HandleNewsComponent, canDeactivate: [PreventUnsavedChangesGuard], resolve: { news: NewsResolver } },
+
+      { path: 'video', component: VideoListComponent },
+      { path: 'video/create', component: HandleVideoComponent, canDeactivate: [PreventUnsavedChangesGuard] },
+      { path: 'video/edit/:id', component: HandleVideoComponent, canDeactivate: [PreventUnsavedChangesGuard], resolve: { video: VideoResolver } },
     ]
   },
   {

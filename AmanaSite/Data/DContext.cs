@@ -11,6 +11,7 @@ namespace AmanaSite.Data
     AppUserRole, IdentityUserLogin<string>, IdentityRoleClaim<string>, IdentityUserToken<string>>
     {
         public DbSet<SlidersShow> SlidersShows { get; set; }
+        public DbSet<Video> Videos { get; set; }
         public DbSet<New> News { get; set; }
         public DbSet<NewsType> NewsTypes { get; set; }
         public DbSet<BaladyaDescr> Baladyat { get; set; }

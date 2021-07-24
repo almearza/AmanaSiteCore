@@ -1,0 +1,55 @@
+<form [formGroup]='videoForm' (ngSubmit)="videoForm.valid && handle()" autocomplete="off">
+    <div class="card mt-5">
+        <div class="card-header bg-dark">
+            <p class="text-light">
+                {{video?.id==0?"تعديل فيديو":"إنشاء فيديو"}}
+            </p>
+        </div>
+        <div class="card-body">
+            <app-text-input formControlName='title' [label]='"عنوان الفيديو"'></app-text-input>
+            <quill-editor formControlName='descr' [placeholder]="'وصف الفيديو'" [modules]="quillConfiguration"
+                class="content-editor">
+            </quill-editor>
+            <br>
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12">
+                    <div class="form-group small-control">
+                        <label class="control-label">صورة الفيديو</label>
+                        <app-text-input formControlName='videoImg' type="file" (change)="setFiles($event)"
+                            [label]='"صورة الفيديو"'>
+                        </app-text-input>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <img src="{{imgUrl}}" alt="صورة الفيديو" class="img-fluid">
+                </div>
+            </div>
+            <br>
+            <app-text-input formControlName='link' [label]='"رابط الفيديو"'></app-text-input>
+            <br>
+            <label class="control-label">اللغة</label>
+
+            <div class="form-group">
+                <label class="radio-inline">
+                    <input type="radio" value="1" formControlName="langCode">العربية
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" value="2" formControlName="langCode" class="mr-3">English
+                </label>
+            </div>
+            <div class="row" *ngIf="validationErrors.length>0">
+                <ul class="text-danger">
+                    <li *ngFor="let error of validationErrors">
+                        {{error}}
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit" [disabled]='!videoForm.valid'>حفظ</button>
+        </div>
+    </div>
+</form>

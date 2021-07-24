@@ -27,6 +27,9 @@ namespace AmanaSite.Repositories
         public IAmanaService AmanaService => new AmanaServiceRepository(_context,_mapper,_evn);
 
         public IMob Mob => new MobRepository(_context,_mapper,_evn);
+
+        public IVideo Video =>  new VideoRepository(_context,_evn);
+
         public async Task<bool> Complete()
         {
             var state=_context.ChangeTracker.HasChanges();

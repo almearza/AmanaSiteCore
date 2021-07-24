@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -79,6 +80,13 @@ namespace AmanaSite.Repositories
             return await _context.SlidersShows.FindAsync(id);
         }
 
-
+        public async Task<IEnumerable<SlidersShowVM>> GetTop5AdsAsync()
+        {
+            return await _context.SlidersShows
+            .Where(ad=>ad.Active)
+            .OrderByDescending(ad=>ad.UploadDate)
+            .Take(5)
+            .ProjectTo<SlidersShowVM>(_mapper.ConfigurationProvider).ToListAsync();
+        }
     }
 }
