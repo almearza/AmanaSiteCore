@@ -24,9 +24,9 @@ namespace AmanaSite.Repositories
 
         public IAds Ads => new AdsRepository(_context, _mapper,_evn);
 
-        public IAmanaService AmanaService => new AmanaServiceRepository(_context,_mapper,_evn);
+        // public IAmanaService AmanaService => new AmanaServiceRepository(_context,_mapper,_evn);
 
-        public IMob Mob => new MobRepository(_context,_mapper,_evn);
+        // public IMob Mob => new MobRepository(_context,_mapper,_evn);
 
         public IVideo Video =>  new VideoRepository(_context,_evn);
 

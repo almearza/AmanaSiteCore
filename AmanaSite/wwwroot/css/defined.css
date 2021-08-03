@@ -1,0 +1,75 @@
+.defined-slider {
+    padding-top: 10%;
+}
+
+.defined-img-slider {
+    border-radius: 10px;
+}
+
+.defined-news-bg {
+    background-image: url(../img/bg/news-bg.png);
+    background-attachment: fixed !important;
+    background-repeat: repeat;
+    background-size: cover;
+}
+.defined-video-bg{
+    background-image: url(../img/bg/video-bg.png);
+    /* background-attachment: fixed !important; */
+    background-position: bottom left; 
+    background-repeat: no-repeat; 
+  
+}
+.defined-social-bg {
+    background-image: url(../img/bg/social-bg.jpg);
+    background-attachment: fixed !important;
+    background-repeat: repeat;
+    background-size: cover;
+}
+.defined-map-bg {
+    background-image: url(../img/bg/map-bg.PNG);
+    background-attachment: fixed !important;
+    background-repeat: repeat;
+    background-size: cover;
+}
+/* .defined-map-div{
+margin: 10% 0;
+border-radius: 50px;
+box-shadow: 0 15px 30px 0 rgb(13 113 103 / 15%);
+
+} */
+.white-header h2 {
+    color: #fff !important;
+}
+.white-header h2:after,.white-header h2:before {
+    background: #fff !important;
+}
+
+.blog-item {
+    height: 500px;
+}
+#blogCarousel2 .owl-nav{
+    color: #fff !important;
+}
+.defined-news-img {
+    height: 256px;
+}
+.defined-item-img{
+    height: 300px !important;
+}
+
+@media only screen and (max-width: 991.98px) {
+    .defined-slider {
+        padding-top: 17%;
+    }
+
+    @media only screen and (max-width: 570px) {
+        .defined-slider {
+            padding-top: 30%;
+        }
+
+        .defined-font-family {
+            font-family: 'DroidArabicKufiBold';
+        }
+    }
+
+}

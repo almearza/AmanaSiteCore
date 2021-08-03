@@ -10,59 +10,28 @@
     <meta name="description" content="أمانة منطقة المدينة المنورة">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>أمانة منطقة المدينة المنورة</title>
-    <link rel="shortcut icon" href="img/bg/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="~/img/bg/favicon.ico" type="image/x-icon">
     <!--// Boostrap v5 //-->
-    <link rel="stylesheet" href="vendor/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/vendor/css/bootstrap.min.css">
     <!--// Magnific Popup //-->
-    <link rel="stylesheet" href="vendor/css/magnific.popup.min.css">
+    <link rel="stylesheet" href="~/vendor/css/magnific.popup.min.css">
     <!--// Animate Css //-->
-    <link rel="stylesheet" href="vendor/css/animate.min.css">
+    <link rel="stylesheet" href="~/vendor/css/animate.min.css">
     <!--// Owl Carousel //-->
-    <link rel="stylesheet" href="vendor/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/vendor/css/owl.carousel.min.css">
     <!--// Owl Carousel Default //-->
-    <link rel="stylesheet" href="vendor/css/owl.carousel.default.min.css">
+    <link rel="stylesheet" href="~/vendor/css/owl.carousel.default.min.css">
     <!--// Font Awesome //-->
-    <link rel="stylesheet" href="fonts/font_awesome/css/all.css">
+    <link rel="stylesheet" href="~/fonts/font_awesome/css/all.css">
     <!--// Flat Icons //-->
-    <link rel="stylesheet" href="fonts/flat_icons/flaticon.css">
+    <link rel="stylesheet" href="~/fonts/flat_icons/flaticon.css">
     <!--// Theme Main Css //-->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="~/css/style.css">
     <!--// Theme Color Css //-->
-    <link rel="stylesheet" href="css/skins/default-color.css" id="theme-color-toggle" />
+    <link rel="stylesheet" href="~/css/skins/default-color.css" id="theme-color-toggle" />
     @RenderSection("styles", required: false)
     <!-- custom -->
-    @* <link rel="stylesheet" href="css/quill.core.css" /> *@
-    <style>
-        .defined-slider {
-            padding-top: 10%;
-        }
-
-        .defined-img-slider {
-            border-radius: 10px;
-        }
-
-        .defined-news-bg {
-            background-image: url(img/bg/news-bg.png);
-            background-attachment: fixed !important;
-            background-repeat: repeat;
-            background-size: cover;
-        }
-
-        @@media only screen and (max-width: 991.98px) {
-            .defined-slider {
-                padding-top: 17%;
-            }
-
-            @@media only screen and (max-width: 570px) {
-                .defined-slider {
-                    padding-top: 30%;
-                }
-
-                .defined-font-family {
-                    font-family: 'DroidArabicKufiBold';
-                }
-            }
-    </style>
+    @* <link rel="stylesheet" href="~/css/quill.core.css" /> *@
 </head>
 
 <body data-spy="scroll" data-target="#fixedNavbar">
@@ -76,8 +45,8 @@
                 <div class="container">
                     <nav class="navbar navbar-expand-lg p-0">
                         <a class="navbar-brand" title="Home" href="~/">
-                            <img src="img/bg/logo_white.png" alt="Logo White" class="img-fluid logo-transparent">
-                            <img src="img/bg/logo_black.png" alt="Logo Black" class="img-fluid logo-normal">
+                            <img src="~/img/bg/logo_white.png" alt="Logo White" class="img-fluid logo-transparent">
+                            <img src="~/img/bg/logo_black.png" alt="Logo Black" class="img-fluid logo-normal">
                         </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#fixedNavbar"
                             aria-controls="fixedNavbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -116,9 +85,9 @@
                                         المركز الإعلامي
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="blogDropdownMenu">
-                                        <a class="dropdown-item" href="blog-grid.html">الأخبار</a>
-                                        <a class="dropdown-item" href="blog-single.html">وسائط الأمانة</a>
-                                        <a class="dropdown-item" href="blog-single.html">إنفوجرافك المدينة</a>
+                                        <a class="dropdown-item" href="#" data-scroll-nav="4">الأخبار</a>
+                                        <a class="dropdown-item" href="#" data-scroll-nav="4">وسائط الأمانة</a>
+                                        <a class="dropdown-item" href="#" data-scroll-nav="4">إنفوجرافك المدينة</a>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
@@ -126,9 +95,9 @@
                                         data-scroll-nav="5" role="button" data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="false">تواصل معنا</a>
                                     <div class="dropdown-menu" aria-labelledby="blogDropdownMenu">
-                                        <a class="dropdown-item" href="blog-grid.html">راسل الأمانة</a>
-                                        <a class="dropdown-item" href="blog-sidebar.html">راسل الأمين</a>
-                                        <a class="dropdown-item" href="blog-single.html">نظام البلاغات 940</a>
+                                        <a class="dropdown-item" href="#" data-scroll-nav="5">راسل الأمانة</a>
+                                        <a class="dropdown-item" href="#">راسل الأمين</a>
+                                        <a class="dropdown-item" href="#">نظام البلاغات 940</a>
                                     </div>
                                 </li>
                                 <li class="nav-item navbar-btn-resp d-flex align-items-center mr-2 ml-2">
@@ -160,11 +129,12 @@
                         <div class="row">
                             <div class="col-md-8 col-lg-6 footer-widget-resp">
                                 <div class="footer-widget">
-                                    <h6 class="footer-title">خدماتنا</h6>
-                                    <img src="img/bg/logo_white.png" alt="footer logo" class="img-fluid footer-logo">
+                                    <h6 class="footer-title">#المدينة_أمانة</h6>
+                                    <a href="https://www.vision2030.gov.sa/ar/" target="_blank">
+                                        <img src="~/img/bg/2030.png" alt="footer logo" class="img-fluid footer-logo"></a>
                                     <p class="footer-desc">
-                                        خدمات الأراضي والمنح والمخططات، والتشييد والبناء، والرخص المهنية، والعقار
-                                        والاستثمار وغيرها.
+                                        تهدف أمانة منطقة المدينة المنورة للارتقاء بالخدمات البلدية في المنطقة،
+                                         والمحافظة على خصوصيتها، وتنميتها وتطويرها عمرانيًّا واقتصاديًّا واجتماعيًّا.
                                     </p>
                                     <div class="footer-social-links">
                                         <a href="https://www.facebook.com/AmanaAlmadinah" target="_blank">
@@ -282,37 +252,37 @@
 
 
     <!--// JQuery //-->
-    <script src="vendor/js/jquery.min.js"></script>
+    <script src="~/vendor/js/jquery.min.js"></script>
     <!--// Popper //-->
-    <script src="vendor/js/popper.min.js"></script>
+    <script src="~/vendor/js/popper.min.js"></script>
     <!--// Bootstrap //-->
-    <script src="vendor/js/bootstrap.min.js"></script>
+    <script src="~/vendor/js/bootstrap.min.js"></script>
     <!--// Images Loaded Js //-->
-    <script src="vendor/js/images.loaded.min.js"></script>
+    <script src="~/vendor/js/images.loaded.min.js"></script>
     <!--// Wow Js //-->
-    <script src="vendor/js/wow.min.js"></script>
+    <script src="~/vendor/js/wow.min.js"></script>
     <!--// Magnific Popup //-->
-    <script src="vendor/js/magnific.popup.min.js"></script>
+    <script src="~/vendor/js/magnific.popup.min.js"></script>
     <!--// Waypoint Js //-->
-    <script src="vendor/js/waypoint.min.js"></script>
+    <script src="~/vendor/js/waypoint.min.js"></script>
     <!--// Counter Up Js //-->
-    <script src="vendor/js/counter.up.min.js"></script>
+    <script src="~/vendor/js/counter.up.min.js"></script>
     <!--// JQuery Easing Functions //-->
-    <script src="vendor/js/jquery.easing.min.js"></script>
+    <script src="~/vendor/js/jquery.easing.min.js"></script>
     <!--// Owl Carousel //-->
-    <script src="vendor/js/owl.carousel.min.js"></script>
+    <script src="~/vendor/js/owl.carousel.min.js"></script>
     <!--// Form Validate //-->
-    <script src="vendor/js/validate.min.js"></script>
+    <script src="~/vendor/js/validate.min.js"></script>
     <!--// Form Validate //-->
-    <script src="vendor/js/custom.select.plugin.js"></script>
+    <script src="~/vendor/js/custom.select.plugin.js"></script>
     <!--// Scroll It //-->
-    <script src="vendor/js/scrollit.min.js"></script>
+    <script src="~/vendor/js/scrollit.min.js"></script>
     <!--// Isotope Js //-->
-    <script src="vendor/js/isotope.min.js"></script>
+    <script src="~/vendor/js/isotope.min.js"></script>
     <!--// Particles Js //-->
-    <script src="vendor/js/particles.js"></script>
+    <script src="~/vendor/js/particles.js"></script>
     <!--// Main Js //-->
-    <script src="js/main.js"></script>
+    <script src="~/js/main.js"></script>
     @RenderSection("scripts", required: false)
     <script>
         $(document).ready(function () {

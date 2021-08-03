@@ -30,7 +30,7 @@ import { AmanaServicesResolver } from './_resolvers/_services.resolver';
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent }, 
   {
     path: '',
     runGuardsAndResolvers: 'always',
@@ -75,7 +75,8 @@ const routes: Routes = [
   },
   { path: 'not-found', component: NotFoundComponent },
   { path: 'change-password', component: ChangePasswordComponent, canActivate: [AuthGuard] },
-  { path: '**', component: NotFoundComponent, pathMatch: 'full' }
+  { path: '**', component: NotFoundComponent, pathMatch: 'full' },
+ 
 ];
 
 @NgModule({

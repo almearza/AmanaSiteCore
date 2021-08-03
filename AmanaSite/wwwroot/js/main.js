@@ -184,6 +184,7 @@ function Filaous_Carousel(){
 
     // Variables
     let blogCarousel            = $( '#blogCarousel');
+    let blogCarousel2            = $( '#blogCarousel2');
     let testimonialCarousel     = $( '#testimonialCarousel');
     let portfolioCarousel       = $( '#portfolioCarousel');
     var hasRtl                  = $("body").hasClass("rtl-mode");
@@ -239,7 +240,28 @@ function Filaous_Carousel(){
                     items:3
                 }
             }
-        });  
+        }); 
+        blogCarousel2.owlCarousel({
+            loop:true,
+            margin:30,
+            dots:false,
+            rtl:true,
+            nav:true,
+            items:2,
+            smartSpeed:1000,
+            navText: [ "<span class='fa fa-arrow-left'></span>","<span class='fa fa-arrow-right'></span>" ],
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:1
+                },
+                1000:{
+                    items:2
+                }
+            }
+        });   
         portfolioCarousel.owlCarousel({
             loop:true,
             margin:20,
@@ -308,7 +330,27 @@ function Filaous_Carousel(){
                     items:3
                 }
             }
-        });  
+        }); 
+        blogCarousel2.owlCarousel({
+            loop:true,
+            margin:30,
+            dots:false,
+            nav:true,
+            items:2,
+            smartSpeed:1000,
+            navText: [ "<span class='fa fa-arrow-left'></span>","<span class='fa fa-arrow-right'></span>" ],
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:1
+                },
+                1000:{
+                    items:2
+                }
+            }
+        });   
         portfolioCarousel.owlCarousel({
             loop:true,
             margin:20,

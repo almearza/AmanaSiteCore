@@ -81,8 +81,8 @@ namespace AmanaSite.Controllers.Api
             if(result.Succeeded) return NoContent();
             return BadRequest ("حدث خطأ أثناء تعديل المستخدم");
         }
-        [HttpPost("login")]
         [AllowAnonymous]
+        [HttpPost("login")]
         public async Task<ActionResult<UserVM>> Login(LoginVM loginVM)
         {
             var user = await _userManager.FindByNameAsync(loginVM.UserName);
