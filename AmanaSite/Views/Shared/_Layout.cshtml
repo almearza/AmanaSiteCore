@@ -1,5 +1,11 @@
-﻿<!DOCTYPE html>
-<html lang="ar">
+﻿@using Microsoft.AspNetCore.Mvc.Localization;
+@using System.Globalization;
+@inject IViewLocalizer Localizer
+@{
+    var lang = CultureInfo.CurrentCulture;
+}
+<!DOCTYPE html>
+<html lang="@lang">
 
 <head>
     <meta charset="UTF-8">
@@ -7,9 +13,9 @@
     <meta name="robots" content="index,follow">
     <meta name="publisher" content="Fawaz Almogadem">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="أمانة منطقة المدينة المنورة">
+    <meta name="description" content='@Localizer["AmanaTitle"]'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أمانة منطقة المدينة المنورة</title>
+    <title>@Localizer["AmanaTitle"]</title>
     <link rel="shortcut icon" href="~/img/bg/favicon.ico" type="image/x-icon">
     <!--// Boostrap v5 //-->
     <link rel="stylesheet" href="~/vendor/css/bootstrap.min.css">
@@ -79,22 +85,21 @@
                                     <a class="nav-link menu-link" href="#" data-scroll-nav="3">الإنجازات</a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="blogDropdownMenu"
-                                        data-scroll-nav="4" role="button" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
+                                    <a class="nav-link dropdown-toggle" href="#" id="mediaCenter" data-scroll-nav="4"
+                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         المركز الإعلامي
                                     </a>
-                                    <div class="dropdown-menu" aria-labelledby="blogDropdownMenu">
+                                    <div class="dropdown-menu" aria-labelledby="mediaCenter">
                                         <a class="dropdown-item" href="#" data-scroll-nav="4">الأخبار</a>
                                         <a class="dropdown-item" href="#" data-scroll-nav="4">وسائط الأمانة</a>
                                         <a class="dropdown-item" href="#" data-scroll-nav="4">إنفوجرافك المدينة</a>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="blogDropdownMenu"
-                                        data-scroll-nav="5" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                    <a class="nav-link dropdown-toggle" href="#" id="connectWithUs" data-scroll-nav="5"
+                                        role="button" data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="false">تواصل معنا</a>
-                                    <div class="dropdown-menu" aria-labelledby="blogDropdownMenu">
+                                    <div class="dropdown-menu" aria-labelledby="connectWithUs">
                                         <a class="dropdown-item" href="#" data-scroll-nav="5">راسل الأمانة</a>
                                         <a class="dropdown-item" href="#">راسل الأمين</a>
                                         <a class="dropdown-item" href="#">نظام البلاغات 940</a>
@@ -106,9 +111,13 @@
                                         <span class="icon"><i class="fa fa-arrow-right"></i></span>
                                     </a>
                                 </li>
-                                <li class="nav-item  d-flex align-items-center mr-2 ml-2">
-                                    <button type="button" title="En" class="primary-btn" data-id="En" id="rtlToggle">
+                                <li class="nav-item  d-flex align-items-center mr-2 ml-2 nav-item dropdown">
+                                    @* <button type="button" title="En" class="primary-btn" data-id="En" id="rtlToggle">
                                         <span class="icon"><i class="fa fa-globe"></i></span>
+                                        </button> *@
+                                    <button type="button" id="colorOptionsSidebarToggle" class="nav-link dropdown-toggle primary-btn">
+                                        <span class="icon"><i class="fa fa-globe fa-spin"></i></span>
+                                        @* <i class="fa fa-cog fa-spin"></i> *@
                                     </button>
                                 </li>
                             </ul>
@@ -118,6 +127,7 @@
             </div>
         </header>
         <!--// Header End  //-->
+
 
         <!--// Main Area Start //-->
         <main class="main-area">
@@ -131,10 +141,11 @@
                                 <div class="footer-widget">
                                     <h6 class="footer-title">#المدينة_أمانة</h6>
                                     <a href="https://www.vision2030.gov.sa/ar/" target="_blank">
-                                        <img src="~/img/bg/2030.png" alt="footer logo" class="img-fluid footer-logo"></a>
+                                        <img src="~/img/bg/2030.png" alt="footer logo"
+                                            class="img-fluid footer-logo"></a>
                                     <p class="footer-desc">
-                                        تهدف أمانة منطقة المدينة المنورة للارتقاء بالخدمات البلدية في المنطقة،
-                                         والمحافظة على خصوصيتها، وتنميتها وتطويرها عمرانيًّا واقتصاديًّا واجتماعيًّا.
+                                        تهدف @Localizer["AmanaTitle"] للارتقاء بالخدمات البلدية في المنطقة،
+                                        والمحافظة على خصوصيتها، وتنميتها وتطويرها عمرانيًّا واقتصاديًّا واجتماعيًّا.
                                     </p>
                                     <div class="footer-social-links">
                                         <a href="https://www.facebook.com/AmanaAlmadinah" target="_blank">
@@ -251,6 +262,7 @@
     <!--// Page Wrapper End //-->
 
 
+
     <!--// JQuery //-->
     <script src="~/vendor/js/jquery.min.js"></script>
     <!--// Popper //-->
@@ -286,7 +298,12 @@
     @RenderSection("scripts", required: false)
     <script>
         $(document).ready(function () {
-            $('body').removeClass("ltr-mode").addClass("rtl-mode");
+            let langCode = '@lang';
+            if (langCode == "en") {
+                $('body').removeClass("rtl-mode").addClass("ltr-mode");
+            } else {
+                $('body').removeClass("ltr-mode").addClass("rtl-mode");
+            }
         });
     </script>
 </body>

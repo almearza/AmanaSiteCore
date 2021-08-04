@@ -1,7 +1,10 @@
 .defined-slider {
     padding-top: 10%;
 }
-
+.defined-content-end{
+    display: flex;
+    justify-content: flex-end;
+}
 .defined-img-slider {
     border-radius: 10px;
 }

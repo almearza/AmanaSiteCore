@@ -1,4 +1,5 @@
-﻿@section styles{
+﻿@using Microsoft.Extensions.Localization
+@section styles{
 <link rel="stylesheet" href="~/css/defined.css">
 }
 @await Component.InvokeAsync("Slider")
@@ -7,6 +8,7 @@
 @await Component.InvokeAsync("Project")
 @await Component.InvokeAsync("Counters")
 @await Component.InvokeAsync("News")
+<p>testing translating @ViewBag.Hello</p>
 @Html.Partial("_SocialMediaPartial")
 @await Component.InvokeAsync("Info")
 @Html.Partial("_MapPartial")

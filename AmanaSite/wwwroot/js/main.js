@@ -660,63 +660,15 @@ function Filaous_BgVideo() {
     }
 }
 /* ------------------------------------------------------------------- */
-/* 13.Color Options
+/* 
 /* ------------------------------------------------------------------- */
 function Filaous_Color_Options(){
     "use-strict";
-	
-    var toggleLinkTag = $('#theme-color-toggle');
     var colorOptionsSidebarToggle = $('#colorOptionsSidebarToggle');
-    var rtlSidebar = $('#rtlSidebar');
-    var rtlToggle = $('#rtlToggle');
-    var colorOptions = $('.color-options-list');
     var colorOptionsWrap = $('.color-options-wrap');
-    var optionsItem = colorOptions.find('span');
 
-    // optionsItem.first().addClass("active");
-
-    // colorOptionsSidebarToggle.on("click",function(){
-        // colorOptionsWrap.toggleClass("active");
-    // });
-
-    // optionsItem.each(function(){
-        // var itemBgData = $(this).attr("data-bg-color");
-        // $(this).css('background-color', itemBgData);
-    // });
-
-    // optionsItem.on('click',function(){
-        // var bgActiveColor = $(this).css("background-color");
-        // var itemSrcData = $(this).attr("data-skins-css-path");
-        // optionsItem.removeClass("active");
-        // $(this).addClass("active");
-        // colorOptionsSidebarToggle.css("background-color",bgActiveColor);
-        // rtlToggle.css("background-color",bgActiveColor);
-        // toggleLinkTag.attr("href", itemSrcData);
-    // });
-
-    var activeBgColor = "#0d7167";//optionsItem.first().css("background-color");
-
-    rtlToggle.css("background-color", activeBgColor);
-
-    // Rtl Toggle
-    rtlToggle.on("click",function() {
-
-        // if ( colorOptionsWrap.hasClass("active")){
-            // colorOptionsWrap.toggleClass("active");
-        // }
-		let btn =$(this);
-		console.log(btn.attr("data-id"));
-        if(btn.attr("data-id") == "En"){
-            //$(this).text("ع");//.removeClass('rtl-mode').addClass("rtl-mode");
-            $('body').removeClass("rtl-mode").addClass("ltr-mode");
-			btn.attr("data-id","Ar");
-			btn.prop('title', 'العربية');
-        }else {
-            //rtlSidebar.removeClass("rtl-mode").addClass("ltr-mode");
-            //$(this).text("En");//.removeClass('rtl-mode').addClass("ltr-mode");
-            $('body').removeClass("ltr-mode").addClass("rtl-mode");
-			btn.attr("data-id","En");
-			btn.prop('title', 'English');
-        }
+    colorOptionsSidebarToggle.on("click",function(){
+        colorOptionsWrap.toggleClass("active");
     });
+
 }

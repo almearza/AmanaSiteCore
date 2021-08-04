@@ -1,15 +1,15 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Globalization;
 using AmanaSite.Extensions;
 using API.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 
 namespace AmanaSite
 {
@@ -27,6 +27,29 @@ namespace AmanaSite
             services.AddApplicationServiceExtensions(_config);
             services.AddIdentityServiceExtensions(_config);
             services.AddCors();
+
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+            services.AddControllersWithViews()
+                .AddViewLocalization()
+                .AddDataAnnotationsLocalization();
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var supportedCultures = new[]
+                {
+        new CultureInfo("ar"),
+        new CultureInfo("en")
+                };
+
+                options.DefaultRequestCulture = new RequestCulture(culture: "ar", uiCulture: "ar");
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
+                // options.RequestCultureProviders = 
+                // new List<IRequestCultureProvider> { new QueryStringRequestCultureProvider(), new CookieRequestCultureProvider() };
+            });
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,8 +76,14 @@ namespace AmanaSite
            .AllowAnyMethod()
            .WithOrigins("https://localhost:4200"));
 
+
+
             app.UseAuthentication();
             app.UseAuthorization();
+
+            var locOptions = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
+
+            app.UseRequestLocalization();
 
             app.UseEndpoints(endpoints =>
             {
@@ -62,6 +91,7 @@ namespace AmanaSite
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
         }
     }
 }

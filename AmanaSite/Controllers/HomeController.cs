@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using AmanaSite.Models;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Localization;
 
 namespace AmanaSite.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> _logger;
 
@@ -18,7 +21,7 @@ namespace AmanaSite.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string lang)
         {
             return View();
         }
@@ -33,5 +36,6 @@ namespace AmanaSite.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
     }
 }
