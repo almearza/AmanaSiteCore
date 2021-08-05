@@ -71,54 +71,106 @@
                                         الأمانة
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="blogDropdownMenu">
-                                        <a class="dropdown-item" href="blog-grid.html">البلديات الفرعية</a>
-                                        <a class="dropdown-item" href="blog-sidebar.html">بلديات المحافظات</a>
-                                        <a class="dropdown-item" href="blog-single.html">الهيكل التنظيمي</a>
-                                        <a class="dropdown-item" href="blog-single.html">إستطلاع رأي</a>
+                                        <a class="dropdown-item" href="blog-grid.html">@Localizer["SubMuns"]</a>
+                                        <a class="dropdown-item" href="blog-sidebar.html">@Localizer["LocalMuns"]</a>
+                                        <a class="dropdown-item" href="blog-single.html">@Localizer["Structure"]</a>
+                                        <a class="dropdown-item" href="blog-single.html">@Localizer["SurveyTitle"]</a>
                                     </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link menu-link" href="#" data-scroll-nav="2">المشاريع</a>
+                                    <a class="nav-link menu-link" href="#" data-scroll-nav="2">@Localizer["ProjectsTitle"]</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link menu-link" href="#" data-scroll-nav="3">الإنجازات</a>
+                                    <a class="nav-link menu-link" href="#" data-scroll-nav="3">@Localizer["Completions"]</a>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="mediaCenter" data-scroll-nav="4"
                                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        المركز الإعلامي
+                                       @Localizer["MediaCenter"]
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="mediaCenter">
-                                        <a class="dropdown-item" href="#" data-scroll-nav="4">الأخبار</a>
-                                        <a class="dropdown-item" href="#" data-scroll-nav="4">وسائط الأمانة</a>
-                                        <a class="dropdown-item" href="#" data-scroll-nav="4">إنفوجرافك المدينة</a>
+                                        <a class="dropdown-item" href="#" data-scroll-nav="4">@Localizer["NewsTitle"]</a>
+                                        <a class="dropdown-item" href="#" data-scroll-nav="4">@Localizer["Media"]</a>
+                                        <a class="dropdown-item" href="#" data-scroll-nav="4">@Localizer["Info"]</a>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="connectWithUs" data-scroll-nav="5"
                                         role="button" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">تواصل معنا</a>
+                                        aria-expanded="false">@Localizer["ContactWithUs"]</a>
                                     <div class="dropdown-menu" aria-labelledby="connectWithUs">
-                                        <a class="dropdown-item" href="#" data-scroll-nav="5">راسل الأمانة</a>
-                                        <a class="dropdown-item" href="#">راسل الأمين</a>
-                                        <a class="dropdown-item" href="#">نظام البلاغات 940</a>
+                                        <a class="dropdown-item" href="#" data-scroll-nav="5">@Localizer["ContactMun"]</a>
+                                        <a class="dropdown-item" href="#">@Localizer["ContactAmeen"]</a>
+                                        <a class="dropdown-item" href="#">@Localizer["System940"]</a>
                                     </div>
                                 </li>
                                 <li class="nav-item navbar-btn-resp d-flex align-items-center mr-2 ml-2">
                                     <a href="#" data-scroll-nav="6" class="primary-btn">
-                                        <span class="text">الخدمات الإلكترونية</span>
+                                        <span class="text">@Localizer["EServices"]</span>
                                         <span class="icon"><i class="fa fa-arrow-right"></i></span>
                                     </a>
                                 </li>
-                                <li class="nav-item  d-flex align-items-center mr-2 ml-2 nav-item dropdown">
-                                    @* <button type="button" title="En" class="primary-btn" data-id="En" id="rtlToggle">
-                                        <span class="icon"><i class="fa fa-globe"></i></span>
-                                        </button> *@
-                                    <button type="button" id="colorOptionsSidebarToggle" class="nav-link dropdown-toggle primary-btn">
-                                        <span class="icon"><i class="fa fa-globe fa-spin"></i></span>
-                                        @* <i class="fa fa-cog fa-spin"></i> *@
+                                <li class="nav-item dropdown d-lg-none d-xl-list-item">
+                                    <a class="nav-link dropdown-toggle" href="#" id="langSelect" data-scroll-nav="5"
+                                        role="button" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">@Localizer["Lang"]</a>
+                                    <div class="dropdown-menu" aria-labelledby="langSelect">
+                                        @using (Html.BeginForm("SetLanguage", "Home", FormMethod.Post))
+                                        {
+                                            <input name="culture" type="hidden" value="ar">
+                                            <input name="returnUrl" type="hidden" value="@Context.Request.Path">
+                                            @Html.AntiForgeryToken()
+                                            <button type="submit" class="dropdown-item"
+                                            data-lang="ar">العربية</button>
+                                        }
+                                        @using (Html.BeginForm("SetLanguage", "Home", FormMethod.Post))
+                                        {
+                                            <input name="culture" type="hidden" value="en">
+                                            <input name="returnUrl" type="hidden" value="@Context.Request.Path">
+                                            @Html.AntiForgeryToken()
+                                            <button type="submit" class="dropdown-item"
+                                            data-lang="ar">English</button>
+                                        }
+                                        @using (Html.BeginForm("SetLanguage", "Home", FormMethod.Post))
+                                        {
+                                            <input name="culture" type="hidden" value="ur">
+                                            <input name="returnUrl" type="hidden" value="@Context.Request.Path">
+                                            @Html.AntiForgeryToken()
+                                            <button type="submit" class="dropdown-item">اردو</button>
+                                        }
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown d-none d-lg-flex align-items-center mr-2 ml-2">
+                                  
+                                    <button type="button" id="langSelect" class="primary-btn">
+                                        <span class="icon"><i class="fa fa-globe fa-pulse"></i></span>
                                     </button>
+                                    <div class="dropdown-menu" aria-labelledby="langSelect">
+                                        @using (Html.BeginForm("SetLanguage", "Home", FormMethod.Post))
+                                        {
+                                            <input name="culture" type="hidden" value="ar">
+                                            <input name="returnUrl" type="hidden" value="@Context.Request.Path">
+                                            @Html.AntiForgeryToken()
+                                            <button type="submit" class="dropdown-item"
+                                            data-lang="ar">العربية</button>
+                                        }
+                                        @using (Html.BeginForm("SetLanguage", "Home", FormMethod.Post))
+                                        {
+                                            <input name="culture" type="hidden" value="en">
+                                            <input name="returnUrl" type="hidden" value="@Context.Request.Path">
+                                            @Html.AntiForgeryToken()
+                                            <button type="submit" class="dropdown-item"
+                                            data-lang="ar">English</button>
+                                        }
+                                        @using (Html.BeginForm("SetLanguage", "Home", FormMethod.Post))
+                                        {
+                                            <input name="culture" type="hidden" value="ur">
+                                            <input name="returnUrl" type="hidden" value="@Context.Request.Path">
+                                            @Html.AntiForgeryToken()
+                                            <button type="submit" class="dropdown-item">اردو</button>
+                                        }
+                                    </div>
                                 </li>
                             </ul>
                         </div>
@@ -139,13 +191,12 @@
                         <div class="row">
                             <div class="col-md-8 col-lg-6 footer-widget-resp">
                                 <div class="footer-widget">
-                                    <h6 class="footer-title">#المدينة_أمانة</h6>
+                                    <h6 class="footer-title">@Localizer["MunHashTag"]</h6>
                                     <a href="https://www.vision2030.gov.sa/ar/" target="_blank">
                                         <img src="~/img/bg/2030.png" alt="footer logo"
                                             class="img-fluid footer-logo"></a>
                                     <p class="footer-desc">
-                                        تهدف @Localizer["AmanaTitle"] للارتقاء بالخدمات البلدية في المنطقة،
-                                        والمحافظة على خصوصيتها، وتنميتها وتطويرها عمرانيًّا واقتصاديًّا واجتماعيًّا.
+                                        @Localizer["AmanaVision"]
                                     </p>
                                     <div class="footer-social-links">
                                         <a href="https://www.facebook.com/AmanaAlmadinah" target="_blank">
@@ -171,49 +222,48 @@
                             </div>
                             <div class="col-md-4 col-lg-2 footer-widget-resp">
                                 <div class="footer-widget footer-widget-pl">
-                                    <h6 class="footer-title">روابط مهمة</h6>
+                                    <h6 class="footer-title">@Localizer["ImportantLinks"]</h6>
                                     <ul class="footer-links">
                                         <li>
-                                            <a href="javascript:void(0)">دليل الأنظمة</a>
+                                            <a href="javascript:void(0)">@Localizer["SysDocs"]</a>
                                         </li>
                                         <li>
-                                            <a href="https://www.momra.gov.sa/" target="_blank">وزارة الشئون البلدية و
-                                                القروية</a>
+                                            <a href="https://www.momra.gov.sa/" target="_blank">@Localizer["Momra"]</a>
                                         </li>
                                         <li>
                                             <a href="jhttps://www.my.gov.sa/wps/portal/snp/main/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8zivQIsTAwdDQz9_d29TAwCnQ1DjUy9wgwM3M30w_Wj9KNQlBibOgGV-Jr7OwaHGRoYmEIVGOAAjgb6BdnZgQDi4Jpl/dz/d5/L0lDUmlTUSEhL3dHa0FKRnNBLzROV3FpQSEhL2Fy/"
                                                 target="_blank">
-                                                المنصة الوطنية الموحدة
+                                                @Localizer["GOVSA"]
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="https://amana-md.gov.sa/opendata">البيانات المفتوحة</a>
+                                            <a href="https://amana-md.gov.sa/opendata">@Localizer["OpenData"]</a>
                                         </li>
                                         <li>
                                             <a href="https://services.amana-md.gov.sa/AmanaServices/ServiceCat/Get?Id=77&&TypeId=1&&TypeName=%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%20%D8%A7%D9%84%D8%A3%D9%81%D8%B1%D8%A7%D8%AF"
-                                                target="_blank">بحث عن معاملة</a>
+                                                target="_blank">@Localizer["OpSearch"]</a>
                                         </li>
                                         <li>
-                                            <a href="https://www.momra.gov.sa/ar/regulations">اللوائح و الأنظمة</a>
+                                            <a href="https://www.momra.gov.sa/ar/regulations">@Localizer["SAR"]</a>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="col-md-6 col-lg-4 footer-widget-resp">
                                 <div class="footer-widget">
-                                    <h6 class="footer-title">أتصل بنا</h6>
+                                    <h6 class="footer-title">@Localizer["ContactUs"]</h6>
                                     <div class="footer-contact-info-wrap">
                                         <ul class="footer-contact-info-list">
                                             <li>
-                                                <h6>العنوان:</h6>
+                                                <h6>@Localizer["Address"]:</h6>
                                                 <p>
-                                                    حي العنبرية - طريق أمير المؤمنين عمر بن الخطاب رضي الله عنه - مقابل
-                                                    السكة الحديد <br>ص.ب : 4952
-                                                    <br>الرمز البريدي : 41412
+                                                   @Localizer["Address1"] <br>
+                                                   @Localizer["Address2"] <br>
+                                                   @Localizer["Address3"] 
                                                 </p>
                                             </li>
                                             <li>
-                                                <h6>الهاتف و البريد:</h6>
+                                                <h6>@Localizer["EmailAndPhone"]</h6>
                                                 <div class="text">
                                                     <p>8227400</p>
                                                     <p>Info@Amana-md.gov.sa</p>
@@ -228,7 +278,7 @@
                 </div>
                 <div class="copyright">
                     <div class="container">
-                        <p class="copyright-text">كل الحقوق محفوظة © امانة منطقة المدينة المنورة - @DateTime.Now.Year
+                        <p class="copyright-text">@Localizer["CopyRight"] - @DateTime.Now.Year
                         </p>
                     </div>
                 </div>
@@ -306,6 +356,7 @@
             }
         });
     </script>
+
 </body>
 
 </html>

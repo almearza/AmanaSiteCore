@@ -35,11 +35,7 @@ namespace AmanaSite
                 .AddDataAnnotationsLocalization();
             services.Configure<RequestLocalizationOptions>(options =>
             {
-                var supportedCultures = new[]
-                {
-        new CultureInfo("ar"),
-        new CultureInfo("en")
-                };
+                var supportedCultures = new[] { new CultureInfo("ar"), new CultureInfo("en"), new CultureInfo("ur") };
 
                 options.DefaultRequestCulture = new RequestCulture(culture: "ar", uiCulture: "ar");
                 options.SupportedCultures = supportedCultures;

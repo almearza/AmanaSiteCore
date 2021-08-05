@@ -120,4 +120,91 @@
   <data name="AmanaTitle" xml:space="preserve">
     <value>أمانة منطقة المدينة المنورة</value>
   </data>
+  <data name="AmanaVision" xml:space="preserve">
+    <value>تهدف أمانة منطقة المدينة المنورة للارتقاء بالخدمات البلدية في المنطقة،والمحافظة على خصوصيتها، وتنميتها وتطويرها عمرانيًّا واقتصاديًّا واجتماعيًّا.</value>
+  </data>
+  <data name="Momra" xml:space="preserve">
+    <value>وزارة الشئون البلدية والقروية</value>
+  </data>
+  <data name="GOVSA" xml:space="preserve">
+    <value>المنصة الوطنية الموحدة</value>
+  </data>
+  <data name="Address1" xml:space="preserve">
+    <value> حي العنبرية - طريق أمير المؤمنين عمر بن الخطاب رضي الله عنه - مقابلالسكة الحديد</value>
+  </data>
+  <data name="Address2" xml:space="preserve">
+    <value>ص.ب : 4952</value>
+  </data>
+  <data name="Address3" xml:space="preserve">
+    <value>الرمز البريدي : 41412</value>
+  </data>
+  <data name="EmailAndPhone" xml:space="preserve">
+    <value>الهاتف و البريد:</value>
+  </data>
+  <data name="CopyRight" xml:space="preserve">
+    <value>كل الحقوق محفوظة © امانة منطقة المدينة المنورة</value>
+  </data>
+  <data name="SubMuns" xml:space="preserve">
+    <value>البلديات الفرعية</value>
+  </data>
+  <data name="LocalMuns" xml:space="preserve">
+    <value>بلديات المحافظات</value>
+  </data>
+  <data name="Structure" xml:space="preserve">
+    <value>الهيكل التنظيمي</value>
+  </data>
+  <data name="SurveyTitle" xml:space="preserve">
+    <value>إستطلاع رأي</value>
+  </data>
+  <data name="ProjectsTitle" xml:space="preserve">
+    <value>المشاريع</value>
+  </data>
+  <data name="Completions" xml:space="preserve">
+    <value>الإنجازات</value>
+  </data>
+  <data name="MediaCenter" xml:space="preserve">
+    <value>المركز الإعلامي</value>
+  </data>
+  <data name="NewsTitle" xml:space="preserve">
+    <value>الأخبار</value>
+  </data>
+  <data name="Media" xml:space="preserve">
+    <value>وسائط الأمانة</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>إنفوجرافك الأمانة</value>
+  </data>
+  <data name="ContactWithUs" xml:space="preserve">
+    <value>تواصل معنا</value>
+  </data>
+  <data name="ContactMun" xml:space="preserve">
+    <value>راسل الأمانة</value>
+  </data>
+  <data name="ContactAmeen" xml:space="preserve">
+    <value>راسل الأمين</value>
+  </data>
+  <data name="System940" xml:space="preserve">
+    <value>نظام البلاغات 940</value>
+  </data>
+  <data name="EServices" xml:space="preserve">
+    <value>الخدمات الإلكترونية</value>
+  </data>
+  <data name="Lang" xml:space="preserve">
+    <value>اللغة</value>
+  </data>
+  <data name="MunHashTag" xml:space="preserve">
+    <value>#المدينة_أمانة</value>
+  </data>
+  <data name="ImportantLinks" xml:space="preserve">
+    <value>روابط مهمة</value>
+  </data>
+  <data name="SysDocs" xml:space="preserve">
+    <value>أدلة الأنظمة</value>
+  </data>
+  <data name="OpenData" xml:space="preserve">
+    <value>البيانات المفتوحة</value>
+  </data>
+  <data name="OpSearch" xml:space="preserve">
+    <value>بحث عن معاملة</value>
+  </data>
 </root>

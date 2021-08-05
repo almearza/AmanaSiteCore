@@ -120,4 +120,92 @@
   <data name="AmanaTitle" xml:space="preserve">
     <value>Madinah Regional Municipality</value>
   </data>
+  <data name="AmanaVision" xml:space="preserve">
+    <value>The Municipality of Al-Madinah Al-Munawwarah region aims to improve the municipal services in the region, preserve its privacy, and develop it urban, economically and socially</value>
+  </data>
+   <data name="Momra" xml:space="preserve">
+    <value>Ministry of Municipal and Rural Affairs</value>
+  </data>
+  <data name="GOVSA" xml:space="preserve">
+    <value>Unified National Platform</value>
+  </data>
+   <data name="Address1" xml:space="preserve">
+    <value>Al-Anbariya neighborhood - Prince of the Faithful Omar Ibn Al-Khattab Road, may God be pleased with him - opposite the railway</value>
+  </data>
+  <data name="Address2" xml:space="preserve">
+    <value>BOX: 4952</value>
+  </data>
+  <data name="Address3" xml:space="preserve">
+    <value>ZIP: 41412</value>
+  </data>
+   <data name="EmailAndPhone" xml:space="preserve">
+    <value>Email And Phone:</value>
+  </data>
+  <data name="CopyRight" xml:space="preserve">
+    <value>All rights reserved © Al-Madinah Al-Munawwarah Municipality</value>
+  </data>
+
+  <data name="SubMuns" xml:space="preserve">
+    <value>ٍSub Municipalities</value>
+  </data>
+  <data name="LocalMuns" xml:space="preserve">
+    <value>Provinces Municipalities</value>
+  </data>
+  <data name="Structure" xml:space="preserve">
+    <value>Municipality Structure</value>
+  </data>
+  <data name="SurveyTitle" xml:space="preserve">
+    <value>Survey</value>
+  </data>
+  <data name="ProjectsTitle" xml:space="preserve">
+    <value>Projects</value>
+  </data>
+  <data name="Completions" xml:space="preserve">
+    <value>Achievements</value>
+  </data>
+  <data name="MediaCenter" xml:space="preserve">
+    <value>Media Center</value>
+  </data>
+  <data name="NewsTitle" xml:space="preserve">
+    <value>News</value>
+  </data>
+  <data name="Media" xml:space="preserve">
+    <value>Municipality Socail Media</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Municipality Info Graphics</value>
+  </data>
+  <data name="ContactWithUs" xml:space="preserve">
+    <value>Contact us</value>
+  </data>
+  <data name="ContactMun" xml:space="preserve">
+    <value>Contact Municipality</value>
+  </data>
+  <data name="ContactAmeen" xml:space="preserve">
+    <value>Contact Alameen</value>
+  </data>
+  <data name="System940" xml:space="preserve">
+    <value>Balagat 940 System</value>
+  </data>
+  <data name="EServices" xml:space="preserve">
+    <value>Electronic Services</value>
+  </data>
+  <data name="Lang" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="MunHashTag" xml:space="preserve">
+    <value>#المدينة_أمانة</value>
+  </data>
+  <data name="ImportantLinks" xml:space="preserve">
+    <value>Important Links</value>
+  </data>
+  <data name="SysDocs" xml:space="preserve">
+    <value>Systems Documentations</value>
+  </data>
+  <data name="OpenData" xml:space="preserve">
+    <value>Open Data</value>
+  </data>
+  <data name="OpSearch" xml:space="preserve">
+    <value>Search For Treatment</value>
+  </data>
 </root>
