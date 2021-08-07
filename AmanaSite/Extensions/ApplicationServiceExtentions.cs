@@ -26,6 +26,7 @@ namespace AmanaSite.Extensions
             });
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<ICurrentLang, CurrentLang>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
             //add httpClient service:

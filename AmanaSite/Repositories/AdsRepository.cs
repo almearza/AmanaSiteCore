@@ -21,10 +21,15 @@ namespace AmanaSite.Repositories
         private readonly DContext _context;
         private readonly IMapper _mapper;
         private readonly IWebHostEnvironment _env;
+        private readonly ICurrentLang _currentLang;
 
-        public AdsRepository(DContext context, IMapper mapper, IWebHostEnvironment env)
+        public AdsRepository(DContext context,
+                             IMapper mapper,
+                             IWebHostEnvironment env,
+                             ICurrentLang currentLang)
         {
             this._env = env;
+            this._currentLang = currentLang;
             this._mapper = mapper;
             this._context = context;
         }
@@ -83,7 +88,7 @@ namespace AmanaSite.Repositories
         public async Task<IEnumerable<SlidersShowVM>> GetTop5AdsAsync()
         {
             return await _context.SlidersShows
-            .Where(ad=>ad.Active)
+            .Where(ad=>ad.Active && ad.LangCode ==_currentLang.Get())
             .OrderByDescending(ad=>ad.UploadDate)
             .Take(5)
             .ProjectTo<SlidersShowVM>(_mapper.ConfigurationProvider).ToListAsync();

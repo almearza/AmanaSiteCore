@@ -135,6 +135,12 @@
   <data name="Address2" xml:space="preserve">
     <value>ص.ب : 4952</value>
   </data>
+  <data name="Address" xml:space="preserve">
+    <value>العنوان</value>
+  </data>
+  <data name="ContactUs" xml:space="preserve">
+    <value>إتصل بنا</value>
+  </data>
   <data name="Address3" xml:space="preserve">
     <value>الرمز البريدي : 41412</value>
   </data>
@@ -143,6 +149,9 @@
   </data>
   <data name="CopyRight" xml:space="preserve">
     <value>كل الحقوق محفوظة © امانة منطقة المدينة المنورة</value>
+  </data>
+  <data name="Muntitle" xml:space="preserve">
+    <value>الأمانة</value>
   </data>
   <data name="SubMuns" xml:space="preserve">
     <value>البلديات الفرعية</value>
@@ -206,5 +215,8 @@
   </data>
   <data name="OpSearch" xml:space="preserve">
     <value>بحث عن معاملة</value>
+  </data>
+  <data name="SAR" xml:space="preserve">
+    <value>اللوائح و الانظمة</value>
   </data>
 </root>

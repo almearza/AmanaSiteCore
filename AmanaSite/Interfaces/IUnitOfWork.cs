@@ -9,7 +9,10 @@ namespace AmanaSite.Interfaces
         // IAmanaService AmanaService{get;}
         // IMob Mob{get;}
         IVideo Video{get;}
+        IBaladyat Baladyat{get;}
         Task<bool> Complete();
         bool HasChanges();
+
+        
     }
 }

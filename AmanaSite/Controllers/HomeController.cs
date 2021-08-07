@@ -37,8 +37,7 @@ namespace AmanaSite.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
         [ValidateAntiForgeryToken]
-        [HttpPost("set-lang")]
-        public IActionResult SetLanguage(string culture, string returnUrl)
+        public IActionResult setlang(string culture, string returnUrl)
         {
             Response.Cookies.Append(
                 CookieRequestCultureProvider.DefaultCookieName,

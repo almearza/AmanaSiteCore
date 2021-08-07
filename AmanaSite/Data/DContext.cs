@@ -15,7 +15,7 @@ namespace AmanaSite.Data
         public DbSet<Video> Videos { get; set; }
         public DbSet<New> News { get; set; }
         public DbSet<NewsType> NewsTypes { get; set; }
-        public DbSet<BaladyaDescr> Baladyat { get; set; }
+        public DbSet<Baladyat> Baladyat { get; set; }
         public DbSet<AmanaLink> AmanaLinks { get; set; }
         // public DbSet<MAndF> MAndF { get; set; }
         // public DbSet<MAndFType> MAndFType { get; set; }

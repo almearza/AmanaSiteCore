@@ -135,6 +135,12 @@
   <data name="Address2" xml:space="preserve">
     <value>BOX: 4952</value>
   </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="ContactUs" xml:space="preserve">
+    <value>Contact Us</value>
+  </data>
   <data name="Address3" xml:space="preserve">
     <value>ZIP: 41412</value>
   </data>
@@ -144,9 +150,11 @@
   <data name="CopyRight" xml:space="preserve">
     <value>All rights reserved © Al-Madinah Al-Munawwarah Municipality</value>
   </data>
-
+<data name="Muntitle" xml:space="preserve">
+    <value>Municipality</value>
+  </data>
   <data name="SubMuns" xml:space="preserve">
-    <value>ٍSub Municipalities</value>
+    <value>Sub Municipalities</value>
   </data>
   <data name="LocalMuns" xml:space="preserve">
     <value>Provinces Municipalities</value>
@@ -207,5 +215,8 @@
   </data>
   <data name="OpSearch" xml:space="preserve">
     <value>Search For Treatment</value>
+  </data>
+  <data name="SAR" xml:space="preserve">
+    <value>Rules and Regulations</value>
   </data>
 </root>

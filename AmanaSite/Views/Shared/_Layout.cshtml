@@ -68,7 +68,7 @@
                                     <a class="nav-link dropdown-toggle" href="#" id="amanaDropdownMenu"
                                         data-scroll-nav="1" role="button" data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="false">
-                                        الأمانة
+                                        @Localizer["Muntitle"]
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="blogDropdownMenu">
                                         <a class="dropdown-item" href="blog-grid.html">@Localizer["SubMuns"]</a>
@@ -78,29 +78,33 @@
                                     </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link menu-link" href="#" data-scroll-nav="2">@Localizer["ProjectsTitle"]</a>
+                                    <a class="nav-link menu-link" href="#"
+                                        data-scroll-nav="2">@Localizer["ProjectsTitle"]</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link menu-link" href="#" data-scroll-nav="3">@Localizer["Completions"]</a>
+                                    <a class="nav-link menu-link" href="#"
+                                        data-scroll-nav="3">@Localizer["Completions"]</a>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="mediaCenter" data-scroll-nav="4"
                                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                       @Localizer["MediaCenter"]
+                                        @Localizer["MediaCenter"]
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="mediaCenter">
-                                        <a class="dropdown-item" href="#" data-scroll-nav="4">@Localizer["NewsTitle"]</a>
-                                        <a class="dropdown-item" href="#" data-scroll-nav="4">@Localizer["Media"]</a>
-                                        <a class="dropdown-item" href="#" data-scroll-nav="4">@Localizer["Info"]</a>
+                                        <a class="dropdown-item" href="#"
+                                            data-scroll-nav="4">@Localizer["NewsTitle"]</a>
+                                        <a class="dropdown-item" href="#" data-scroll-nav="5">@Localizer["Media"]</a>
+                                        <a class="dropdown-item" href="#" data-scroll-nav="6">@Localizer["Info"]</a>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="connectWithUs" data-scroll-nav="5"
+                                    <a class="nav-link dropdown-toggle" href="#" id="connectWithUs" data-scroll-nav="7"
                                         role="button" data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="false">@Localizer["ContactWithUs"]</a>
                                     <div class="dropdown-menu" aria-labelledby="connectWithUs">
-                                        <a class="dropdown-item" href="#" data-scroll-nav="5">@Localizer["ContactMun"]</a>
+                                        <a class="dropdown-item" href="#"
+                                            data-scroll-nav="7">@Localizer["ContactMun"]</a>
                                         <a class="dropdown-item" href="#">@Localizer["ContactAmeen"]</a>
                                         <a class="dropdown-item" href="#">@Localizer["System940"]</a>
                                     </div>
@@ -116,59 +120,78 @@
                                         role="button" data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="false">@Localizer["Lang"]</a>
                                     <div class="dropdown-menu" aria-labelledby="langSelect">
-                                        @using (Html.BeginForm("SetLanguage", "Home", FormMethod.Post))
-                                        {
-                                            <input name="culture" type="hidden" value="ar">
-                                            <input name="returnUrl" type="hidden" value="@Context.Request.Path">
-                                            @Html.AntiForgeryToken()
-                                            <button type="submit" class="dropdown-item"
-                                            data-lang="ar">العربية</button>
+                                        @{
+                                            if (lang.ToString() != "ar")
+                                            {
+                                                using (Html.BeginForm("setlang", "Home", FormMethod.Post))
+                                                {
+                                                    <input name="culture" type="hidden" value="ar">
+                                                    <input name="returnUrl" type="hidden" value="@Context.Request.Path">
+                                                    @Html.AntiForgeryToken()
+                                                    <button type="submit" class="dropdown-item" data-lang="ar">العربية</button>
+                                                }
+                                            }
+                                            if (lang.ToString() != "en")
+                                            {
+                                                @using (Html.BeginForm("setlang", "Home", FormMethod.Post))
+                                                {
+                                                    <input name="culture" type="hidden" value="en">
+                                                    <input name="returnUrl" type="hidden" value="@Context.Request.Path">
+                                                    @Html.AntiForgeryToken()
+                                                    <button type="submit" class="dropdown-item" data-lang="ar">English</button>
+                                                }
+                                            }
+                                            if (lang.ToString() != "ur")
+                                            {
+                                                @using (Html.BeginForm("setlang", "Home", FormMethod.Post))
+                                                {
+                                                    <input name="culture" type="hidden" value="ur">
+                                                    <input name="returnUrl" type="hidden" value="@Context.Request.Path">
+                                                    @Html.AntiForgeryToken()
+                                                    <button type="submit" class="dropdown-item">اردو</button>
+                                                }
+                                            }
                                         }
-                                        @using (Html.BeginForm("SetLanguage", "Home", FormMethod.Post))
-                                        {
-                                            <input name="culture" type="hidden" value="en">
-                                            <input name="returnUrl" type="hidden" value="@Context.Request.Path">
-                                            @Html.AntiForgeryToken()
-                                            <button type="submit" class="dropdown-item"
-                                            data-lang="ar">English</button>
-                                        }
-                                        @using (Html.BeginForm("SetLanguage", "Home", FormMethod.Post))
-                                        {
-                                            <input name="culture" type="hidden" value="ur">
-                                            <input name="returnUrl" type="hidden" value="@Context.Request.Path">
-                                            @Html.AntiForgeryToken()
-                                            <button type="submit" class="dropdown-item">اردو</button>
-                                        }
+
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown d-none d-lg-flex align-items-center mr-2 ml-2">
-                                  
+
                                     <button type="button" id="langSelect" class="primary-btn">
                                         <span class="icon"><i class="fa fa-globe fa-pulse"></i></span>
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="langSelect">
-                                        @using (Html.BeginForm("SetLanguage", "Home", FormMethod.Post))
-                                        {
-                                            <input name="culture" type="hidden" value="ar">
-                                            <input name="returnUrl" type="hidden" value="@Context.Request.Path">
-                                            @Html.AntiForgeryToken()
-                                            <button type="submit" class="dropdown-item"
-                                            data-lang="ar">العربية</button>
-                                        }
-                                        @using (Html.BeginForm("SetLanguage", "Home", FormMethod.Post))
-                                        {
-                                            <input name="culture" type="hidden" value="en">
-                                            <input name="returnUrl" type="hidden" value="@Context.Request.Path">
-                                            @Html.AntiForgeryToken()
-                                            <button type="submit" class="dropdown-item"
-                                            data-lang="ar">English</button>
-                                        }
-                                        @using (Html.BeginForm("SetLanguage", "Home", FormMethod.Post))
-                                        {
-                                            <input name="culture" type="hidden" value="ur">
-                                            <input name="returnUrl" type="hidden" value="@Context.Request.Path">
-                                            @Html.AntiForgeryToken()
-                                            <button type="submit" class="dropdown-item">اردو</button>
+                                         @{
+                                            if (lang.ToString() != "ar")
+                                            {
+                                                using (Html.BeginForm("setlang", "Home", FormMethod.Post))
+                                                {
+                                                    <input name="culture" type="hidden" value="ar">
+                                                    <input name="returnUrl" type="hidden" value="@Context.Request.Path">
+                                                    @Html.AntiForgeryToken()
+                                                    <button type="submit" class="dropdown-item" data-lang="ar">العربية</button>
+                                                }
+                                            }
+                                            if (lang.ToString() != "en")
+                                            {
+                                                @using (Html.BeginForm("setlang", "Home", FormMethod.Post))
+                                                {
+                                                    <input name="culture" type="hidden" value="en">
+                                                    <input name="returnUrl" type="hidden" value="@Context.Request.Path">
+                                                    @Html.AntiForgeryToken()
+                                                    <button type="submit" class="dropdown-item" data-lang="ar">English</button>
+                                                }
+                                            }
+                                            if (lang.ToString() != "ur")
+                                            {
+                                                @using (Html.BeginForm("setlang", "Home", FormMethod.Post))
+                                                {
+                                                    <input name="culture" type="hidden" value="ur">
+                                                    <input name="returnUrl" type="hidden" value="@Context.Request.Path">
+                                                    @Html.AntiForgeryToken()
+                                                    <button type="submit" class="dropdown-item">اردو</button>
+                                                }
+                                            }
                                         }
                                     </div>
                                 </li>
@@ -257,9 +280,9 @@
                                             <li>
                                                 <h6>@Localizer["Address"]:</h6>
                                                 <p>
-                                                   @Localizer["Address1"] <br>
-                                                   @Localizer["Address2"] <br>
-                                                   @Localizer["Address3"] 
+                                                    @Localizer["Address1"] <br>
+                                                    @Localizer["Address2"] <br>
+                                                    @Localizer["Address3"]
                                                 </p>
                                             </li>
                                             <li>

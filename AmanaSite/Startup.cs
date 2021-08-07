@@ -40,8 +40,8 @@ namespace AmanaSite
                 options.DefaultRequestCulture = new RequestCulture(culture: "ar", uiCulture: "ar");
                 options.SupportedCultures = supportedCultures;
                 options.SupportedUICultures = supportedCultures;
-                // options.RequestCultureProviders = 
-                // new List<IRequestCultureProvider> { new QueryStringRequestCultureProvider(), new CookieRequestCultureProvider() };
+                options.RequestCultureProviders = 
+                new List<IRequestCultureProvider> { new QueryStringRequestCultureProvider(), new CookieRequestCultureProvider() };
             });
 
 
