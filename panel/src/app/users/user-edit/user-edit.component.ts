@@ -3,8 +3,8 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs/operators';
-import { User } from '../_models/user';
-import { AccountService } from '../_services/account.service';
+import { User } from '../../_models/user';
+import { AccountService } from '../../_services/account.service';
 
 @Component({
   selector: 'app-user-edit',

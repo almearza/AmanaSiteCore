@@ -1,0 +1,38 @@
+<div class="mt-5 mb-5">
+    <button class="btn btn-primary mb-2" (click)="addInfo()">إنشاء انفوجرافيك</button>
+    <div class="table-responsive">
+        <table datatable [dtOptions]="dtOptions" class="table row-border table-hover">
+            <thead>
+                <tr>
+                    <td>#</td>
+                    <td>صورة الانفوجرافيك</td>
+                    <td>تاريخ الانفوجرافيك</td>
+                    <td>رفع بواسطة</td>
+                    <td>اللغة</td>
+                    <td>حذف</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let _inf of infos">
+                    <td>{{ _inf.id }}</td>
+                    <td>
+                        <button class="btn btn-primary" (click)="openModalForImg(imgUrl + _inf.imgUrl)">عرض</button>
+                    </td>
+                    <td>{{ _inf.modifiedDate |date:"MMM dd yyyy HH:mm:ss" }}</td>
+                    <td>{{ _inf.doneBy }}</td>
+
+                    <td>
+                        <ng-container [ngSwitch]="_inf.langCode">
+                            <p *ngSwitchCase="1">العربية</p>
+                            <p *ngSwitchCase="2">English</p>
+                            <p *ngSwitchDefault>اردو</p>
+                        </ng-container>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" (click)="deleteInfo(_inf)"><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

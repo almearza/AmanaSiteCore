@@ -1,0 +1,50 @@
+<div class="mt-5 mb-5">
+    <button class="btn btn-primary mb-2" routerLink='create'>إنشاء مشروع</button>
+    <div class="table-responsive">
+    <table datatable [dtOptions]="dtOptions" class="table row-border table-hover">
+      <thead>
+        <tr>
+          <td>#</td>
+          <td>عنوان المشروع</td>
+          <td>تفاصيل المشروع</td>
+          <td>صورة المشروع</td>
+          <td>مقدمة المشروع</td>
+          <td>تاريخ المشروع</td>
+          <td>رفع بواسطة</td>
+          <td>حالة المشروع</td>
+          <td>اللغة</td>
+          <td>تعديل</td>
+          <td>تعطيل</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let _proj of projects">
+          <td>{{ _proj.id }}</td>
+          <td>{{ _proj.title }}</td>
+          <td>
+            <button class="btn btn-primary" (click)="openModalForDescr(_proj.descr)">عرض</button>
+          </td>
+          <td>
+            <button class="btn btn-primary" (click)="openModalForImg(imgUrl + _proj.imgUrl)">عرض</button>
+          </td>
+          <td>{{ _proj.intro}}</td>
+          <td>{{ _proj.modifiedDate |date:"MMM dd yyyy HH:mm:ss" }}</td>
+          <td>{{ _proj.doneBy }}</td>
+          <td>{{ _proj.active?"مفعل":"معطل" }}</td>
+          <td>
+            <ng-container [ngSwitch]="_proj.langCode">
+                <p *ngSwitchCase="1">العربية</p>
+                <p *ngSwitchCase="2">English</p>
+                <p *ngSwitchDefault>اردو</p>
+            </ng-container>
+        </td>
+          <td><button class="btn btn-warning" routerLink="edit/{{+_proj.id}}"><i class="fa fa-edit"></i> </button></td>
+          <td><button class="btn btn-danger" (click)="lockproject(_proj)">
+              <i class="fa fa-lock" *ngIf="_proj.active"></i>
+              <i class="fa fa-unlock" *ngIf="!_proj.active"></i>
+            </button> </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>

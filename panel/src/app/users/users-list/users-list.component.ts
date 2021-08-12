@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
-import { RolesModalComponent } from '../modals/roles-modal/roles-modal.component';
-import { User } from '../_models/user';
-import { AccountService } from '../_services/account.service';
+import { RolesModalComponent } from '../../modals/roles-modal/roles-modal.component';
+import { User } from '../../_models/user';
+import { AccountService } from '../../_services/account.service';
 
 @Component({
   selector: 'app-users-list',

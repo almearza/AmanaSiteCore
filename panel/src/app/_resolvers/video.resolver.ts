@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from "@angular/router";
 import { Observable } from "rxjs";
-import { Video } from "../_models/Video";
+import { Video } from "../_models/video";
 import { VideoService } from "../_services/video.service";
 
 @Injectable(

@@ -2,15 +2,33 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AmanaSite.Data;
 using AmanaSite.Helpers.DataTables;
 using AmanaSite.Interfaces;
 using AmanaSite.Models;
+using AutoMapper;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 
 namespace AmanaSite.Repositories
 {
-    public class BaladyatRepository : BaseRepository, IBaladyat
+    public class BaladyatRepository : IBaladyat
     {
+        public readonly DContext _context;
+        public readonly IMapper _mapper;
+        public readonly IWebHostEnvironment _env;
+        public readonly ICurrentLang _currentLang;
+
+        public BaladyatRepository(DContext context,
+                            IMapper mapper,
+                            IWebHostEnvironment env,
+                            ICurrentLang currentLang)
+        {
+            this._env = env;
+            this._currentLang = currentLang;
+            this._mapper = mapper;
+            this._context = context;
+        }
         public async Task Activate(int id)
         {
             var baladya = await _context.Baladyat.FindAsync(id);
@@ -44,9 +62,9 @@ namespace AmanaSite.Repositories
         public async Task HandleBaladyaAsync(Baladyat model)
         {
             model.ModifiedDate = DateTime.Now;
+            model.Active = true;
             if (model.Id == 0)
             {
-                model.Active = true;
                 await _context.Baladyat.AddAsync(model);
             }
         }

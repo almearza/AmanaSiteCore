@@ -2,7 +2,7 @@
     <div class="card mt-5">
         <div class="card-header bg-dark">
             <p class="text-light">
-                {{ads?.id==0?"تعديل إعلان":"إنشاء إعلان"}}
+                {{(ads==null||ads?.id==0)?"إنشاء إعلان":"تعديل إعلان"}}
             </p>
         </div>
         <div class="card-body">
@@ -42,6 +42,9 @@
                 </label>
                 <label class="radio-inline">
                     <input type="radio" value="2" formControlName="langCode" class="mr-3">English
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" value="3" formControlName="langCode" class="mr-3">اردو
                 </label>
             </div>
             <div class="row" *ngIf="validationErrors.length>0">

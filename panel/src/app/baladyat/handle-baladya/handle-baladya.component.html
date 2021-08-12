@@ -1,0 +1,58 @@
+<form [formGroup]='baladyaForm' (ngSubmit)="baladyaForm.valid && handle()" autocomplete="off">
+    <div class="card mt-5">
+        <div class="card-header bg-dark">
+            <p class="text-light">
+                {{(baladya==null||baladya?.id==0)?"إنشاء بلدية":"تعديل بلدية"}}
+            </p>
+        </div>
+        <div class="card-body">
+            <div class="col-lg-8 col-md-10 com-sm-12">
+                <app-text-input [formControl]='baladyaForm.controls["name"]' [label]='"اسم البلدية"'></app-text-input>
+                <app-text-input [formControl]='baladyaForm.controls["email"]' [label]='"بريد البلدية"'></app-text-input>
+                <app-text-input [formControl]='baladyaForm.controls["phoneNumber"]' [label]='"رقم هاتف البلدية"'>
+                </app-text-input>
+                <app-text-input [formControl]='baladyaForm.controls["location"]' [label]='"احداثيات موقع البلدية"'>
+                </app-text-input>
+                <br>
+                <quill-editor formControlName='descr' [placeholder]="'وصف البلدية'" [modules]="quillConfiguration"
+                    class="content-editor">
+                </quill-editor>
+
+                <br>
+                <label class="control-label">النوع</label>
+                <select class="form-control small-control" formControlName="baladyaType">
+                    <option value="1">بلديات فرعية</option>
+                    <option value="2">بلديات محافظات</option>
+                </select>
+                <br>
+                <label class="control-label">اللغة</label>
+
+                <div class="form-group">
+                    <label class="radio-inline">
+                        <input type="radio" value="1" formControlName="langCode">العربية
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" value="2" formControlName="langCode" class="mr-3">English
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" value="3" formControlName="langCode" class="mr-3">اردو
+                    </label>
+                </div>
+
+                <div class="row" *ngIf="validationErrors.length>0">
+                    <ul class="text-danger">
+                        <li *ngFor="let error of validationErrors">
+                            {{error}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit" [disabled]='!baladyaForm.valid'>حفظ</button>
+        </div>
+    </div>
+</form>

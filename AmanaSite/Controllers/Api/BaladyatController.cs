@@ -38,9 +38,9 @@ namespace AmanaSite.Controllers.Api
             {
                 _baladya = await _unitOfWork.Baladyat.GetBaladyaByIdAsync(BaladyatId);
             }
-            _baladya = _mapper.Map<Baladyat>(model);
             
-
+           _mapper.Map(model,_baladya);
+            
             _baladya.DoneBy = User.GetUsername();
 
             await _unitOfWork.Baladyat.HandleBaladyaAsync(_baladya);
@@ -48,7 +48,7 @@ namespace AmanaSite.Controllers.Api
             if (result) return NoContent();
             return BadRequest("حدث خطأ أثناء انشاء البلدية");
         }
-        [HttpPost("get-pagged-Baladyats")]
+        [HttpPost("get-pagged-Baladyat")]
         public async Task<ActionResult<IEnumerable<Baladyat>>> GetBaladyats([FromBody] PagingRequest pagingRequest)
         {
             var Baladyats = await _unitOfWork.Baladyat.GetBaladyatAsync(pagingRequest);

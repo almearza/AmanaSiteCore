@@ -1,0 +1,37 @@
+<div class="mt-5 mb-5">
+    <button class="btn btn-primary mb-2" (click)="addDoc()">إنشاء دليل</button>
+    <div class="table-responsive">
+        <table datatable [dtOptions]="dtOptions" class="table row-border table-hover">
+            <thead>
+                <tr>
+                    <td>#</td>
+                    <td>اسم الدليل</td>
+                    <td>رابط الدليل</td>
+                    <td>تاريخ العملية</td>
+                    <td>رفع بواسطة</td>
+                    <td>اللغة</td>
+                    <td>حذف</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let _doc of docs">
+                    <td>{{ _doc.id }}</td>
+                    <td>{{ _doc.name }}</td>
+                    <td><a href="{{docLink +_doc.link}}" target="_blank">عرض</a></td>
+                    <td>{{ _doc.modifiedDate |date:"MMM dd yyyy HH:mm:ss" }}</td>
+                    <td>{{ _doc.doneBy }}</td>
+                    <td>
+                        <ng-container [ngSwitch]="_doc.langCode">
+                            <p *ngSwitchCase="1">العربية</p>
+                            <p *ngSwitchCase="2">English</p>
+                            <p *ngSwitchDefault>اردو</p>
+                        </ng-container>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" (click)="deleteDoc(_doc)"><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

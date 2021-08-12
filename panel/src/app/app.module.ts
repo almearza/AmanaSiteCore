@@ -14,7 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { HasRoleDirective } from './_directives/has-role.directive';
 import { HomeComponent } from './home/home.component';
-import { UsersListComponent } from './users-list/users-list.component';
+import { UsersListComponent } from './users/users-list/users-list.component';
 import { NotFoundComponent } from './not-found/not-found.component'
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -24,9 +24,9 @@ import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { FooterComponent } from './footer/footer.component';
 import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
-import { UserEditComponent } from './user-edit/user-edit.component';
+import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { ConfirmDailogComponent } from './confirm-dailog/confirm-dailog.component';
-import { NewUserComponent } from './new-user/new-user.component';
+import { NewUserComponent } from './users/new-user/new-user.component';
 import { TextInputComponent } from './_forms/text-input/text-input.component';
 import { DateInputComponent } from './_forms/date-input/date-input.component';
 import { NewsListComponent } from './news/news-list/news-list.component';
@@ -39,12 +39,20 @@ import { HandleAdsComponent } from './ads/handle-ads/handle-ads.component';
 import { DatePipe } from '@angular/common';
 import { HandleServiceComponent } from './AmanaServices/handle-service/handle-service.component';
 import { ServicesListComponent } from './AmanaServices/services-list/services-list.component';
-import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ChangePasswordComponent } from './users/change-password/change-password.component';
 import { HandleMobComponent } from './mobs/handle-mob/handle-mob.component';
 import { MobListComponent } from './mobs/mob-list/mob-list.component';
 import { SafeHtmlPipe } from './_pipes/safehtml';
 import { HandleVideoComponent } from './video/handle-video/handle-video.component';
 import { VideoListComponent } from './video/video-list/video-list.component';
+import { HandleBaladyaComponent } from './baladyat/handle-baladya/handle-baladya.component';
+import { BaladyatListComponent } from './baladyat/baladyat-list/baladyat-list.component';
+import { HandleProjectComponent } from './project/handle-project/handle-project.component';
+import { ProjectListComponent } from './project/project-list/project-list.component';
+import { CreateInfoModalComponent } from './modals/create-info-modal/create-info-modal.component';
+import { InfoComponent } from './info/info.component';
+import { DocComponent } from './doc/doc.component';
+import { CreateDocModalComponent } from './modals/create-doc-modal/create-doc-modal.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +82,14 @@ import { VideoListComponent } from './video/video-list/video-list.component';
     SafeHtmlPipe,
     HandleVideoComponent,
     VideoListComponent,
+    HandleBaladyaComponent,
+    BaladyatListComponent,
+    HandleProjectComponent,
+    ProjectListComponent,
+    InfoComponent,
+    CreateInfoModalComponent,
+    DocComponent,
+    CreateDocModalComponent,
   ],
   imports: [
     BrowserModule,

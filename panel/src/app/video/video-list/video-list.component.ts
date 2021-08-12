@@ -51,7 +51,7 @@ export class VideoListComponent implements OnInit {
   lockvideo(video: Video) {
     this.videoService.active(video.id).subscribe(() => {
       const msg = video.active ? 'تعطيل' : 'تفعيل';
-      this.toastr.success('تم ' + msg + ' الاعلان بنجاح');
+      this.toastr.success('تم ' + msg + ' الفيديو بنجاح');
       video.active = !video.active;
     })
   }

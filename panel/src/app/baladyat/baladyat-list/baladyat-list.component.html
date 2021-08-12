@@ -1,0 +1,56 @@
+<div class="mt-5 mb-5">
+    <button class="btn btn-primary mb-2" routerLink='create'>إنشاء بلدية</button>
+    <div class="table-responsive">
+        <table datatable [dtOptions]="dtOptions" class="table row-border table-hover">
+            <thead>
+                <tr>
+                    <td>#</td>
+                    <td>إسم البلدية</td>
+                    <td>وصف البلدية</td>
+                    <td>بريد البلدية</td>
+                    <td>هاتف البلدية</td>
+                    <td>موقع البلدية</td>
+                    <td>نوع البلدية</td>
+                    <td>تاريخ العملية</td>
+                    <td>رفع بواسطة</td>
+                    <td>الحالة</td>
+                    <td>اللغة</td>
+                    <td>تعديل</td>
+                    <td>تعطيل</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let _baladya of baladyat">
+                    <td>{{ _baladya.id }}</td>
+                    <td>{{ _baladya.name }}</td>
+                    <td>
+                        <button class="btn btn-primary" (click)="openModalForDescr(_baladya.descr)">عرض</button>
+                    </td>
+
+                    <td>{{ _baladya.email}}</td>
+                    <td>{{ _baladya.phoneNumber}}</td>
+                    <td><a class="btn btn-primary" target="_blank"
+                            href='https://www.google.com/maps/search/?api=1&query={{ _baladya.location}}'>فتح</a>
+                    </td>
+                    <td>{{ _baladya.baladyaType==1?"فرعية":"محافظات"}}</td>
+                    <td>{{ _baladya.modifiedDate | date:"MMM dd yyyy HH:mm:ss" }}</td>
+                    <td>{{ _baladya.doneBy }}</td>
+                    <td>{{ _baladya.active?"مفعل":"معطل" }}</td>
+                    <td>
+                        <ng-container [ngSwitch]="_baladya.langCode">
+                            <p *ngSwitchCase="1">العربية</p>
+                            <p *ngSwitchCase="2">English</p>
+                            <p *ngSwitchDefault>اردو</p>
+                        </ng-container>
+                    </td>
+                    <td><button class="btn btn-warning" routerLink="edit/{{+_baladya.id}}"><i class="fa fa-edit"></i>
+                        </button></td>
+                    <td><button class="btn btn-danger" (click)="lockbaladya(_baladya)">
+                            <i class="fa fa-lock" *ngIf="_baladya.active"></i>
+                            <i class="fa fa-unlock" *ngIf="!_baladya.active"></i>
+                        </button> </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

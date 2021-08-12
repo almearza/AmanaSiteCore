@@ -16,11 +16,10 @@ namespace AmanaSite.Data
         public DbSet<New> News { get; set; }
         public DbSet<NewsType> NewsTypes { get; set; }
         public DbSet<Baladyat> Baladyat { get; set; }
-        public DbSet<AmanaLink> AmanaLinks { get; set; }
-        // public DbSet<MAndF> MAndF { get; set; }
-        // public DbSet<MAndFType> MAndFType { get; set; }
-        // public DbSet<AmanaService> AmanaServices { get; set; }
-        // public DbSet<ServiceType> ServiceTypes { get; set; }
+        public DbSet<Info> Info { get; set; }
+        public DbSet<AmanaDocs> AmanaDocs { get; set; }
+      
+      
         public DbSet<SurveyData> SurveyData { get; set; }
         public DbSet<SurveyAge> SurveyAge { get; set; }
         public DbSet<SurveyEducation> SurveyEducation { get; set; }

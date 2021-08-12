@@ -30,9 +30,9 @@
             <button class="btn btn-primary" (click)="openModalForImg(imgUrl + _ad.imgUrl)">عرض</button>
           </td>
           <td>{{ _ad.link}}</td>
-          <td>{{ _ad.uploadDate |date:"MMM dd yyyy HH:MM:ss" }}</td>
+          <td>{{ _ad.uploadDate |date:"MMM dd yyyy HH:mm:ss" }}</td>
           <td>{{ _ad.canExpire?"نعم":"لا" }}</td>
-          <td>{{ _ad.expireDate |date:"MMM dd yyyy HH:MM:ss" }}</td>
+          <td>{{ _ad.expireDate |date:"MMM dd yyyy HH:mm:ss" }}</td>
           <td>{{ _ad.uploadedBy }}</td>
           <td>{{ _ad.active?"مفعل":"معطل" }}</td>
           <td>{{ _ad.lang }}</td>

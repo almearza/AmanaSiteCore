@@ -1,5 +1,5 @@
 export interface AmanaService {
-    id: number;
+    id: 0;
     descr: string;
     link: string;
     imgUrl: string;

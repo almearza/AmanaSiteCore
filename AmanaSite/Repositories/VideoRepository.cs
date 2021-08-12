@@ -16,9 +16,11 @@ namespace AmanaSite.Repositories
     {
         private readonly DContext _context;
         private readonly IWebHostEnvironment _env;
+        private readonly ICurrentLang _currentLang;
 
-        public VideoRepository(DContext context, IWebHostEnvironment env)
+        public VideoRepository(DContext context, IWebHostEnvironment env, ICurrentLang currentLang)
         {
+            this._currentLang = currentLang;
             this._env = env;
             this._context = context;
         }
@@ -30,32 +32,36 @@ namespace AmanaSite.Repositories
 
         public async Task<Video> GetLatestVideoAsync()
         {
-            var video =await _context.Videos.Where(v=>v.Active).OrderBy(v=>v.UploadDate).LastOrDefaultAsync();
+            var video = await _context.Videos
+            .Where(v => v.Active && v.LangCode == _currentLang.Get())
+            .OrderBy(v => v.UploadDate)
+            .LastOrDefaultAsync();
             return video;
         }
 
         public async Task<Video> GetVideoByIdAsync(int Id)
         {
-            var video =await _context.Videos.FindAsync(Id);
+            var video = await _context.Videos.FindAsync(Id);
             return video;
         }
 
         public async Task<PagingResponse<Video>> GetVideosAsync(PagingRequest pagingRequest)
         {
-             var query = _context.Videos.Select(m=>
-            new Video{
-                Id=m.Id,
-                Title=m.Title,
-                Descr=m.Descr,
-                Active=m.Active,
-                ImgUrl=m.ImgUrl,
-                Lang=(m.LangCode==LangCode.Ar)?"العربية":"English",
-                LangCode=m.LangCode,
-                Link=m.Link,
-                UploadDate=m.UploadDate,
-                UploadedBy=m.UploadedBy
-                }).OrderByDescending(n => n.UploadDate).AsQueryable();
-            
+            var query = _context.Videos.Select(m =>
+           new Video
+           {
+               Id = m.Id,
+               Title = m.Title,
+               Descr = m.Descr,
+               Active = m.Active,
+               ImgUrl = m.ImgUrl,
+               Lang = (m.LangCode == LangCode.Ar) ? "العربية" : "English",
+               LangCode = m.LangCode,
+               Link = m.Link,
+               UploadDate = m.UploadDate,
+               UploadedBy = m.UploadedBy
+           }).OrderByDescending(n => n.UploadDate).AsQueryable();
+
             //searching
             if (!string.IsNullOrEmpty(pagingRequest.search.value))
             {
@@ -68,7 +74,7 @@ namespace AmanaSite.Repositories
 
         public async Task HandleVideoAsyn(Video model, IFormFile screenShot)
         {
-            if (screenShot!= null)
+            if (screenShot != null)
             {
                 var file = screenShot;
                 var imgExt = file.FileName.Substring(file.FileName.LastIndexOf(".")).Replace("\"", "");

@@ -7,7 +7,7 @@ namespace AmanaSite.Interfaces
 {
     public interface IBaladyat
     {
-         Task HandleBaladyaAsync(Baladyat model);
+        Task HandleBaladyaAsync(Baladyat model);
         Task<Baladyat> GetBaladyaByIdAsync(int id);
         Task Activate(int id);
         Task<PagingResponse<Baladyat>> GetBaladyatAsync(PagingRequest pagingRequest);

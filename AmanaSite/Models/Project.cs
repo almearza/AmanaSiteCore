@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Http;
 
@@ -10,8 +11,10 @@ namespace AmanaSite.Models
         public string Intro { get; set; }
         public string Descr { get; set; }
         public string ImgUrl { get; set; }
-        [NotMapped]
-        public IFormFile ImgFile { get; set; }
+        public DateTime ModifiedDate { get; set; }
+        public string DoneBy { get; set; }
+        public bool Active { get; set; }
+        public LangCode LangCode { get; set; }
 
     }
 }

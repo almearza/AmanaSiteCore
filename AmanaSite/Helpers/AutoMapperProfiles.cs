@@ -13,23 +13,28 @@ namespace API.Helpers
 
             CreateMap<New, NewsVM>()
             .ForMember(des => des.TypeName, opt => opt.MapFrom(src => src.Type.Type))
-            .ForMember(des => des.Lang, opt => opt.MapFrom(src => src.LangCode == LangCode.Ar ? "العربية" : "English"))
+            .ForMember(des => des.Lang, opt => opt.MapFrom(src => GetLang(src.LangCode)))
             .ReverseMap();
 
             CreateMap<SlidersShow, SlidersShowVM>()
-            .ForMember(des => des.Lang, opt => opt.MapFrom(src => src.LangCode == LangCode.Ar ? "العربية" : "English"))
+            .ForMember(des => des.Lang, opt => opt.MapFrom(src => GetLang(src.LangCode)))
             .ReverseMap();
 
-            CreateMap<AmanaService, AmanaServiceVM>()
-            .ForMember(des => des.TypeName, opt => opt.MapFrom(src => src.Type.Name))
-            .ForMember(des => des.Lang, opt => opt.MapFrom(src => src.LangCode == LangCode.Ar ? "العربية" : "English"))
-            .ReverseMap();
+            CreateMap<Baladyat, Baladyat>();
+            CreateMap<Project, Project>();
 
-            CreateMap<MAndF, MAndFVM>()
-            .ForMember(des => des.TypeName, opt => opt.MapFrom(src => src.Type.Type))
-            .ForMember(des => des.Lang, opt => opt.MapFrom(src => src.LangCode == LangCode.Ar ? "العربية" : "English"))
-            .ReverseMap();
-
+        }
+        private static string GetLang(LangCode lang)
+        {
+            switch (lang)
+            {
+                case LangCode.Ar:
+                    return "العريبة";
+                case LangCode.En:
+                    return "ُEnglish";
+                default:
+                    return "اردو";
+            }
         }
     }
 }

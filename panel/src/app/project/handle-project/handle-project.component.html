@@ -1,0 +1,60 @@
+<form [formGroup]='projectForm' (ngSubmit)="projectForm.valid && handle()" autocomplete="off">
+    <div class="card mt-5">
+        <div class="card-header bg-dark">
+            <p class="text-light">
+                {{(project==null||project?.id==0)?"إنشاء مشروع":"تعديل مشروع"}}
+            </p>
+        </div>
+        <div class="card-body">
+            <app-text-input formControlName='title' [label]='"عنوان المشروع"'></app-text-input>
+            <app-text-input formControlName='intro' [label]='"مقدمة عن المشروع"'></app-text-input>
+            <br>
+            <quill-editor formControlName='descr' [placeholder]="'وصف المشروع'" [modules]="quillConfiguration"
+                class="content-editor">
+            </quill-editor>
+            <br>
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12">
+                    <div class="form-group small-control">
+                        <label class="control-label">صورة المشروع 600 * 600</label>
+                        <app-text-input formControlName='projectImg' type="file" (change)="setFiles($event)"
+                            [label]='"صورة المشروع"'>
+                        </app-text-input>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <img src="{{imgUrl}}" alt="صورة المشروع" class="img-fluid">
+                </div>
+            </div>
+            <br>
+
+            <label class="control-label">اللغة</label>
+
+            <div class="form-group">
+                <label class="radio-inline">
+                    <input type="radio" value="1" formControlName="langCode">العربية
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" value="2" formControlName="langCode" class="mr-3">English
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" value="3" formControlName="langCode" class="mr-3">اردو
+                </label>
+            </div>
+
+            <div class="row" *ngIf="validationErrors.length>0">
+                <ul class="text-danger">
+                    <li *ngFor="let error of validationErrors">
+                        {{error}}
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit" [disabled]='!projectForm.valid'>حفظ</button>
+        </div>
+    </div>
+</form>

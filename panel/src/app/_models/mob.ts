@@ -1,5 +1,5 @@
 export interface Mob {
-    id: number;
+    id: 0;
     title: string;
     descr: string;
     imgUrl: string;

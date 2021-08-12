@@ -1,0 +1,63 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">إضافة انفوجرافيك</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    
+    <form [formGroup]='infoForm' (ngSubmit)="infoForm.valid && addInfo()" autocomplete="off">
+        <div class="card mt-5">
+           
+            <div class="card-body">
+               
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-12">
+                        <div class="form-group small-control">
+                            <label class="control-label">صورة الانفوجرافيك 1000 * 1000</label>
+                            <app-text-input formControlName='infoImg' type="file" (change)="setFiles($event)"
+                                [label]='"صورة الانفوجرافيك"'>
+                            </app-text-input>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <img src="{{imgUrl}}" alt="صورة الانفوجرافيك" class="img-fluid">
+                    </div>
+                </div>
+                <br>
+    
+                <label class="control-label">اللغة</label>
+    
+                <div class="form-group">
+                    <label class="radio-inline">
+                        <input type="radio" value="1" formControlName="langCode">العربية
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" value="2" formControlName="langCode" class="mr-3">English
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" value="3" formControlName="langCode" class="mr-3">اردو
+                    </label>
+                </div>
+    
+                <div class="row" *ngIf="validationErrors.length>0">
+                    <ul class="text-danger">
+                        <li *ngFor="let error of validationErrors">
+                            {{error}}
+                        </li>
+                    </ul>
+                </div>
+    
+            </div>
+        </div>
+        <!-- <div class="card-footer">
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit" [disabled]='!infoForm.valid'>إرسال</button>
+            </div>
+        </div> -->
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">إلغاء</button>
+    <button type="submit" class="btn btn-success" (click)="addInfo()">إرسال</button>
+  </div>

@@ -25,23 +25,26 @@ namespace AmanaSite.Repositories
 
         }
 
-        public INews News => new NewsRepository(_context, _mapper,_evn);
+        public INews News => new NewsRepository(_context, _mapper, _evn);
 
-        public IAds Ads => new AdsRepository(_context, _mapper,_evn,_currentLang);
+        public IAds Ads => new AdsRepository(_context, _mapper, _evn, _currentLang);
 
         // public IAmanaService AmanaService => new AmanaServiceRepository(_context,_mapper,_evn);
 
         // public IMob Mob => new MobRepository(_context,_mapper,_evn);
 
-        public IVideo Video =>  new VideoRepository(_context,_evn);
-        public IBaladyat Baladyat =>  new BaladyatRepository();
+        public IVideo Video => new VideoRepository(_context, _evn,_currentLang);
+        public IProject Project => new ProjectRepository(_context, _evn,_mapper,_currentLang);
+        public IBaladyat Baladyat => new BaladyatRepository(_context, _mapper, _evn, _currentLang);
+        public IInfo Info => new InfoRepository(_context, _evn, _currentLang);
 
-        
+        public Idocs Docs => new DocsRepository(_context, _evn, _currentLang);
 
         public async Task<bool> Complete()
         {
-            var state=_context.ChangeTracker.HasChanges();
-            return await _context.SaveChangesAsync() > 0;
+            // var has_change=HasChanges();
+            var result = await _context.SaveChangesAsync();
+            return result > 0;
         }
 
         public bool HasChanges()

@@ -2,7 +2,7 @@
     <div class="card mt-5">
         <div class="card-header bg-dark">
             <p class="text-light">
-                {{video?.id==0?"تعديل فيديو":"إنشاء فيديو"}}
+                {{(video==null || video?.id==0)?"إنشاء فيديو":"تعديل فيديو"}}
             </p>
         </div>
         <div class="card-body">
@@ -35,6 +35,9 @@
                 </label>
                 <label class="radio-inline">
                     <input type="radio" value="2" formControlName="langCode" class="mr-3">English
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" value="3" formControlName="langCode" class="mr-3">اردو
                 </label>
             </div>
             <div class="row" *ngIf="validationErrors.length>0">
