@@ -2,29 +2,19 @@ using System.Collections.Generic;
 
 namespace AmanaSite.Remote
 {
-    public class Item
+     public class ProjectsPercentage
     {
-        public string projtyp_name { get; set; }
-        public string bdgloc_name { get; set; }
-        public int bdgyyy { get; set; }
-        public int cntrno { get; set; }
-        public string cntrnam { get; set; }
-        public string enddate_g { get; set; }
-        public int workdone_percent { get; set; }
+        public string title { get; set; }
+        public int percentage { get; set; }
+        public int projects { get; set; }
     }
 
-    public class ProjectLink
+    public class Counters
     {
-        public string rel { get; set; }
-        public string href { get; set; }
-    }
-    public class CounterVM
-    {
-        public List<Item> items { get; set; }
-        public bool hasMore { get; set; }
-        public int limit { get; set; }
-        public int offset { get; set; }
-        public int count { get; set; }
-        public List<ProjectLink> links { get; set; }
+        public int amanaClients { get; set; }
+        public int projectsDone { get; set; }
+        public int projectsInProgress { get; set; }
+        public int servicesCount { get; set; }
+        public List<ProjectsPercentage> projectsPercentages { get; set; }
     }
 }

@@ -25,11 +25,11 @@ namespace AmanaSite.Remote
             client.DefaultRequestHeaders.Add("Accept", "application/json");
             _httpClient = client;
         }
-        public async Task<CounterVM> GetCounterAsync()
+        public async Task<Counters> GetCounterAsync()
         {
             return await GetCachedCounterAsync();
         }
-        private async Task<CounterVM> GetCachedCounterAsync()
+        private async Task<Counters> GetCachedCounterAsync()
         {
             var cachecounter = await
                     _cache.GetOrCreateAsync(CacheKeys.AmanaApiCounters, async counter =>
@@ -40,7 +40,7 @@ namespace AmanaSite.Remote
                     });
             return cachecounter;
         }
-        private async Task<CounterVM> GetRemoteCounterAsync()
+        private async Task<Counters> GetRemoteCounterAsync()
         {
             var token = await _token.GetToken();
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
@@ -50,7 +50,7 @@ namespace AmanaSite.Remote
 
             using var responseStream = await response.Content.ReadAsStreamAsync();
             var counter = await JsonSerializer.DeserializeAsync
-                <CounterVM>(responseStream);
+                <Counters>(responseStream);
             return counter;
         }
     }

@@ -1,227 +1,75 @@
-  <!--// Page Wrapper Start //-->
-    <div class="page-wrapper" id="wrapper">
+<!--// Page Wrapper Start //-->
+@using Microsoft.AspNetCore.Mvc.Localization;
+@inject IViewLocalizer Localizer
+@{
+    var secBg = Url.Content("~/img/bg/baladya-sec-img.png");
+}
+@model IEnumerable<Baladyat>
+<div class="page-wrapper" id="wrapper">
 
-       
-        <!--// Main Area Start //-->
-        <main class="main-area">
 
-            <!--// Breadcrumb Section Start //-->
-            <section class="breadcrumb-section section" data-scroll-index="1" data-bg-image-path="img/bg/breadcrumb-img.jpg">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8">
-                            <div class="breadcrumb-inner">
-                                <h1>Blog Grid</h1>
-                                <ul class="breadcrumb-links">
-                                    <li>
-                                        <a href="~/">Home</a>
-                                    </li>
-                                    <li class="active">
-                                        Blog Grid
-                                    </li>
-                                </ul>
-                            </div>
+    <!--// Main Area Start //-->
+    <main class="main-area">
+        <!--// Breadcrumb Section Start //-->
+        <section class="breadcrumb-section section" data-scroll-index="1" data-bg-image-path="@secBg">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="breadcrumb-inner">
+                            <h1>@Localizer["Baladyat"]</h1>
+                            <ul class="breadcrumb-links">
+                                <li>
+                                    <a href="~/">@Localizer["Home"]</a>
+                                </li>
+                                <li class="active">
+                                    @Localizer["SubBaladyat"]
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-            </section>
-            <!--// Breadcrumb Section end //-->
+            </div>
+        </section>
+        <!--// Breadcrumb Section end //-->
 
-            <!--// Blog Section Start //-->
-            <section class="section" id="blog">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-6">
-                            <div class="blog-item">
-                                <div class="blog-img">
-                                    <a href="blog-single.html">
-                                        <img src="img/blog/blog-img-1.jpg" alt="Blog image" class="img-fluid">
-                                    </a>
-                                </div>
-                                <div class="blog-body">
-                                    <img src="img/blog/blog-author-img.jpg" alt="Blog author image" class="blog-author-img">
-                                    <div class="blog-meta">
-                                        <a href="#"><span><i class="far fa-user"></i>By Admin</span></a>
-                                        <a href="#"><span><i class="far fa-bookmark"></i>Design</span></a>
-                                    </div>
-                                    <h5>
-                                        <a href="blog-single.html">
-                                            How To Create A Design Brief
-                                        </a>
-                                    </h5>
-                                    <p>
-                                        It is a long established fact that a reader will be distracted [..]
-                                    </p>
-                                    <a href="blog-single.html" class="blog-link">
-                                        Read More
-                                        <i class="fa fa-arrow-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="blog-item">
-                                <div class="blog-img">
-                                    <a href="blog-single.html">
-                                        <img src="img/blog/blog-img-2.jpg" alt="Blog image" class="img-fluid">
-                                    </a>
-                                </div>
-                                <div class="blog-body">
-                                    <img src="img/blog/blog-author-img.jpg" alt="Blog author image" class="blog-author-img">
-                                    <div class="blog-meta">
-                                        <a href="#"><span><i class="far fa-user"></i>By Admin</span></a>
-                                        <a href="#"><span><i class="far fa-bookmark"></i>Design</span></a>
-                                    </div>
-                                    <h5>
-                                        <a href="blog-single.html">
-                                            Work On The Latest UI Design Models
-                                        </a>
-                                    </h5>
-                                    <p>
-                                        It is a long established fact that a reader will be distracted [..]
-                                    </p>
-                                    <a href="blog-single.html" class="blog-link">
-                                        Read More
-                                        <i class="fa fa-arrow-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="blog-item">
-                                <div class="blog-img">
-                                    <a href="blog-single.html">
-                                        <img src="img/blog/blog-img-3.jpg" alt="Blog image" class="img-fluid">
-                                    </a>
-                                </div>
-                                <div class="blog-body">
-                                    <img src="img/blog/blog-author-img.jpg" alt="Blog author image" class="blog-author-img">
-                                    <div class="blog-meta">
-                                        <a href="#"><span><i class="far fa-user"></i>By Admin</span></a>
-                                        <a href="#"><span><i class="far fa-bookmark"></i>Design</span></a>
-                                    </div>
-                                    <h5>
-                                        <a href="blog-single.html">
-                                            The Golden Rule Between Unique Design
-                                        </a>
-                                    </h5>
-                                    <p>
-                                        It is a long established fact that a reader will be distracted [..]
-                                    </p>
-                                    <a href="blog-single.html" class="blog-link">
-                                        Read More
-                                        <i class="fa fa-arrow-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="blog-item">
-                                <div class="blog-img">
-                                    <a href="blog-single.html">
-                                        <img src="img/blog/blog-img-4.jpg" alt="Blog image" class="img-fluid">
-                                    </a>
-                                </div>
-                                <div class="blog-body">
-                                    <img src="img/blog/blog-author-img.jpg" alt="Blog author image" class="blog-author-img">
-                                    <div class="blog-meta">
-                                        <a href="#"><span><i class="far fa-user"></i>By Admin</span></a>
-                                        <a href="#"><span><i class="far fa-bookmark"></i>Wordpress</span></a>
-                                    </div>
-                                    <h5>
-                                        <a href="blog-single.html">
-                                            How to set up a Wordpress website ?
-                                        </a>
-                                    </h5>
-                                    <p>
-                                        It is a long established fact that a reader will be distracted [..]
-                                    </p>
-                                    <a href="blog-single.html" class="blog-link">
-                                        Read More
-                                        <i class="fa fa-arrow-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="blog-item">
-                                <div class="blog-img">
-                                    <a href="blog-single.html">
-                                        <img src="img/blog/blog-img-5.jpg" alt="Blog image" class="img-fluid">
-                                    </a>
-                                </div>
-                                <div class="blog-body">
-                                    <img src="img/blog/blog-author-img.jpg" alt="Blog author image" class="blog-author-img">
-                                    <div class="blog-meta">
-                                        <a href="#"><span><i class="far fa-user"></i>By Admin</span></a>
-                                        <a href="#"><span><i class="far fa-bookmark"></i>Laravel</span></a>
-                                    </div>
-                                    <h5>
-                                        <a href="blog-single.html">
-                                            Creating projects in Laravel 8
-                                        </a>
-                                    </h5>
-                                    <p>
-                                        It is a long established fact that a reader will be distracted [..]
-                                    </p>
-                                    <a href="blog-single.html" class="blog-link">
-                                        Read More
-                                        <i class="fa fa-arrow-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="blog-item">
-                                <div class="blog-img">
-                                    <a href="blog-single.html">
-                                        <img src="img/blog/blog-img-6.jpg" alt="Blog image" class="img-fluid">
-                                    </a>
-                                </div>
-                                <div class="blog-body">
-                                    <img src="img/blog/blog-author-img.jpg" alt="Blog author image" class="blog-author-img">
-                                    <div class="blog-meta">
-                                        <a href="#"><span><i class="far fa-user"></i>By Admin</span></a>
-                                        <a href="#"><span><i class="far fa-bookmark"></i>Wordpress</span></a>
-                                    </div>
-                                    <h5>
-                                        <a href="blog-single.html">
-                                            How to create custom post type ?
-                                        </a>
-                                    </h5>
-                                    <p>
-                                        It is a long established fact that a reader will be distracted [..]
-                                    </p>
-                                    <a href="blog-single.html" class="blog-link">
-                                        Read More
-                                        <i class="fa fa-arrow-right"></i>
-                                    </a>
-                                </div>
-                            </div>
+        <!--// Resume Section Start //-->
+        <section class="section pb-minus-76 bg-primary-light" id="myresume">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="section-heading-left">
+                            <h2>@Localizer["SubBaladyat"]</h2>
                         </div>
                     </div>
-                    <div class="pagination-wrap">
-                        <a href="javascript:void(0)" class="pagination-link"><i class="fa fa-arrow-left"></i></a>
-                        <a href="javascript:void(0)" class="pagination-link active">1</a>
-                        <a href="javascript:void(0)" class="pagination-link">2</a>
-                        <a href="javascript:void(0)" class="pagination-link">3</a>
-                        <a href="javascript:void(0)" class="pagination-link"><i class="fa fa-arrow-right"></i></a>
-                    </div>
-                    <!--// .pagination-wrap //-->
                 </div>
-            </section>
-            <!--// Blog Section End //-->
+                <div class="row">
+                    @foreach (var baladya in Model)
+                    {
+                    <div class="col-lg-6 wow fadeInDown" data-wow-duration="0.5s" data-wow-delay="0.1s">
+                        <div class="resume-item">
+                            <div class="body">
+                                <div class="icon-outer-line">
+                                    <div class="icon-inner-line">
+                                        <span class="fab fa-city"></span>
+                                    </div>
+                                </div>
+                                <div class="text">
+                                    <h6>@baladya.Name</h6>
+                                    <h5>@baladya.PhoneNumber</h5>
+                                    <span>@baladya.Email</span>
+                                    <span>@baladya.Location</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </section>
+        <!--// Resume Section End //-->
 
-      
-        </main>
-        <!--// Main Area End //-->
 
-      
-
-        <div id="rtlSidebar">
-            <button type="button" id="rtlToggle">RTL</button>
-        </div>
-        <!--// #rtlSidebar //-->
-
-    </div>
-    <!--// Page Wrapper End //-->
+    </main>
+    <!--// Main Area End //-->
+</div>
+<!--// Page Wrapper End //-->

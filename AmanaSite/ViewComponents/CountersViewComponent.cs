@@ -14,6 +14,7 @@ namespace AmanaSite.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var counter =await _amanaApi.GetCounterAsync();
+            var _done =counter.projectsDone;
             return View(counter);
         }
 

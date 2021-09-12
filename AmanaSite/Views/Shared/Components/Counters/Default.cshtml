@@ -1,48 +1,57 @@
+@using Microsoft.AspNetCore.Mvc.Localization;
+@inject IViewLocalizer Localizer   
+@using System.Globalization
 <!--// Counter Section Start //-->
-@model AmanaSite.Remote.CounterVM
+@model AmanaSite.Remote.Counters
 <section class="section pb-minus-70" id="counters" data-scroll-index="3">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-6">
-               
                 <div class="section-heading light">
-                    <h2>نخدم أكثر من 10,000 عميل المدينة أمانة</h2>
+                    <h2>@Localizer["weServe"] @Model.amanaClients.ToString("N0") @Localizer["Client"]</h2>
                 </div>
             </div>
         </div>
         <div class="row justify-content-center">
             <div class="col-md-4 wow fadeInUp" data-wow-duration="0.7s" data-wow-delay="0.3s">
                 <div class="counter-item">
-                    <h3 class="counter">1,500</h3>
-                    <p>مشاريع منجزة</p>
+                    <h3 class="counter">@Model.projectsDone</h3>
+                    <p>@Localizer["ProjectDone"]</p>
                 </div>
             </div>
             <div class="col-md-4 wow fadeInUp" data-wow-duration="0.7s" data-wow-delay="0.1s">
                 <div class="counter-item">
-                    <h3 class="counter">250</h3>
-                    <p>مشاريع قيد التنفيذ</p>
+                    <h3 class="counter">@Model.projectsInProgress</h3>
+                    <p>@Localizer["projectsInProgress"]</p>
                 </div>
             </div>
             <div class="col-md-4 wow fadeInUp" data-wow-duration="0.7s" data-wow-delay="0.1s">
                 <div class="counter-item">
-                    <h3 class="counter">200</h3>
-                    <p>خدمة الكترونية</p>
+                    <h3 class="counter">@Model.servicesCount</h3>
+                    <p>@Localizer["servicesCount"]</p>
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center">
-            @foreach (var item in Model.items)
-            {
-                <div class="col-md-4 wow fadeInUp" data-wow-duration="0.7s" data-wow-delay="0.1s">
-                <div class="counter-item">
-                    <div class="d-inline-flex">
-                        <h3 class="counter d-inline">@item.workdone_percent</h3><h3 class="d-inline">%</h3>
+        @{
+            var lang = CultureInfo.CurrentCulture;
+            if(lang.ToString()=="ar"){
+            <div class="row justify-content-center">
+                @foreach (var item in Model.projectsPercentages)
+                {
+                    <div class="col-md-4 wow fadeInUp" data-wow-duration="0.7s" data-wow-delay="0.1s">
+                        <div class="counter-item">
+                            <div class="d-inline-flex">
+                                <h3 class="counter d-inline">@item.percentage</h3>
+                                <h3 class="d-inline">%</h3>
+                            </div>
+                            <p>@item.title</p>
+                        </div>
                     </div>
-                    <p>@item.cntrnam</p>
-                </div>
+                }
+
             </div>
             }
-        </div>
+        }
     </div>
 </section>
 <!--// Counter Section End //-->

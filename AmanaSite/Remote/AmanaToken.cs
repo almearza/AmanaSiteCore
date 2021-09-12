@@ -35,35 +35,42 @@ namespace AmanaSite.Remote
             var cacheToken = await
                     _cache.GetOrCreateAsync(CacheKeys.AmanaApiToken, async token =>
                     {
-                        token.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(50);
+                        token.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(1);
                         var _token = await GetRemoteTokenAsync();
-                        return _token.access_token;
+                        return _token;
                     });
             return cacheToken;
         }
-        private async Task<Token> GetRemoteTokenAsync()
+        private async Task<string> GetRemoteTokenAsync()
         {
-            var requestContent = new FormUrlEncodedContent(new[]
-             {
-                new KeyValuePair<string, string>("grant_type", "client_credentials")
+            // var requestContent = new FormUrlEncodedContent(new[]
+            //  {
+            //     new KeyValuePair<string, string>("grant_type", "client_credentials")
+            // });
+
+            // var pass = _config["AmanaApiPass"];
+            // var authenticationString = $"{username}:{pass}";
+            // var base64EncodedAuthenticationString = Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes(authenticationString));
+
+            // var requestMessage = new HttpRequestMessage(HttpMethod.Post, _config["AmanaApiTokenUrl"]);
+            // requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Basic", base64EncodedAuthenticationString);
+            // requestMessage.Content = requestContent;
+
+            // using var httpResponse =
+            // await _httpClient.SendAsync(requestMessage);
+
+             var apiKey = _config["AmanaApiKey"];
+             var reqBody = JsonSerializer.Serialize(new 
+            {
+                DeveloperKey = apiKey
             });
-
-            var username = _config["AmanaApiUser"];
-            var pass = _config["AmanaApiPass"];
-            var authenticationString = $"{username}:{pass}";
-            var base64EncodedAuthenticationString = Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes(authenticationString));
-
-            var requestMessage = new HttpRequestMessage(HttpMethod.Post, _config["AmanaApiTokenUrl"]);
-            requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Basic", base64EncodedAuthenticationString);
-            requestMessage.Content = requestContent;
-
             using var httpResponse =
-            await _httpClient.SendAsync(requestMessage);
+            await _httpClient.PostAsync(_config["AmanaApiTokenUrl"],new StringContent(reqBody,Encoding.UTF8, "application/json"));
             
             httpResponse.EnsureSuccessStatusCode();
 
             using var responseStream = await httpResponse.Content.ReadAsStreamAsync();
-            var token = await JsonSerializer.DeserializeAsync<Token>(responseStream);
+            var token = await JsonSerializer.DeserializeAsync<string>(responseStream);
             return token;
         }
     }

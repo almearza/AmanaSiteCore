@@ -56,7 +56,7 @@ namespace AmanaSite.Repositories
 
         public async Task<IEnumerable<Baladyat>> GetBaladyatByTypeAsync(BaladyaType type)
         {
-            return await _context.Baladyat.Where(b => b.BaladyaType == type).ToListAsync();
+            return await _context.Baladyat.Where(b => b.BaladyaType == type && b.Active && b.LangCode==_currentLang.Get()).ToListAsync();
         }
 
         public async Task HandleBaladyaAsync(Baladyat model)
