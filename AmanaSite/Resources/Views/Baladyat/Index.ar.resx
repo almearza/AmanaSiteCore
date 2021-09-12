@@ -126,5 +126,14 @@
   <data name="Baladyat" xml:space="preserve">
     <value>البلديات</value>
   </data>
+  <data name="ViewOnMap" xml:space="preserve">
+    <value>عرض الموقع على الخريطة</value>
+  </data>
+  <data name="LocationClose" xml:space="preserve">
+    <value>إغلاق</value>
+  </data>
+  <data name="BaladyaLocation" xml:space="preserve">
+    <value>موقع البلدية</value>
+  </data>
  
 </root>
