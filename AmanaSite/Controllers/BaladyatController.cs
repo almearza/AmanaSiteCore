@@ -25,6 +25,7 @@ namespace AmanaSite.Controllers
                 BaladyaType.Provinces=>_localizer["ProvBaladyat"],
                 _=>_localizer["SuburbanBaladyat"]
             };
+            ViewBag.Indicator=NavType.Sub;
             return View(baladyat);
         }
     }

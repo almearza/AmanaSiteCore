@@ -1,5 +1,4 @@
-﻿@using Microsoft.Extensions.Localization
-@await Component.InvokeAsync("Slider")
+﻿@await Component.InvokeAsync("Slider")
 @* , new { start=0,length=5 } *@
 @await Component.InvokeAsync("Video")
 @await Component.InvokeAsync("Project")
@@ -12,7 +11,17 @@
 <!-- facebook plugin -->
 <div id="fb-root"></div>
 @section scripts{
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ar_AR/sdk.js#xfbml=1&version=v11.0" nonce="AE6s4pVJ"></script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ar_AR/sdk.js#xfbml=1&version=v11.0"
+    nonce="AE6s4pVJ"></script>
+<script>
+    $(document).ready(function () {
+        var url = window.location.pathname;
+        var id = url.substring(url.lastIndexOf('#') + 1);
+        $('html, body').animate({
+            scrollTop: $(id).offset().top
+        }, 'slow');
+    });
+</script>
 
 }
 <!-- facebook plugin -->

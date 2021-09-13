@@ -22,19 +22,21 @@ namespace AmanaSite.Controllers
 
         public IActionResult Index(string lang)
         {
+            ViewBag.Indicator=NavType.Main;
             return View();
         }
 
         public IActionResult Structure()
         {
+            ViewBag.Indicator=NavType.Sub;
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        // [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        // public IActionResult Error()
+        // {
+        //     return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        // }
         [ValidateAntiForgeryToken]
         public IActionResult setlang(string culture, string returnUrl)
         {
