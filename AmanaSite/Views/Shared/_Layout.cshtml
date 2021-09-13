@@ -35,6 +35,8 @@
     <link rel="stylesheet" href="~/css/style.css">
     <!--// Theme Color Css //-->
     <link rel="stylesheet" href="~/css/skins/default-color.css" id="theme-color-toggle" />
+    <link rel="stylesheet" href="~/css/defined.css" />
+    <link rel="stylesheet" href="~/css/navigation.css" />
     @RenderSection("styles", required: false)
     <!-- custom -->
     @* <link rel="stylesheet" href="~/css/quill.core.css" /> *@
@@ -71,9 +73,10 @@
                                         @Localizer["Muntitle"]
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="blogDropdownMenu">
-                                        <a class="dropdown-item" href="blog-grid.html">@Localizer["SubMuns"]</a>
-                                        <a class="dropdown-item" href="blog-sidebar.html">@Localizer["LocalMuns"]</a>
-                                        <a class="dropdown-item" href="blog-single.html">@Localizer["Structure"]</a>
+                                        <a class="dropdown-item" href="~/baladyat/index/@BaladyaType.Sub">@Localizer["SubMuns"]</a>
+                                        <a class="dropdown-item" href="~/baladyat/index/@BaladyaType.Provinces">@Localizer["LocalMuns"]</a>
+                                        <a class="dropdown-item" href="~/baladyat/index/@BaladyaType.Suburban">@Localizer["SuburbanBaladyat"]</a>
+                                        <a class="dropdown-item" href="~/home/structure">@Localizer["Structure"]</a>
                                         <a class="dropdown-item" href="blog-single.html">@Localizer["SurveyTitle"]</a>
                                     </div>
                                 </li>

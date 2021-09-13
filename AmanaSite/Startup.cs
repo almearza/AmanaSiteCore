@@ -77,7 +77,7 @@ namespace AmanaSite
             app.UseAuthentication();
             app.UseAuthorization();
 
-            var locOptions = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
+            //var locOptions = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
 
             app.UseRequestLocalization();
 

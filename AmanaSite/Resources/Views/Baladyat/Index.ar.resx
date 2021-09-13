@@ -135,5 +135,11 @@
   <data name="BaladyaLocation" xml:space="preserve">
     <value>موقع البلدية</value>
   </data>
+  <data name="ProvBaladyat" xml:space="preserve">
+    <value>بلديات الضواحي</value>
+  </data>
+  <data name="SuburbanBaladyat" xml:space="preserve">
+    <value>بلديات المحافظات</value>
+  </data>
  
 </root>

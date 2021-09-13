@@ -26,6 +26,6 @@ namespace AmanaSite.Models
         public string DoneBy { get; set; }
     }
    public enum BaladyaType{
-       Sub=1,Provinces=2
+       Sub=1,Provinces=2,Suburban =3
    }
 }

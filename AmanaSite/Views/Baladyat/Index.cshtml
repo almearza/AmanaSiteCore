@@ -4,134 +4,155 @@
 @{
     var secBg = Url.Content("~/img/bg/baladya-sec-img.png");
 }
+@section styles{
+<style>
+    .donot-trans {
+        -webkit-transform: none !important;
+        transform: none !important;
+    }
+</style>
+}
 @model IEnumerable<Baladyat>
+
+
 <div class="page-wrapper" id="wrapper">
-
-
     <!--// Main Area Start //-->
-    <main class="main-area">
+    <main class="main-area ">
         <!--// Breadcrumb Section Start //-->
         <section class="breadcrumb-section section" data-scroll-index="1" data-bg-image-path="@secBg">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
-                        <div class="breadcrumb-inner">
-                            <h1>@Localizer["Baladyat"]</h1>
-                            <ul class="breadcrumb-links">
-                                <li>
-                                    <a href="~/">@Localizer["Home"]</a>
-                                </li>
-                                <li class="active">
-                                    @Localizer["SubBaladyat"]
-                                </li>
-                            </ul>
-                        </div>
+
                     </div>
                 </div>
             </div>
         </section>
         <!--// Breadcrumb Section end //-->
-
-        <!--// Resume Section Start //-->
-        <section class="section pb-minus-76 bg-primary-light" id="myresume">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="section-heading-left">
-                            <h2>@Localizer["SubBaladyat"]</h2>
-                        </div>
+        <div id="DetialsPage">
+            <div class="div-details">
+                <div class="div-header">
+                    <a href="~/"><i class="fa fa-home"></i></a>
+                    <i class="fa fa-chevron-circle-left"></i>
+                    <p>@Localizer["Baladyat"]</p>
+                </div>
+                <div class="div-top-lable">
+                    <i class="fa fa-university"></i>
+                    <span>@ViewBag.Title</span>
+                    <div class="top-left-icon">
+                        <a href="#" title='@Localizer["FacebookSharing"]' target="_blank" id="facebook-sharing">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" title='@Localizer["TwitterSharing"]' target="_blank" id="twitter-sharing">
+                            <i class="fab fa-twitter"></i>
+                        </a>
                     </div>
                 </div>
-                <div class="row">
-                    @foreach (var baladya in Model)
-                    {
-                        <div class="col-lg-6 wow fadeInDown" data-wow-duration="0.5s" data-wow-delay="0.1s">
-                            <div class="resume-item">
-                                <div class="body">
-                                    <div class="icon-outer-line">
-                                        <div class="icon-inner-line">
-                                            <span class="fa fa-city"></span>
+                <div class="page-details">
+                    <!--// Resume Section Start //-->
+                    <section class="section pb-minus-76" id="myresume">
+                        <div class="container">
+                            <div class="row">
+                                @foreach (var baladya in Model)
+                                {
+                                    <div class="col-lg-6 wow fadeInDown" data-wow-duration="0.5s" data-wow-delay="0.1s">
+                                        <div class="resume-item">
+                                            <div class="body">
+                                                <div class="icon-outer-line">
+                                                    <div class="icon-inner-line">
+                                                        <span class="fa fa-city"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="text">
+                                                    <h6>
+                                                        <a href="#" data-scroll-nav="6" class="primary-btn w-100">
+                                                            <span class="text">@baladya.Name</span>
+                                                            <span class="icon"><i class="fa fa-home donot-trans"></i></span>
+                                                        </a>
+                                                    </h6>
+                                                    <div class="row">
+                                                        <div class="col-3">
+                                                            <span class="primary-btn">
+                                                                <span class="icon"><i class="fa fa-envelope"></i></span>
+                                                            </span>
+                                                        </div>
+                                                        <a class="btn btn-link col-8 p-2"
+                                                        href="mailto:@baladya.Email">@baladya.Email</a>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-3">
+                                                            <span class="primary-btn">
+                                                                <span class="icon"><i class="fa fa-phone"></i></span>
+                                                            </span>
+                                                        </div>
+                                                        <a class="btn btn-link col-8 "
+                                                        href="tel:@baladya.PhoneNumber">@baladya.PhoneNumber</a>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-3">
+                                                            <span class="primary-btn">
+                                                                <span class="icon"><i
+                                                                    class="fa fa-map-marker-alt donot-trans"></i></span>
+                                                            </span>
+                                                        </div>
+                                                        <a class="btnMap btn btn-link col-8 " href="#mapModal"
+                                                        data-link="https://maps.google.com/maps?&amp;q=@baladya.Location&amp;output=embed">@Localizer["ViewOnMap"]</a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="text">
-                                        <h6>
-                                            <a href="#" data-scroll-nav="6" class="primary-btn w-100">
-                                                <span class="text">@baladya.Name</span>
-                                                <span class="icon"><i class="fa fa-city"></i></span>
-                                            </a>
-                                        </h6>
-                                        <h6>
-                                            <span class="primary-btn">
-                                                <span class="icon"><i class="fa fa-envelope"></i></span>
-                                            </span>
-                                            <a class="btn btn-link" href="mailto:@baladya.Email">@baladya.Email</a>
-                                        </h6>
-                                        <h6>
-                                            <span class="primary-btn">
-                                                <span class="icon"><i class="fa fa-phone"></i></span>
-                                            </span>
-                                            <a class="btn btn-link" href="tel:@baladya.PhoneNumber">@baladya.PhoneNumber</a>
-                                        </h6>
-
-                                        <h6>
-                                            <span class="primary-btn">
-                                                <span class="icon"><i class="fa fa-map-marker-alt"></i></span>
-                                            </span>
-                                            <button id="btnMap" class="btn btn-success"
-                                            data-link="https://maps.google.com/maps?&amp;q=@baladya.Location&amp;output=embed"
-                                            >@Localizer["ViewOnMap"]</button>
-                                        </h6>
-
-                                    </div>
-                                </div>
+                                }
                             </div>
                         </div>
-                    }
+                    </section>
+                    <!--// Resume Section End //-->
                 </div>
             </div>
-        </section>
-        <!--// Resume Section End //-->
+        </div>
+
 
 
     </main>
     <!--// Main Area End //-->
 </div>
+
 <!--// Page Wrapper End //-->
 
-<div class="modal fade custom-modal" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="mapModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header success">
-                    <h5 class="modal-title" id="mapModalLabel">@Localizer["BaladyaLocation"]</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-popup-inner">
-                        <div class="form-body">
-                             <iframe id="mapFrame"
-                             style="border-radius:50px;"
-                             src="#"
-                             width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
-                             </iframe>
-                        </div>
+<div class="modal fade custom-modal" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="mapModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header success">
+                <h5 class="modal-title" id="mapModalLabel">@Localizer["BaladyaLocation"]</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-popup-inner">
+                    <div class="form-body">
+                        <iframe id="mapFrame" src="#" width="100%" height="300" style="border:0;" allowfullscreen=""
+                            loading="lazy">
+                        </iframe>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <a href="javascript:void(0)" class="popup-btn success" data-dismiss="modal">@Localizer["LocationClose"]</a>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:void(0)" class="popup-btn success"
+                    data-dismiss="modal">@Localizer["LocationClose"]</a>
             </div>
         </div>
     </div>
-    <!-- Success Modal End -->
+</div>
+<!-- Success Modal End -->
 
 @section scripts{
-    <script>
-        $("#btnMap").on('click',function(){
-            let mapUrl = $(this).attr('data-link');
-            $("#mapFrame").attr('src',mapUrl);
-            $("#mapModal").modal("show");
-        });
-    </script>
+<script>
+    $(".btnMap").on('click', function () {
+        let mapUrl = $(this).attr('data-link');
+        $("#mapFrame").attr('src', mapUrl);
+        $("#mapModal").modal("show");
+    });
+</script>
 }

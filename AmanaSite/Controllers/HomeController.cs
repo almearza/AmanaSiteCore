@@ -8,7 +8,6 @@ using Microsoft.Extensions.Logging;
 using AmanaSite.Models;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Localization;
 
 namespace AmanaSite.Controllers
 {
@@ -26,7 +25,7 @@ namespace AmanaSite.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Structure()
         {
             return View();
         }
