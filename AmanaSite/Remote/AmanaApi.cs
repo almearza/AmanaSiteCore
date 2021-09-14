@@ -34,7 +34,7 @@ namespace AmanaSite.Remote
             var cachecounter = await
                     _cache.GetOrCreateAsync(CacheKeys.AmanaApiCounters, async counter =>
                     {
-                        counter.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(50);
+                        counter.AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(24);
                         var _counter = await GetRemoteCounterAsync();
                         return _counter;
                     });

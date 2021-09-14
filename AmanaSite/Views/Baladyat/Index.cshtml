@@ -1,8 +1,10 @@
 <!--// Page Wrapper Start //-->
 @using Microsoft.AspNetCore.Mvc.Localization;
+@using System.Globalization;
 @inject IViewLocalizer Localizer
 @{
     var secBg = Url.Content("~/img/bg/baladya-sec-img.png");
+    var lang = CultureInfo.CurrentCulture;
 }
 @section styles{
 <style>
@@ -33,17 +35,26 @@
             <div class="div-details">
                 <div class="div-header">
                     <a href="~/"><i class="fa fa-home"></i></a>
-                    <i class="fa fa-chevron-circle-left"></i>
+                    @if (lang.ToString() == "en")
+                    {
+                        <i class="fa fa-chevron-circle-right"></i>
+                    }
+                    else
+                    {
+                        <i class="fa fa-chevron-circle-left"></i>
+                    }
                     <p>@Localizer["Baladyat"]</p>
                 </div>
                 <div class="div-top-lable">
                     <i class="fa fa-university"></i>
                     <span>@ViewBag.Title</span>
                     <div class="top-left-icon">
-                        <a href="#" title='@Localizer["FacebookSharing"]' target="_blank" id="facebook-sharing">
+                       
+
+                        <a  href="https://www.facebook.com/sharer/sharer.php?u="  title='@Localizer["FacebookSharing"]' target="_blank" id="facebook-sharing">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="#" title='@Localizer["TwitterSharing"]' target="_blank" id="twitter-sharing">
+                        <a href="https://twitter.com/intent/tweet?text=" title='@Localizer["TwitterSharing"]' target="_blank" id="twitter-sharing">
                             <i class="fab fa-twitter"></i>
                         </a>
                     </div>

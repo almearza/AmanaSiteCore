@@ -36,7 +36,14 @@
     <!--// Theme Color Css //-->
     <link rel="stylesheet" href="~/css/skins/default-color.css" id="theme-color-toggle" />
     <link rel="stylesheet" href="~/css/defined.css" />
-    <link rel="stylesheet" href="~/css/navigation.css" />
+    @if (lang.ToString() == "en")
+    {
+        <link rel="stylesheet" href="~/css/en-navigation.css" />
+    }
+    else
+    {
+        <link rel="stylesheet" href="~/css/navigation.css" />
+    }
     @RenderSection("styles", required: false)
     <!-- custom -->
     @* <link rel="stylesheet" href="~/css/quill.core.css" /> *@
@@ -49,7 +56,7 @@
 
         <!--// Header Start //-->
         @{
-            await Html.RenderPartialAsync("_MenuPartial",(NavType)ViewBag.Indicator);
+            await Html.RenderPartialAsync("_MenuPartial");
         }
         <!--// Header End  //-->
         <!--// Main Area Start //-->
@@ -226,6 +233,20 @@
             } else {
                 $('body').removeClass("ltr-mode").addClass("rtl-mode");
             }
+
+            //socail media sharing:
+              var currentLocation = window.location.href;
+                var link = $("#facebook-sharing"); // store the element
+                if (link !==null) {
+                    var curHref = link.attr('href'); // get its current href value
+                    link.attr('href', curHref + currentLocation);
+                }
+
+                var link = $("#twitter-sharing"); // store the element
+                if (link !== null) {
+                    var curHref = link.attr('href'); // get its current href value
+                    link.attr('href', curHref + currentLocation);
+                }
         });
     </script>
 

@@ -1,13 +1,16 @@
-﻿@await Component.InvokeAsync("Slider")
-@* , new { start=0,length=5 } *@
-@await Component.InvokeAsync("Video")
-@await Component.InvokeAsync("Project")
-@await Component.InvokeAsync("Counters")
-@await Component.InvokeAsync("News")
-@Html.Partial("_SocialMediaPartial")
-@await Component.InvokeAsync("Info")
-@Html.Partial("_MapPartial")
-@await Component.InvokeAsync("ContactUs")
+﻿@await Component.InvokeAsync("Slider");
+@await Component.InvokeAsync("Video");
+@await Component.InvokeAsync("Project");
+@await Component.InvokeAsync("Counters");
+@await Component.InvokeAsync("News");
+@{
+    await Html.RenderPartialAsync("_SocialMediaPartial");
+}
+@await Component.InvokeAsync("Info");
+@{
+    await Html.RenderPartialAsync("_MapPartial");
+}
+@await Component.InvokeAsync("ContactUs");
 <!-- facebook plugin -->
 <div id="fb-root"></div>
 @section scripts{

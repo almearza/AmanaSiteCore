@@ -29,5 +29,6 @@ namespace AmanaSite.Models.Survey
         public string NationalityOther { get; set; }
         public string Note { get; set; }
         public DateTime UploadDate { get; set; }
+        public LangCode LangCode { get; set; }
     }
 }

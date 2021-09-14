@@ -35,7 +35,7 @@ namespace AmanaSite.Remote
             var cacheToken = await
                     _cache.GetOrCreateAsync(CacheKeys.AmanaApiToken, async token =>
                     {
-                        token.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(1);
+                        token.AbsoluteExpirationRelativeToNow = TimeSpan.FromDays(365);
                         var _token = await GetRemoteTokenAsync();
                         return _token;
                     });
