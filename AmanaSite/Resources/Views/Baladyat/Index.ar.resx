@@ -141,5 +141,10 @@
   <data name="SuburbanBaladyat" xml:space="preserve">
     <value>بلديات المحافظات</value>
   </data>
- 
+ <data name="FacebookSharing" xml:space="preserve">
+    <value>مشاركة على فيسبوك</value>
+  </data>
+  <data name="TwitterSharing" xml:space="preserve">
+    <value>مشاركة على تويتر</value>
+  </data>
 </root>

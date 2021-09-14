@@ -1,11 +1,14 @@
 <!--// Page Wrapper Start //-->
 @using Microsoft.AspNetCore.Mvc.Localization;
 @using System.Globalization;
-@inject IViewLocalizer Localizer
+@using AmanaSite.Interfaces;
+@inject IViewLocalizer Localizer;
+@inject IUnitOfWork unitOfWork;
 @{
+    var _survey = unitOfWork.Survey;
     var secBg = Url.Content("~/img/bg/survey-sec-img.png");
     var lang = CultureInfo.CurrentCulture;
-    ViewBag.Title=Localizer["Survey"];
+    ViewBag.Title=Localizer["SurveyDesc"];
 }
 @section styles{
 <style>
@@ -42,10 +45,10 @@
                     {
                         <i class="fa fa-chevron-circle-left"></i>
                     }
-                    <p>@Localizer["SurveyDesc"]</p>
+                    <p>@Localizer["Survey"]</p>
                 </div>
                 <div class="div-top-lable">
-                    <i class="fa fa-university"></i>
+                    <i class="fas fa-poll"></i>
                     <span>@ViewBag.Title</span>
                     <div class="top-left-icon">
                          <a  href="https://www.facebook.com/sharer/sharer.php?u="  title='@Localizer["FacebookSharing"]' target="_blank" id="facebook-sharing">
@@ -60,81 +63,114 @@
                     <!--// Resume Section Start //-->
                     <section class="section pb-minus-76">
                         <div class="container">
-                            <div class="row justify-content-center">
+                        <div class="row justify-content-center">
                         <div class="col-lg-12">
                             <div class="contact-form-wrap">
-                                <form id="contactForm">
-                                    <div class="row">
+                                    <div class="row d-block">
                                           <div class="col-md-12">
                                             <hr>
                                             <p>يرجى السماح لنا بدقيقة من وقتك، هذا استطلاع رأي لقياس صوت العميل والعمل لتحسين جودة الخدمات المقدمة من الأمانة شاكرين تعاونكم لما فيه المصلحة العامة.</p>
                                             <hr>
                                         </div>
+                                        @using (Html.BeginForm("Save", "Survey", FormMethod.Post,new {@style="padding:10px;"})){
+                                        var _surveySetting = await _survey.GetSettingAsync();
+                                        <div class="col-md-12"><p>العمر</p></div>
+                                        <div class="mb-5 col-12">
+                                            @foreach(var ageRange in _surveySetting.SAges){
+                                            <div class="col-3 m-2 text-justify btn btn-primary">
+                                                 <span>@Html.RadioButtonFor(m => m.SAgeId, ageRange.Id) @ageRange.AgeRange</span>
+                                                    <div class="form-validate-icons">
+                                                    @Html.ValidationMessageFor(m=>m.SAgeId)
+                                                </div>
+                                            </div>
+                                             }
+                                        </div>
                                          <div class="col-md-12">
                                             <div class="contact-form-group custom-select-wrapper">
-                                                <select name="contact_subject" class="form-control" id="contactSubject">
-                                                    <option value="Please Select">الموضوع</option>
-                                                    <option value="Sales">إقتراح</option>
-                                                    <option value="Services">شكوى</option>
-                                                    <option value="Support">أخرى</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                         <div class="col-md-12">
-                                            <div class="contact-form-group">
-                                                <textarea name="contact_message" id="contactMessage" class="form-control"  placeholder="الرسالة *" cols="20" rows="8"></textarea>
+                                                @Html.DropDownListFor(m=>m.SNatId,new SelectList(_surveySetting.SGenders,"Id","Gender"),"الجنس",new{@class="form-control"})
                                                 <div class="form-validate-icons">
-                                                    <span></span>
+                                                        @Html.ValidationMessageFor(m=>m.SGenderId)
                                                 </div>
                                             </div>
                                         </div>
-                                      
-                                        <div class="col-md-6">
-                                            <div class="contact-form-group">
-                                                <input type="text" class="form-control" name="contact_name" id="contactName" placeholder="الإسم  *">
+                                       
+                                       
+                                        <div class="col-md-12"><p>الجنسية</p></div>
+                                        <div class="mb-5 col-12">
+                                            @foreach(var gender in _surveySetting.SNats){
+                                            <div class="col-3 m-2 text-justify btn btn-primary">
+                                                 <span>@Html.RadioButtonFor(m => m.SNatId, gender.Id) @gender.Nationalty</span>
+                                                    <div class="form-validate-icons">
+                                                    @Html.ValidationMessageFor(m=>m.SNatId)
+                                                </div>
+                                            </div>
+                                             }
+                                        </div>
+                                        <div class="col-md-12"><p>ماهي الصفة التي تراجع بها الأمانة؟</p></div>
+                                        <div class="mb-5 col-12">
+                                            @foreach(var radioBtn in _surveySetting.SRefTypes){
+                                            <div class="col-3 m-2 text-justify btn btn-primary">
+                                                 <span>@Html.RadioButtonFor(m => m.SRefTypeId, radioBtn.Id) @radioBtn.ReferenceName</span>
+                                                    <div class="form-validate-icons">
+                                                    @Html.ValidationMessageFor(m=>m.SRefTypeId)
+                                                </div>
+                                            </div>
+                                             }
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="contact-form-group custom-select-wrapper">
+                                                @Html.DropDownListFor(m=>m.SVisitAvgId,new SelectList(_surveySetting.SurveyVisitAvgs,"Id","VisitAvg"),"ما هو متوسط زيارتك للأمانة أسبوعيا؟",new{@class="form-control"})
                                                 <div class="form-validate-icons">
-                                                    <span></span>
+                                                        @Html.ValidationMessageFor(m=>m.SVisitAvgId)
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="contact-form-group">
-                                                <input type="text" class="form-control" name="contact_phone" id="contactPhone" placeholder="رقم الجوال *">
+                                        <div class="col-md-12">
+                                            <div class="contact-form-group custom-select-wrapper">
+                                                @Html.DropDownListFor(m=>m.SEvalEmpId,new SelectList(_surveySetting.SEvalEmps,"Id","Evaluate"),"ما هو متوسط زيارتك للأمانة أسبوعيا؟",new{@class="form-control"})
                                                 <div class="form-validate-icons">
-                                                    <span></span>
+                                                        @Html.ValidationMessageFor(m=>m.SEvalEmpId)
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="contact-form-group">
-                                                <input type="text" class="form-control" name="contact_email" id="contactEmail" placeholder="البريد الإلكتروني *">
+                                        <div class="col-md-12">
+                                            <div class="contact-form-group custom-select-wrapper">
+                                                @Html.DropDownListFor(m=>m.STransTypeId,new SelectList(_surveySetting.STransTypes,"Id","TransactionType"),"ماهو تصنيف المعاملة التي تراجع من أجلها ؟",new{@class="form-control"})
                                                 <div class="form-validate-icons">
-                                                    <span></span>
+                                                        @Html.ValidationMessageFor(m=>m.STransTypeId)
                                                 </div>
                                             </div>
                                         </div>
-                                       <div class="col-md-6" style="text-align: end;">
-                                            <div class="contact-btn-left">
-                                                <button type="submit" id="contactBtn" class="primary-btn">
+                                        <div class="col-md-12"><p>ما هو معدل التقدم في انجاز معاملتك عند كل مراجع؟</p></div>
+                                        <div class="mb-5 col-12">
+                                            @foreach(var radioBtn in _surveySetting.STRanComps){
+                                            <div class="col-3 m-2 text-justify btn btn-primary">
+                                                 <span>@Html.RadioButtonFor(m => m.STRanCompId, radioBtn.Id) @radioBtn.TransactionCompletion</span>
+                                                    <div class="form-validate-icons">
+                                                    @Html.ValidationMessageFor(m=>m.STRanCompId)
+                                                </div>
+                                            </div>
+                                             }
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="contact-form-group">
+                                                @Html.TextAreaFor(m => m.Note,8,20,new{@class="form-control"  ,@placeholder="ملاحظات/ مرئيات/ مقترحات"})
+                                                <div class="form-validate-icons">
+                                                   @Html.ValidationMessageFor(m=>m.Note)
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12" style="text-align: end;">
+                                                <button type="submit" class="primary-btn">
                                                     <span class="text">إرســــــــال</span>
                                                     <span class="icon"><i class="fa fa-arrow-right"></i></span>
                                                 </button>
-                                            </div>
                                        </div>
+                                        }
+                                    
                                        
-                                        <div class="col-md-12 text-center">
-                                            <div class="form-alerts">
-                                                <div class="empty-form text-center" style="display: none;"><span>من فضلك أدخل الحقول المطلوبة</span></div>
-                                                <div class="terms-alert text-center" style="display: none;"><span>رجاء وافق على الشروط</span></div>
-                                                <div class="subject-alert text-center" style="display: none;"><span>فضلا إختار الموضوع</span></div>
-                                                <div class="security-alert text-center" style="display: none;"><span>رمز الامان غير صحيح !</span></div>
-                                                <div class="email-invalid text-center" style="display: none;"><span>فضلا إدخل بريد صحيح.مثلا. example@gmail.com</span></div>
-                                                <div class="phone-invalid text-center" style="display: none;"><span>فضلا ادخل رقم جوال صحيح مثلا. 200-255-4444</span></div>
-                                            </div>
-                                           
-                                        </div>
+                                       
                                     </div>
-                                </form>
                             </div>
                         </div>
                     </div>

@@ -9,6 +9,6 @@ namespace AmanaSite.Interfaces
     {
         Task<IEnumerable<SurveyJson>> GetSurveys(DateTime fromDate, DateTime toDate);
         void CreateSurvey(SurveyVM model);
-        Task<SurveyVM> GetSetting();
+        Task<SurveyVM> GetSettingAsync();
     }
 }

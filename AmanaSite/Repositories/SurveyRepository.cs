@@ -30,17 +30,18 @@ namespace AmanaSite.Repositories
             _context.SurveyData.Add(_ToBeSaveModel);
         }
 
-        public async Task<SurveyVM> GetSetting()
+        public async Task<SurveyVM> GetSettingAsync()
         {
-            var Ages = await _context.SurveyAge.Where(s => s.LangCode == _currentLang.Get()).ToListAsync();
-            var SurveyEducations = await _context.SurveyEducation.Where(s => s.LangCode == _currentLang.Get()).ToListAsync();
-            var SurveyEvaluateEmployee = await _context.SurveyEvaluateEmployee.Where(s => s.LangCode == _currentLang.Get()).ToListAsync();
-            var SurveyGender = await _context.SurveyGender.Where(s => s.LangCode == _currentLang.Get()).ToListAsync();
-            var SurveyNationalty = await _context.SurveyNationalty.Where(s => s.LangCode == _currentLang.Get()).ToListAsync();
-            var SurveyReferencesType = await _context.SurveyReferencesType.Where(s => s.LangCode == _currentLang.Get()).ToListAsync();
-            var SurveyTransactionCompletion = await _context.SurveyTransactionCompletion.Where(s => s.LangCode == _currentLang.Get()).ToListAsync();
-            var SurveyTransactionType = await _context.SurveyTransactionType.Where(s => s.LangCode == _currentLang.Get()).ToListAsync();
-            var SurveyVisitAvg = await _context.SurveyVisitAvg.Where(s => s.LangCode == _currentLang.Get()).ToListAsync();
+            var _lang=_currentLang.Get();
+            var Ages = await _context.SurveyAge.Where(s => s.LangCode == _lang).ToListAsync();
+            var SurveyEducations = await _context.SurveyEducation.Where(s => s.LangCode == _lang).ToListAsync();
+            var SurveyEvaluateEmployee = await _context.SurveyEvaluateEmployee.Where(s => s.LangCode == _lang).ToListAsync();
+            var SurveyGender = await _context.SurveyGender.Where(s => s.LangCode == _lang).ToListAsync();
+            var SurveyNationalty = await _context.SurveyNationalty.Where(s => s.LangCode == _lang).ToListAsync();
+            var SurveyReferencesType = await _context.SurveyReferencesType.Where(s => s.LangCode == _lang).ToListAsync();
+            var SurveyTransactionCompletion = await _context.SurveyTransactionCompletion.Where(s => s.LangCode == _lang).ToListAsync();
+            var SurveyTransactionType = await _context.SurveyTransactionType.Where(s => s.LangCode == _lang).ToListAsync();
+            var SurveyVisitAvg = await _context.SurveyVisitAvg.Where(s => s.LangCode == _lang).ToListAsync();
             var _Survey = new SurveyVM
             {
                 SAges = Ages,

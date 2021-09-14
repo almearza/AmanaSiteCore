@@ -11,6 +11,7 @@ namespace AmanaSite.Interfaces
         IBaladyat Baladyat{get;}
         IInfo Info{get;}
         Idocs Docs{get;}
+        ISurvey Survey{get;}
         Task<bool> Complete();
         bool HasChanges();
 

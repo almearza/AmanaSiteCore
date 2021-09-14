@@ -40,6 +40,8 @@ namespace AmanaSite.Repositories
 
         public Idocs Docs => new DocsRepository(_context, _evn, _currentLang);
 
+        public ISurvey Survey => new SurveyRepository(_context,_mapper,_currentLang);
+
         public async Task<bool> Complete()
         {
             // var has_change=HasChanges();
