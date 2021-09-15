@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using AmanaSite.Extensions;
 using API.Extensions;
+using AspNetCore.ReCaptcha;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Localization;
@@ -33,6 +34,11 @@ namespace AmanaSite
             services.AddControllersWithViews()
                 .AddViewLocalization()
                 .AddDataAnnotationsLocalization();
+                // .AddDataAnnotationsLocalization(options =>
+                // {
+                //     options.DataAnnotationLocalizerProvider = (type, factory) =>
+                //         factory.Create(typeof(SharedResource));
+                // });
             services.Configure<RequestLocalizationOptions>(options =>
             {
                 var supportedCultures = new[] { new CultureInfo("ar"), new CultureInfo("en"), new CultureInfo("ur") };
@@ -40,9 +46,11 @@ namespace AmanaSite
                 options.DefaultRequestCulture = new RequestCulture(culture: "ar", uiCulture: "ar");
                 options.SupportedCultures = supportedCultures;
                 options.SupportedUICultures = supportedCultures;
-                options.RequestCultureProviders = 
+                options.RequestCultureProviders =
                 new List<IRequestCultureProvider> { new QueryStringRequestCultureProvider(), new CookieRequestCultureProvider() };
             });
+
+            services.AddReCaptcha(_config.GetSection("ReCaptcha"));
 
 
 

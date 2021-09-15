@@ -22,26 +22,26 @@ namespace AmanaSite.Models.Survey
 
         //binding
 
-        [Required(ErrorMessage ="الرجاء إختيار العمر")]
+        [Required(ErrorMessage ="Age")]
         public int SAgeId { get; set; }
 
-        [Required(ErrorMessage = "الرجاء إختيار المؤهل الدراسي")]
+        [Required(ErrorMessage = "Edu")]
         public int SEducationId { get; set; }
-        [Required(ErrorMessage = "الرجاء إختيار تقيم موظف الاستقبال")]
+        [Required(ErrorMessage = "Rec")]
         public int SEvalEmpId { get; set; }
-        [Required(ErrorMessage = "الرجاء إختيار النوع")]
+        [Required(ErrorMessage = "Gender")]
         public int SGenderId { get; set; }
-        [Required(ErrorMessage = "الرجاء إختيار الجنسية")]
+        [Required(ErrorMessage = "Nat")]
         public int SNatId { get; set; }
-        [Required(ErrorMessage = "الرجاء إختيار الصفة التي تراجع بها الأمانة")]
+        [Required(ErrorMessage = "RefType")]
         public int SRefTypeId { get; set; }
-        [Required(ErrorMessage = "الرجاء إختيار تصنيف المعاملة التي تراجع من أجلها")]
+        [Required(ErrorMessage = "TranType")]
         public int STransTypeId { get; set; }
-        [Required(ErrorMessage = "الرجاء إختيار متوسط زيارتك للأمانة أسبوعيا")]
+        [Required(ErrorMessage = "VisitCount")]
         public int SVisitAvgId { get; set; }
-        [Required(ErrorMessage = "الرجاء إختيار معدل التقدم في انجاز معاملتك عند كل مراجع")]
+        [Required(ErrorMessage = "TranComp")]
         public int STRanCompId { get; set; }
-        [Display(Name ="ملاحظات")]
+        [MaxLength(500,ErrorMessage ="MaxLength")]
         public string Note { get; set; }
         public LangCode LangCode { get; set; }
     }

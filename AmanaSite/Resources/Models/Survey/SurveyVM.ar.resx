@@ -117,52 +117,34 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="FacebookSharing" xml:space="preserve">
-        <value>مشاركة على فيسبوك</value>
-    </data>
-    <data name="TwitterSharing" xml:space="preserve">
-        <value>مشاركة على تويتر</value>
-    </data>
-    <data name="Survey" xml:space="preserve">
-        <value>إستطلاع رأي</value>
-    </data>
-    <data name="SurveyDesc" xml:space="preserve">
-        <value>إستطلاع رأي الجمهور</value>
-    </data>
-    <data name="SurveyIntro" xml:space="preserve">
-        <value>يرجى السماح لنا بدقيقة من وقتك، هذا استطلاع رأي لقياس صوت العميل والعمل لتحسين جودة الخدمات المقدمة من الأمانة شاكرين تعاونكم لما فيه المصلحة العامة.</value>
-    </data>
     <data name="Age" xml:space="preserve">
-        <value>العمر</value>
-    </data>
-    <data name="Gender" xml:space="preserve">
-        <value>الجنس</value>
-    </data>
-    <data name="Nat" xml:space="preserve">
-        <value>الجنسية</value>
-    </data>
-    <data name="RefType" xml:space="preserve">
-        <value>ماهي الصفة التي تراجع بها الأمانة؟</value>
-    </data>
-    <data name="VisitCount" xml:space="preserve">
-        <value>ما هو متوسط زيارتك للأمانة أسبوعيا؟</value>
-    </data>
-    <data name="EmpEval" xml:space="preserve">
-        <value>ما هو تقيم موظف الاستقبال؟</value>
-    </data>
-    <data name="TranType" xml:space="preserve">
-        <value>ماهو تصنيف المعاملة التي تراجع من أجلها ؟</value>
-    </data>
-    <data name="TranComp" xml:space="preserve">
-        <value>ما هو معدل التقدم في انجاز معاملتك عند كل مراجع؟</value>
-    </data>
-    <data name="Notes" xml:space="preserve">
-        <value>ملاحظات/ مرئيات/ مقترحات</value>
-    </data>
-    <data name="BtnSend" xml:space="preserve">
-        <value>إرســــــــال</value>
+        <value>الرجاء إختيار العمر</value>
     </data>
     <data name="Edu" xml:space="preserve">
-        <value>المؤهل الدراسي</value>
+        <value>الرجاء إختيار المؤهل الدراسي</value>
+    </data>
+    <data name="Rec" xml:space="preserve">
+        <value>الرجاء إختيار تقيم موظف الاستقبال</value>
+    </data>
+    <data name="Gender" xml:space="preserve">
+        <value>الرجاء إختيار النوع</value>
+    </data>
+    <data name="Nat" xml:space="preserve">
+        <value>الرجاء إختيار الجنسية</value>
+    </data>
+    <data name="RefType" xml:space="preserve">
+        <value>الرجاء إختيار الصفة التي تراجع بها الأمانة</value>
+    </data>
+    <data name="TranType" xml:space="preserve">
+        <value>الرجاء إختيار تصنيف المعاملة التي تراجع من أجلها</value>
+    </data>
+    <data name="VisitCount" xml:space="preserve">
+        <value>الرجاء إختيار متوسط زيارتك للأمانة أسبوعيا</value>
+    </data>
+    <data name="TranComp" xml:space="preserve">
+        <value>الرجاء إختيار معدل التقدم في انجاز معاملتك عند كل مراجع</value>
+    </data>
+    <data name="MaxLength" xml:space="preserve">
+        <value>الرجاء إادخال نص اقل من 500 حرف</value>
     </data>
 </root>
