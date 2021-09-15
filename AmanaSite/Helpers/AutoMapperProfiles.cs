@@ -1,5 +1,7 @@
 using AmanaSite.Models;
+using AmanaSite.Models.Survey;
 using AmanaSite.Models.VM;
+using AmanaSite.Remote;
 using AutoMapper;
 namespace API.Helpers
 {
@@ -23,6 +25,8 @@ namespace API.Helpers
             CreateMap<Baladyat, Baladyat>();
             CreateMap<Project, Project>();
 
+            CreateMap<SurveyVM, SurveyData>();
+            CreateMap<ContactMunVM, ContactMun>();
         }
         private static string GetLang(LangCode lang)
         {

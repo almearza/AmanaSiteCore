@@ -1,36 +1,30 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using AmanaSite.Interfaces;
-using AmanaSite.Models.Survey;
+using AmanaSite.Remote;
 using AspNetCore.ReCaptcha;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Localization;
-using Microsoft.Extensions.Logging;
 
 namespace AmanaSite.Controllers
 {
-
-    public class SurveyController : Controller
+    public class ContactusController : Controller
     {
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IStringLocalizer<SurveyController> _localizer;
-        public SurveyController(IUnitOfWork unitOfWork, IStringLocalizer<SurveyController> localizer)
+        private readonly AmanaApi _amanaApi;
+        private readonly IStringLocalizer<ContactusController> _localizer;
+        private readonly IMapper _mapper;
+        public ContactusController(AmanaApi amanaApi, IMapper mapper, IStringLocalizer<ContactusController> localizer)
         {
-            this._unitOfWork = unitOfWork;
-            this._localizer = localizer;
-        }
-        public IActionResult Index(string lang)
-        {
-            return View();
+            _localizer = localizer;
+            _amanaApi = amanaApi;
+            
+            _mapper = mapper;
         }
         [HttpPost]
         [ValidateReCaptcha(ErrorMessage = "InValidCaptcha")]
         [ValidateAntiForgeryToken]
-        public async Task<JsonResult> Index(SurveyVM model)
+        public async Task<IActionResult> ContactAmana(ContactMunVM model)
         {
             if (!ModelState.IsValid)
             {
@@ -51,8 +45,8 @@ namespace AmanaSite.Controllers
                     errors = _errors
                 });
             }
-            _unitOfWork.Survey.CreateSurvey(model);
-            var result = await _unitOfWork.Complete();
+            var _contactModel = _mapper.Map<ContactMun>(model);
+            var result = await _amanaApi.ContactMun(_contactModel);
             if (!result)
             {
                 return Json(new

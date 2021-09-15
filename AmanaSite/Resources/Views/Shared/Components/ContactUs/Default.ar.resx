@@ -117,35 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Home" xml:space="preserve">
-    <value>الرئيسية</value>
+  <data name="ContactAmana" xml:space="preserve">
+    <value>راسل الأمانة</value>
   </data>
-  <data name="SubBaladyat" xml:space="preserve">
-    <value>البلديات الفرعية</value>
+  <data name="Address" xml:space="preserve">
+    <value>العنوان</value>
   </data>
-  <data name="Baladyat" xml:space="preserve">
-    <value>البلديات</value>
+  <data name="AddressDescr" xml:space="preserve">
+    <value>حي العنبرية - طريق أمير المؤمنين عمر بن الخطاب رضي الله عنه </value>
   </data>
-  <data name="ViewOnMap" xml:space="preserve">
-    <value>عرض الموقع على الخريطة</value>
+  <data name="EmailAndPhone" xml:space="preserve">
+    <value>الهاتف و البريد </value>
   </data>
-  <data name="LocationClose" xml:space="preserve">
-    <value>إغلاق</value>
+  <data name="EmailDescr" xml:space="preserve">
+    <value>Info@Amana-md.gov.sa</value>
   </data>
-  <data name="BaladyaLocation" xml:space="preserve">
-    <value>موقع البلدية</value>
+  <data name="PhoneDescr" xml:space="preserve">
+    <value>8227400</value>
   </data>
-  <data name="ProvBaladyat" xml:space="preserve">
-    <value>بلديات الضواحي</value>
+  <data name="Issue" xml:space="preserve">
+    <value>الموضوع</value>
   </data>
-  <data name="SuburbanBaladyat" xml:space="preserve">
-    <value>بلديات المحافظات</value>
+  <data name="Suggest" xml:space="preserve">
+    <value>إقتراح</value>
   </data>
- <data name="FacebookSharing" xml:space="preserve">
-    <value>مشاركة على فيسبوك</value>
+  <data name="Compl" xml:space="preserve">
+    <value>شكوى</value>
   </data>
-  <data name="TwitterSharing" xml:space="preserve">
-    <value>مشاركة على تويتر</value>
+  <data name="Other" xml:space="preserve">
+    <value>أخرى</value>
   </data>
-  
+  <data name="ContactInfo" xml:space="preserve">
+    <value>معلومات التواصل لنتمكن من ارسال الرد</value>
+  </data>
+  <data name="BtnSend" xml:space="preserve">
+    <value>إرســــــــال</value>
+  </data>
 </root>

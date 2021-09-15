@@ -117,55 +117,31 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="FacebookSharing" xml:space="preserve">
-        <value>مشاركة على فيسبوك</value>
+    <data name="EmailError" xml:space="preserve">
+        <value>الرجاء إدخال البريد الالكتروني</value>
     </data>
-    <data name="TwitterSharing" xml:space="preserve">
-        <value>مشاركة على تويتر</value>
+    <data name="PhoneError" xml:space="preserve">
+        <value>الرجاء إدخال رقم الجوال</value>
     </data>
-    <data name="Survey" xml:space="preserve">
-        <value>إستطلاع رأي</value>
+    <data name="NameError" xml:space="preserve">
+        <value>الرجاء إدخال الاسم</value>
     </data>
-    <data name="SurveyDesc" xml:space="preserve">
-        <value>إستطلاع رأي الجمهور</value>
+    <data name="MsgError" xml:space="preserve">
+        <value>الرجاء إدخال الرسالة المراد إرسالها</value>
     </data>
-    <data name="SurveyIntro" xml:space="preserve">
-        <value>يرجى السماح لنا بدقيقة من وقتك، هذا استطلاع رأي لقياس صوت العميل والعمل لتحسين جودة الخدمات المقدمة من الأمانة شاكرين تعاونكم لما فيه المصلحة العامة.</value>
+    <data name="Message" xml:space="preserve">
+        <value>الرسالة *</value>
     </data>
-    <data name="Age" xml:space="preserve">
-        <value>العمر</value>
+    <data name="Name" xml:space="preserve">
+        <value>الإسم *</value>
     </data>
-    <data name="Gender" xml:space="preserve">
-        <value>الجنس</value>
+    <data name="Phone" xml:space="preserve">
+        <value>رقم الجوال *</value>
     </data>
-    <data name="Nat" xml:space="preserve">
-        <value>الجنسية</value>
+    <data name="Email" xml:space="preserve">
+        <value>البريد الإلكتروني *</value>
     </data>
-    <data name="RefType" xml:space="preserve">
-        <value>ماهي الصفة التي تراجع بها الأمانة؟</value>
-    </data>
-    <data name="VisitCount" xml:space="preserve">
-        <value>ما هو متوسط زيارتك للأمانة أسبوعيا؟</value>
-    </data>
-    <data name="EmpEval" xml:space="preserve">
-        <value>ما هو تقيم موظف الاستقبال؟</value>
-    </data>
-    <data name="TranType" xml:space="preserve">
-        <value>ماهو تصنيف المعاملة التي تراجع من أجلها ؟</value>
-    </data>
-    <data name="TranComp" xml:space="preserve">
-        <value>ما هو معدل التقدم في انجاز معاملتك عند كل مراجع؟</value>
-    </data>
-    <data name="Notes" xml:space="preserve">
-        <value>ملاحظات/ مرئيات/ مقترحات</value>
-    </data>
-    <data name="BtnSend" xml:space="preserve">
-        <value>إرســــــــال</value>
-    </data>
-    <data name="Edu" xml:space="preserve">
-        <value>المؤهل الدراسي</value>
-    </data>
-    <data name="SendTitle" xml:space="preserve">
+     <data name="SendTitle" xml:space="preserve">
     <value>عملية الارسال</value>
   </data>
   <data name="SendOkBtn" xml:space="preserve">
@@ -174,6 +150,4 @@
   <data name="SendDescr" xml:space="preserve">
     <value>تم الإرسال بنجاح</value>
   </data>
-    
-    
 </root>

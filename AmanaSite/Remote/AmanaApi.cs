@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Memory;
@@ -29,6 +30,24 @@ namespace AmanaSite.Remote
         {
             return await GetCachedCounterAsync();
         }
+        public async Task<bool> ContactMun(ContactMun model)
+        {
+            try
+            {
+                var token = await _token.GetToken();
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                var reqBody = JsonSerializer.Serialize(model);
+                var response = await _httpClient.PostAsync(_config["ContactusUrl"], new StringContent(reqBody,
+                                                            Encoding.UTF8, "application/json"));
+                response.EnsureSuccessStatusCode();
+            }
+            catch (System.Exception)
+            {
+                return false;
+            }
+            return true;
+
+        }
         private async Task<Counters> GetCachedCounterAsync()
         {
             var cachecounter = await
@@ -53,5 +72,6 @@ namespace AmanaSite.Remote
                 <Counters>(responseStream);
             return counter;
         }
+
     }
 }
