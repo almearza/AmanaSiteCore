@@ -123,4 +123,7 @@
     <data name="SomeError" xml:space="preserve">
         <value>حدث خطأ أثناء إرسال البيانات الرجاء المحاولة لاحقا</value>
     </data>
+    <data name="RequiredFields" xml:space="preserve">
+        <value>الرجاء التأكد من إدخال كافة الحقول</value>
+    </data>
 </root>

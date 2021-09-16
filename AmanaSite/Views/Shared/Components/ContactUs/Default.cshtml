@@ -1,7 +1,7 @@
 <!--// Contact Section Start //-->
 @using Microsoft.AspNetCore.Mvc.Localization;
 @inject IViewLocalizer Localizer;
-@using AspNetCore.ReCaptcha;
+@* @using AspNetCore.ReCaptcha; *@
 @model ContactMunVM
 <section class="section bg-primary-light" id="contact" data-scroll-index="7">
     <div class="container">
@@ -41,22 +41,25 @@
         <div class="row justify-content-center">
             <div class="col-lg-12">
                 <div class="contact-form-wrap">
-                    <form id="contactForm" action="/contactus/contactamana">
+                    <form id="ContactUsForm" action="/contactus/contactamana">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="contact-form-group custom-select-wrapper">
-                                    <select name="contact_subject" class="form-control" id="contactSubject">
-                                        <option value="Please Select">@Localizer["Issue"]</option>
-                                        <option value="Sales">@Localizer["Suggest"]</option>
-                                        <option value="Services">@Localizer["Compl"]</option>
-                                        <option value="Support">@Localizer["Other"]</option>
+                                    <select data-val-re name="contactReason" class="form-control" id="contactReason">
+                                        <option value=''>@Localizer["Issue"]</option>
+                                        <option value='إقتراح'>@Localizer["Suggest"]</option>
+                                        <option value='شكوى'>@Localizer["Compl"]</option>
+                                        <option value='أخرى'>@Localizer["Other"]</option>
                                     </select>
+                                </div>
+                                 <div class="text-danger">
+                                   <span id="contactReasonError"></span>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="contact-form-group">
                                     @Html.TextAreaFor(m=>m.message,8,20,new{@class="form-control"})
-                                    <div class="form-validate-icons">
+                                    <div class="text-danger">
                                         @Html.ValidationMessageFor(m=>m.message)
                                     </div>
                                 </div>
@@ -69,7 +72,7 @@
                             <div class="col-md-6">
                                 <div class="contact-form-group">
                                     @Html.TextBoxFor(m=>m.name,new{@class="form-control"})
-                                    <div class="form-validate-icons">
+                                    <div class="text-danger">
                                         @Html.ValidationMessageFor(m=>m.name)
                                     </div>
                                 </div>
@@ -77,7 +80,7 @@
                             <div class="col-md-6">
                                 <div class="contact-form-group">
                                     @Html.TextBoxFor(m=>m.phoneNumber,new{@class="form-control"})
-                                    <div class="form-validate-icons">
+                                    <div class="text-danger">
                                         @Html.ValidationMessageFor(m=>m.phoneNumber)
                                     </div>
                                 </div>
@@ -85,14 +88,15 @@
                             <div class="col-md-6">
                                 <div class="contact-form-group">
                                     @Html.TextBoxFor(m=>m.email,new{@class="form-control"})
-                                    <div class="form-validate-icons">
+                                    <div class="text-danger">
                                         @Html.ValidationMessageFor(m=>m.email)
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group col-12">
                                 @Html.AntiForgeryToken()
-                                @Html.ReCaptcha()
+                                @* @Html.ReCaptcha() *@
+                                 <input type="hidden" name="captcha" id="captchaInput" />
                             </div>
                             <div class="col-12">
                                 <span id="errorMessages" class="text-danger"></span>
@@ -115,58 +119,3 @@
 </section>
 <!--// Contact Section End //-->
 
-@section scripts{
-<script src="~/js/jquery.validate.min.js"></script>
-<script src="~/js/jquery.validate.unobtrusive.min.js"></script>
-<script src="~/js/jquery.unobtrusive-ajax.js"></script>
-<script src="~/js/sweetalert.min.js"></script>
-<script>
-
-    $("#contactForm").submit(function (e) {
-        if (!$(this).valid()) {
-            return false;
-        }
-        e.preventDefault(); // avoid to execute the actual submit of the form.
-
-        var form = $(this);
-        var url = form.attr('action');
-        Begin();
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: form.serialize(), // serializes the form's elements.
-            success: function (data) {
-                Success(data);
-            },
-            error: function (data) {
-                Fialure(data);
-            }
-        });
-    });
-    function Begin() {
-        $("#Loading-Overlay").show();
-    }
-    function Success(result) {
-        $("#Loading-Overlay").hide();
-        let _title = "@Localizer["SendTitle"]";
-        let _descr = "@Localizer["SendDescr"]";
-        let _btn = "@Localizer["SendOkBtn"]";
-        if (!result.success) {
-            $('#errorMessages').html('');
-            $('#errorMessages').append(result.errors + '<br />');
-        } else {
-            swal({
-                title: _title,
-                text: _descr,
-                icon: "success",
-                button: _btn,
-            });
-            $("#contactForm").trigger("reset");
-        }
-    }
-    function Fialure(xhr) {
-        $('#errorMessages').append("403 : unexpected errors occured" + '<br />')
-    }
-</script>
-
-}

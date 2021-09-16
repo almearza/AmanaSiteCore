@@ -123,4 +123,7 @@
     <data name="SomeError" xml:space="preserve">
         <value>حدث خطأ أثناء إرسال البيانات الرجاء المحاولة لاحقا</value>
     </data>
+    <data name="ContactReasonRequired" xml:space="preserve">
+        <value>الرجاء إختيار الموضوع</value>
+    </data>
 </root>

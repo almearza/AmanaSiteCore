@@ -16,6 +16,7 @@ namespace AmanaSite.Controllers
         
         public IActionResult Index(string lang)
         {
+            ViewBag.IsSend=false;
             return View();
         }
 
@@ -38,6 +39,10 @@ namespace AmanaSite.Controllers
                 return Redirect(returnUrl);
             else
                 return RedirectToAction("Index", "Home");
+        }
+        public IActionResult Success(){
+            ViewBag.IsSend=true;
+            return View("Index");
         }
 
 

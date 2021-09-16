@@ -1,4 +1,18 @@
-﻿@await Component.InvokeAsync("Slider")
+﻿@using Microsoft.AspNetCore.Mvc.Localization;
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+
+@inject IViewLocalizer Localizer;
+
+@section styles{
+<link rel="stylesheet" href="~/css/loading.css">
+<style>
+    .section {
+        padding: 100px 0;
+    }
+</style>
+}
+
+@await Component.InvokeAsync("Slider")
 @await Component.InvokeAsync("Video")
 @await Component.InvokeAsync("Project")
 @await Component.InvokeAsync("Counters")
@@ -6,25 +20,115 @@
 @{
     await Html.RenderPartialAsync("_SocialMediaPartial");
 }
-@await Component.InvokeAsync("Info");
+@await Component.InvokeAsync("Info")
 @{
     await Html.RenderPartialAsync("_MapPartial");
 }
-@await Component.InvokeAsync("ContactUs");
-<!-- facebook plugin -->
+@await Component.InvokeAsync("ContactUs")
+<!-- loading -->
+<div id="Loading-Overlay">
+    <div id="loader"></div>
+</div>
+
 <div id="fb-root"></div>
 @section scripts{
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ar_AR/sdk.js#xfbml=1&version=v11.0"
     nonce="AE6s4pVJ"></script>
+
+<script src="~/js/jquery.validate.min.js"></script>
+<script src="~/js/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/js/jquery.unobtrusive-ajax.js"></script>
+<script src="~/js/sweetalert.min.js"></script>
+<script src="https://www.google.com/recaptcha/api.js?render=@Configuration["googleReCaptcha:SiteKey"]"></script>
 <script>
     $(document).ready(function () {
         var url = window.location.pathname;
-        var id = url.substring(url.lastIndexOf('#') + 1);
-        $('html, body').animate({
-            scrollTop: $(id).offset().top
-        }, 'slow');
+        let index = url.lastIndexOf('#');
+        if (index > 0) {
+            var id = url.substring(index + 1);
+            $('html, body').animate({
+                scrollTop: $(id).offset().top
+            }, 'slow');
+        }
+        let IsSend = "@ViewBag.IsSend";
+        if (IsSend == "True") {
+            let _title = "@Localizer["SendTitle"]";
+            let _descr = "@Localizer["SendDescr"]";
+            let _btn = "@Localizer["SendOkBtn"]";
+
+            swal({
+                title: _title,
+                text: _descr,
+                icon: "success",
+                button: _btn,
+            });
+
+        }
     });
 </script>
+<!-- here we handle submitting of contact form-->
+<script>
+    grecaptcha.ready(function () {
+        window.grecaptcha.execute('@Configuration["googleReCaptcha:SiteKey"]', { action: 'home' }).then(function (token) {
+            $("#captchaInput").val(token);
+        });
+    });
 
+    
+    $("#ContactUsForm").submit(function (e) {
+        if ($("#contactReason").val() == "") {
+            let _errorEmpty = "@Localizer["IssueError"]";
+            $("#contactReasonError").text(_errorEmpty);
+            return false;
+        }else{
+             $("#contactReasonError").text('');
+        }
+        if (!$(this).valid()) {
+            return false;
+        }
+
+        e.preventDefault(); // avoid to execute the actual submit of the form.
+
+        var form = $(this);
+        var url = form.attr('action');
+        Begin();
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: form.serialize(), // serializes the form's elements.
+            success: function (data) {
+                Success(data);
+            },
+            error: function (data) {
+                Fialure(data);
+            }
+        });
+    });
+    function Begin() {
+        $('#errorMessages').html('');
+        $("#Loading-Overlay").show();
+    }
+    function Success(result) {
+        $("#Loading-Overlay").hide();
+        let _title = "@Localizer["SendTitle"]";
+        let _descr = "@Localizer["SendDescr"]";
+        let _btn = "@Localizer["SendOkBtn"]";
+        if (!result.success) {
+            $('#errorMessages').html('');
+            $('#errorMessages').append(result.errors + '<br />');
+        } else {
+            swal({
+                title: _title,
+                text: _descr,
+                icon: "success",
+                button: _btn,
+            });
+            $("#ContactUsForm").trigger("reset");
+        }
+    }
+    function Fialure(xhr) {
+        $("#Loading-Overlay").hide();
+        $('#errorMessages').append("403 : unexpected errors occured" + '<br />')
+    }
+</script>
 }
-<!-- facebook plugin -->

@@ -5,7 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using AmanaSite.Interfaces;
 using AmanaSite.Models.Survey;
-using AspNetCore.ReCaptcha;
+using GoogleReCaptcha.V3.Interface;
+// using AspNetCore.ReCaptcha;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Localization;
@@ -18,8 +19,10 @@ namespace AmanaSite.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IStringLocalizer<SurveyController> _localizer;
-        public SurveyController(IUnitOfWork unitOfWork, IStringLocalizer<SurveyController> localizer)
+        private readonly ICaptchaValidator _captchaValidator;
+        public SurveyController(IUnitOfWork unitOfWork, IStringLocalizer<SurveyController> localizer, ICaptchaValidator captchaValidator)
         {
+            this._captchaValidator = captchaValidator;
             this._unitOfWork = unitOfWork;
             this._localizer = localizer;
         }
@@ -28,43 +31,34 @@ namespace AmanaSite.Controllers
             return View();
         }
         [HttpPost]
-        [ValidateReCaptcha(ErrorMessage = "InValidCaptcha")]
         [ValidateAntiForgeryToken]
-        public async Task<JsonResult> Index(SurveyVM model)
+        public async Task<IActionResult> Index(SurveyVM model, string captcha)
         {
+            if (!await _captchaValidator.IsCaptchaPassedAsync(captcha))
+            {
+                ModelState.AddModelError("",_localizer["InValidCaptcha"]);
+                return View(model);
+               
+            }
+
             if (!ModelState.IsValid)
             {
-                var _capchaErrors = ModelState.Values.Where(m => m.ValidationState == ModelValidationState.Invalid && m.Errors.Any(m => m.ErrorMessage == "InValidCaptcha")).ToList();
-                if (_capchaErrors != null)
-                {
-                    return Json(new
-                    {
-                        success = false,
-                        errors = new string[] { _localizer["InValidCaptcha"] }
-                    });
-                }
-                var _errors = ModelState.Keys.SelectMany(k => ModelState[k].Errors)
-                                                .Select(m => m.ErrorMessage).ToArray();
-                return Json(new
-                {
-                    success = false,
-                    errors = _errors
-                });
+               return View(model);
+            }
+            if (model.SGenderId == 0 || model.SVisitAvgId == 0 || model.SEvalEmpId == 0 || model.STransTypeId == 0)
+            {
+                ModelState.AddModelError("",_localizer["RequiredFields"]);
+                return View(model);
             }
             _unitOfWork.Survey.CreateSurvey(model);
             var result = await _unitOfWork.Complete();
             if (!result)
             {
-                return Json(new
-                {
-                    success = false,
-                    errors = new string[] { _localizer["SomeError"] }
-                });
+                
+                ModelState.AddModelError("",_localizer["SomeError"]);
+                return View(model);
             }
-            return Json(new
-            {
-                success = true
-            });
+            return RedirectToAction("Success","Home");
         }
     }
 }

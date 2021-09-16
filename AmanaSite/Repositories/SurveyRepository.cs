@@ -26,7 +26,7 @@ namespace AmanaSite.Repositories
         {
             var _ToBeSaveModel = _mapper.Map<SurveyData>(model);
             _ToBeSaveModel.UploadDate = DateTime.Now;
-            _ToBeSaveModel.LangCode = _currentLang.Get();
+            // _ToBeSaveModel.LangCode = _currentLang.Get();
             _context.SurveyData.Add(_ToBeSaveModel);
         }
 

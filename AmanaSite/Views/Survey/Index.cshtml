@@ -2,7 +2,8 @@
 @using Microsoft.AspNetCore.Mvc.Localization;
 @using System.Globalization;
 @using AmanaSite.Interfaces;
-@using AspNetCore.ReCaptcha;
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+@* @using AspNetCore.ReCaptcha; *@
 @inject IViewLocalizer Localizer;
 @inject IUnitOfWork unitOfWork;
 @{
@@ -12,8 +13,12 @@
     ViewBag.Title = Localizer["SurveyDesc"];
 }
 @section styles{
-<link rel="stylesheet" href="~/css/loading.css">
+@* <link rel="stylesheet" href="~/css/loading.css"> *@
 <style>
+    .swal-button {
+        background-color: #0d7167 !important;
+    }
+
     .donot-trans {
         -webkit-transform: none !important;
         transform: none !important;
@@ -76,169 +81,191 @@
                                                 <p>@Localizer["SurveyIntro"]</p>
                                                 <hr>
                                             </div>
-                                            @* @using (Html.BeginForm("index", "Survey", FormMethod.Post,new
-                                                {@style="padding:10px;"})) *@
-                                            <form id="SurveyForm" action="/survey/index">
-
-                                                @{
-
-                                                    var _surveySetting = await _survey.GetSettingAsync();
-                                                    <div class="col-md-12">
-                                                        <p>@Localizer["Age"]</p>
+                                            @using (Html.BeginForm("index", "Survey", FormMethod.Post))
+                                            {
+                                                <div class="col-12">
+                                                    <div class="text-danger">
+                                                        @Html.ValidationSummary(true, "")
                                                     </div>
-                                                    <div class="mb-5 col-12">
-                                                        @foreach (var ageRange in _surveySetting.SAges)
-                                                        {
-                                                            <div class="col-3 m-2 text-justify btn btn-primary">
-                                                                <span>@Html.RadioButtonFor(m => m.SAgeId, ageRange.Id)
-                                                                    @ageRange.AgeRange</span>
-                                                            </div>
-                                                        }
+                                                </div>
+                                                var _surveySetting = await _survey.GetSettingAsync();
+                                                <div class="col-md-12">
+                                                    <p>@Localizer["Age"]</p>
+                                                </div>
+                                                <div class="mb-5 col-12">
+                                                    @foreach (var ageRange in _surveySetting.SAges)
+                                                    {
+                                                        <div class="col-3 m-2 text-justify btn btn-primary">
+                                                            <span>@Html.RadioButtonFor(m => m.SAgeId, ageRange.Id)
+                                                                @ageRange.AgeRange</span>
+                                                        </div>
+                                                    }
+                                                    <div class="text-danger">
+                                                        @Html.ValidationMessageFor(m=>m.SAgeId)
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="col-md-12">
+                                                        <p>@Localizer["Gender"]</p>
+                                                    </div>
+                                                    <div class="contact-form-group custom-select-wrapper">
+                                                        <select class="form-control" name="SGenderId" id="SGenderId">
+                                                            <option value="0">@Localizer["Option1"]</option>
+                                                            @foreach (var option in _surveySetting.SGenders)
+                                                            {
+                                                                <option value="@option.Id">@option.Gender</option>
+                                                            }
+                                                        </select>
                                                         <div class="text-danger">
-                                                            @Html.ValidationMessageFor(m=>m.SAgeId)
+                                                            @Html.ValidationMessageFor(m=>m.SGenderId)
                                                         </div>
                                                     </div>
+                                                </div>
+
+
+                                                <div class="col-md-12">
+                                                    <p>@Localizer["Nat"]</p>
+                                                </div>
+                                                <div class="mb-5 col-12">
+                                                    @foreach (var gender in _surveySetting.SNats)
+                                                    {
+                                                        <div class="col-3 m-2 text-justify btn btn-primary">
+                                                            <span>@Html.RadioButtonFor(m => m.SNatId, gender.Id)
+                                                                @gender.Nationalty</span>
+
+                                                        </div>
+                                                    }
+                                                    <div class="text-danger">
+                                                        @Html.ValidationMessageFor(m=>m.SNatId)
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <p>@Localizer["Edu"]</p>
+                                                </div>
+                                                <div class="mb-5 col-12">
+                                                    @foreach (var gender in _surveySetting.SEducations)
+                                                    {
+                                                        <div class="col-3 m-2 text-justify btn btn-primary">
+                                                            <span>@Html.RadioButtonFor(m => m.SEducationId, gender.Id)
+                                                                @gender.Education</span>
+                                                        </div>
+                                                    }
+                                                    <div class="text-danger">
+                                                        @Html.ValidationMessageFor(m=>m.SEducationId)
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <p>@Localizer["RefType"]</p>
+                                                </div>
+                                                <div class="mb-5 col-12">
+                                                    @foreach (var radioBtn in _surveySetting.SRefTypes)
+                                                    {
+                                                        <div class="col-3 m-2 text-justify btn btn-primary">
+                                                            <span>@Html.RadioButtonFor(m => m.SRefTypeId, radioBtn.Id)
+                                                                @radioBtn.ReferenceName</span>
+
+                                                        </div>
+                                                    }
+                                                    <div class="text-danger">
+                                                        @Html.ValidationMessageFor(m=>m.SRefTypeId)
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
                                                     <div class="col-md-12">
-                                                        <div class="col-md-12">
-                                                            <p>@Localizer["Gender"]</p>
-                                                        </div>
-                                                        <div class="contact-form-group custom-select-wrapper">
-                                                            @Html.DropDownListFor(m=>m.SGenderId,new
-                                                        SelectList(_surveySetting.SGenders,"Id","Gender"),null,new{@class="form-control"})
-                                                            <div class="text-danger">
-                                                                @Html.ValidationMessageFor(m=>m.SGenderId)
-                                                            </div>
+                                                        <p>@Localizer["VisitCount"]</p>
+                                                    </div>
+                                                    <div class="contact-form-group custom-select-wrapper">
+                                                        <select class="form-control" name="SVisitAvgId" id="SVisitAvgId">
+                                                            <option value="0">@Localizer["Option1"]</option>
+                                                            @foreach (var option in _surveySetting.SurveyVisitAvgs)
+                                                            {
+                                                                <option value="@option.Id">@option.VisitAvg</option>
+                                                            }
+                                                        </select>
+                                                        <div class="form-validate-icons">
+                                                            @Html.ValidationMessageFor(m=>m.SVisitAvgId)
                                                         </div>
                                                     </div>
-
-
+                                                </div>
+                                                <div class="col-md-12">
                                                     <div class="col-md-12">
-                                                        <p>@Localizer["Nat"]</p>
+                                                        <p>@Localizer["EmpEval"]</p>
                                                     </div>
-                                                    <div class="mb-5 col-12">
-                                                        @foreach (var gender in _surveySetting.SNats)
-                                                        {
-                                                            <div class="col-3 m-2 text-justify btn btn-primary">
-                                                                <span>@Html.RadioButtonFor(m => m.SNatId, gender.Id)
-                                                                    @gender.Nationalty</span>
-
-                                                            </div>
-                                                        }
+                                                    <div class="contact-form-group custom-select-wrapper">
+                                                        <select class="form-control" name="SEvalEmpId" id="SEvalEmpId">
+                                                            <option value="0">@Localizer["Option1"]</option>
+                                                            @foreach (var option in _surveySetting.SEvalEmps)
+                                                            {
+                                                                <option value="@option.Id">@option.Evaluate</option>
+                                                            }
+                                                        </select>
                                                         <div class="text-danger">
-                                                            @Html.ValidationMessageFor(m=>m.SNatId)
+                                                            @Html.ValidationMessageFor(m=>m.SEvalEmpId)
                                                         </div>
                                                     </div>
-
+                                                </div>
+                                                <div class="col-md-12">
                                                     <div class="col-md-12">
-                                                        <p>@Localizer["Edu"]</p>
+                                                        <p>@Localizer["TranType"]</p>
                                                     </div>
-                                                    <div class="mb-5 col-12">
-                                                        @foreach (var gender in _surveySetting.SEducations)
-                                                        {
-                                                            <div class="col-3 m-2 text-justify btn btn-primary">
-                                                                <span>@Html.RadioButtonFor(m => m.SEducationId, gender.Id)
-                                                                    @gender.Education</span>
-                                                            </div>
-                                                        }
+                                                    <div class="contact-form-group custom-select-wrapper">
+                                                        <select class="form-control" name="STransTypeId" id="STransTypeId">
+                                                            <option value="0">@Localizer["Option1"]</option>
+                                                            @foreach (var option in _surveySetting.STransTypes)
+                                                            {
+                                                                <option value="@option.Id">@option.TransactionType</option>
+                                                            }
+                                                        </select>
                                                         <div class="text-danger">
-                                                            @Html.ValidationMessageFor(m=>m.SEducationId)
+                                                            @Html.ValidationMessageFor(m=>m.STransTypeId)
                                                         </div>
                                                     </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <p>@Localizer["TranComp"]</p>
+                                                </div>
+                                                <div class="mb-5 col-12">
+                                                    @foreach (var radioBtn in _surveySetting.STRanComps)
+                                                    {
+                                                        <div class="col-3 m-2 text-justify btn btn-primary">
+                                                            <span>@Html.RadioButtonFor(m => m.STRanCompId, radioBtn.Id)
+                                                                @radioBtn.TransactionCompletion</span>
+                                                        </div>
+                                                    }
+                                                    <div class="text-danger">
+                                                        @Html.ValidationMessageFor(m=>m.STRanCompId)
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <p>@Localizer["Notes"]</p>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="contact-form-group">
+                                                        @Html.TextAreaFor(m => m.Note,8,20,new{@class="form-control"})
+                                                        <div class="form-validate-icons">
+                                                            @Html.ValidationMessageFor(m=>m.Note)
+                                                        </div>
+                                                    </div>
+                                                </div>
 
-                                                    <div class="col-md-12">
-                                                        <p>@Localizer["RefType"]</p>
-                                                    </div>
-                                                    <div class="mb-5 col-12">
-                                                        @foreach (var radioBtn in _surveySetting.SRefTypes)
-                                                        {
-                                                            <div class="col-3 m-2 text-justify btn btn-primary">
-                                                                <span>@Html.RadioButtonFor(m => m.SRefTypeId, radioBtn.Id)
-                                                                    @radioBtn.ReferenceName</span>
+                                                <div class="form-group col12">
+                                                    @Html.AntiForgeryToken()
+                                                    @* @Html.ReCaptcha() *@
+                                                    <input type="hidden" name="captcha" id="captchaInput" />
+                                                </div>
+                                                <div class="col-12">
+                                                    <span id="errorMessages" class="text-danger"></span>
+                                                </div>
+                                                <div class="col-md-12" style="text-align: end;">
+                                                    <button type="submit" class="primary-btn">
+                                                        <span class="text">@Localizer["BtnSend"]</span>
+                                                        <span class="icon"><i class="fa fa-arrow-right"></i></span>
+                                                    </button>
+                                                </div>
+                                            }
 
-                                                            </div>
-                                                        }
-                                                        <div class="text-danger">
-                                                            @Html.ValidationMessageFor(m=>m.SRefTypeId)
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <div class="col-md-12">
-                                                            <p>@Localizer["VisitCount"]</p>
-                                                        </div>
-                                                        <div class="contact-form-group custom-select-wrapper">
-                                                            @Html.DropDownListFor(m=>m.SVisitAvgId,new
-                                                        SelectList(_surveySetting.SurveyVisitAvgs,"Id","VisitAvg"),null,new{@class="form-control"})
-                                                            <div class="form-validate-icons">
-                                                                @Html.ValidationMessageFor(m=>m.SVisitAvgId)
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <div class="col-md-12">
-                                                            <p>@Localizer["EmpEval"]</p>
-                                                        </div>
-                                                        <div class="contact-form-group custom-select-wrapper">
-                                                            @Html.DropDownListFor(m=>m.SEvalEmpId,new
-                                                        SelectList(_surveySetting.SEvalEmps,"Id","Evaluate"),null,new{@class="form-control"})
-                                                            <div class="text-danger">
-                                                                @Html.ValidationMessageFor(m=>m.SEvalEmpId)
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <div class="col-md-12">
-                                                            <p>@Localizer["TranType"]</p>
-                                                        </div>
-                                                        <div class="contact-form-group custom-select-wrapper">
-                                                            @Html.DropDownListFor(m=>m.STransTypeId,new
-                                                        SelectList(_surveySetting.STransTypes,"Id","TransactionType"),null,new{@class="form-control"})
-                                                            <div class="text-danger">
-                                                                @Html.ValidationMessageFor(m=>m.STransTypeId)
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <p>@Localizer["TranComp"]</p>
-                                                    </div>
-                                                    <div class="mb-5 col-12">
-                                                        @foreach (var radioBtn in _surveySetting.STRanComps)
-                                                        {
-                                                            <div class="col-3 m-2 text-justify btn btn-primary">
-                                                                <span>@Html.RadioButtonFor(m => m.STRanCompId, radioBtn.Id)
-                                                                    @radioBtn.TransactionCompletion</span>
-                                                            </div>
-                                                        }
-                                                        <div class="text-danger">
-                                                            @Html.ValidationMessageFor(m=>m.STRanCompId)
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <p>@Localizer["Notes"]</p>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <div class="contact-form-group">
-                                                            @Html.TextAreaFor(m => m.Note,8,20,new{@class="form-control"})
-                                                            <div class="form-validate-icons">
-                                                                @Html.ValidationMessageFor(m=>m.Note)
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group col12">
-                                                        @Html.AntiForgeryToken()
-                                                        @Html.ReCaptcha()
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <span id="errorMessages" class="text-danger"></span>
-                                                    </div>
-                                                    <div class="col-md-12" style="text-align: end;">
-                                                        <button type="submit" class="primary-btn">
-                                                            <span class="text">@Localizer["BtnSend"]</span>
-                                                            <span class="icon"><i class="fa fa-arrow-right"></i></span>
-                                                        </button>
-                                                    </div>
-                                                }
-                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -255,66 +282,17 @@
     </main>
     <!--// Main Area End //-->
 </div>
-<!-- loading -->
-<div id="Loading-Overlay">
-    <div id="loader"></div>
-</div>
-
 @section scripts{
 <script src="~/js/jquery.validate.min.js"></script>
 <script src="~/js/jquery.validate.unobtrusive.min.js"></script>
-<script src="~/js/jquery.unobtrusive-ajax.js"></script>
-<script src="~/js/sweetalert.min.js"></script>
+<script src="https://www.google.com/recaptcha/api.js?render=@Configuration["googleReCaptcha:SiteKey"]"></script>
 <script>
-
-    $("#SurveyForm").submit(function (e) {
-        if (!$(this).valid()) {
-            return false;
-        }
-        e.preventDefault(); // avoid to execute the actual submit of the form.
-
-        var form = $(this);
-        var url = form.attr('action');
-        Begin();
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: form.serialize(), // serializes the form's elements.
-            success: function (data) {
-                Success(data);
-            },
-            error: function (data) {
-                Fialure(data);
-            }
+    grecaptcha.ready(function () {
+        window.grecaptcha.execute('@Configuration["googleReCaptcha:SiteKey"]', { action: 'home' }).then(function (token) {
+            console.log(token);
+            $("#captchaInput").val(token);
         });
     });
-    function Begin() {
-        $("#Loading-Overlay").show();
-    }
-    function Success(result) {
-        $("#Loading-Overlay").hide();
-        let _title = "@Localizer["SendTitle"]";
-        let _descr = "@Localizer["SendDescr"]";
-        let _btn = "@Localizer["SendOkBtn"]";
-        let _url = "@Url.Content("~/home/index")"
-        if (!result.success) {
-            $('#errorMessages').html('');
-            $('#errorMessages').append(result.errors + '<br />');
-        } else {
-            swal({
-                title: _title,
-                text: _descr,
-                icon: "success",
-                button: _btn,
-            }).then((value) => {
-                window.location.href = _url;
-            });;
-            $("#SurveyForm").trigger("reset");
-        }
-    }
-    function Fialure(xhr) {
-        $('#errorMessages').append("403 : unexpected errors occured" + '<br />')
-    }
 </script>
 
 }
