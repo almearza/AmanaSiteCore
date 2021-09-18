@@ -1,6 +1,13 @@
 <!--// About Section Start //-->
+@using Microsoft.AspNetCore.Mvc.Localization;
+@using System.Globalization
+@inject IViewLocalizer Localizer 
 @model AmanaSite.Models.Video
-<section class="section defined-video-bg" id="about" data-scroll-index="1">
+@{
+    var lang = CultureInfo.CurrentCulture;
+    var bg = lang.ToString() == "en"?"defined-video-bg-left":"defined-video-bg";
+}
+<section class="section @bg" id="about" data-scroll-index="1">
     <div class="container">
         @if (Model != null)
         {
@@ -14,25 +21,22 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="about-inner wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.1s">
-                        @* <h6>مستجداتنا</h6> *@
-
-                        <h2>أخر المستجدات</h2>
+                        <h2>@Localizer["LastUpdate"]</h2>
 
                         <p class="text-justify">
-                            نستعرض هنا اخر البرامج في القطاع البلدي المقدمة من
-                            أمانة منطقة المدينة المنورة و التي تسعى بدورها لخلق بيئة بلدية فعالة
+                            @Localizer["VideoIntro"]
                         </p>
                         <h5 class="mb-5">@Model.Title</h5>
 
                         <div class="defined-font-family">
                             @Html.Raw(Model.Descr)
                         </div>
-                        <div class="col-lg-12 text-left mt-2">
+                        @* <div class="col-lg-12 text-left mt-2">
                             <a href="@Model.Link" target="_blank" class="primary-btn">
-                                <span class="text">التفاصيل</span>
+                                <span class="text">@Localizer["Details"]</span>
                                 <span class="icon"><i class="far fa-caret-square-left"></i></span>
                             </a>
-                        </div>
+                        </div> *@
 
                     </div>
                 </div>

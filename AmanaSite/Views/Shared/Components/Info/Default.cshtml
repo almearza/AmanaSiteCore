@@ -1,87 +1,41 @@
+@using Microsoft.AspNetCore.Mvc.Localization;
+@inject IViewLocalizer Localizer
+@model IEnumerable<Info>
 <section class="section pb-0" data-scroll-index="6">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="section-heading-left">
-                                <h2>إنفوجرافك الأمانة</h2>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-filter">
-                                <a href="#" data-portfolio-filter="*" class="current">الكل</a>
-                                <a href="#" data-portfolio-filter=".mockup" class="">الجديد</a>
-                                @* <a href="#" data-portfolio-filter=".ui" class="">UI/UX</a> *@
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row portfolio-grid" id="portfolio-masonry-wrap" style="position: relative; height: 3078px;">
-                        <div class="col-md-6 col-lg-4 portfolio-item mockup" style="position: absolute; left: 0%; top: 0px;">
-                            <div class="portfolio-item-inner">
-                                <div class="portfolio-item-img">
-                                    <img src="~/images/info/1.jpg" alt="Portfolio image" class="img-fluid defined-item-img">
-                                    <a href="images/info/1.jpg" class="portfolio-zoom-link">
-                                        <i class="fas fa-search"></i>
-                                    </a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 portfolio-item mockup" style="position: absolute; left: 0%; top: 513px;">
-                            <div class="portfolio-item-inner">
-                                <div class="portfolio-item-img">
-                                    <img src="~/images/info/2.jpg" alt="Portfolio image" class="img-fluid defined-item-img">
-                                    <a href="images/info/2.jpg" class="portfolio-zoom-link">
-                                        <i class="fas fa-search"></i>
-                                    </a>
-                                </div>
-                               
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 portfolio-item mockup" style="position: absolute; left: 0%; top: 1026px;">
-                            <div class="portfolio-item-inner">
-                                <div class="portfolio-item-img">
-                                    <img src="~/images/info/3.jpg" alt="Portfolio image" class="img-fluid defined-item-img">
-                                    <a href="images/info/3.jpg" class="portfolio-zoom-link">
-                                        <i class="fas fa-search"></i>
-                                    </a>
-                                </div>
-                               
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 portfolio-item " style="position: absolute; left: 0%; top: 1539px;">
-                            <div class="portfolio-item-inner">
-                                <div class="portfolio-item-img">
-                                    <img src="~/images/info/4.jpg" alt="Portfolio image" class="img-fluid defined-item-img">
-                                    <a href="images/info/4.jpg" class="portfolio-zoom-link">
-                                        <i class="fas fa-search"></i>
-                                    </a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 portfolio-item " style="position: absolute; left: 0%; top: 2052px;">
-                            <div class="portfolio-item-inner">
-                                <div class="portfolio-item-img">
-                                    <img src="~/images/info/5.jpg" alt="Portfolio image" class="img-fluid defined-item-img">
-                                    <a href="images/info/5.jpg" class="portfolio-zoom-link">
-                                        <i class="fas fa-search"></i>
-                                    </a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 portfolio-item " style="position: absolute; left: 0%; top: 2565px;">
-                            <div class="portfolio-item-inner">
-                                <div class="portfolio-item-img">
-                                    <img src="~/images/info/6.jpg" alt="Portfolio image" class="img-fluid defined-item-img">
-                                    <a href="images/info/6.jpg" class="portfolio-zoom-link">
-                                        <i class="fas fa-search"></i>
-                                    </a>
-                                </div>
-                               
-                            </div>
-                        </div>
-                    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="section-heading-left">
+                    <h2>@Localizer["InfoTitle"]</h2>
                 </div>
-               
-            </section>
+            </div>
+            @* <div class="col-md-6">
+                <div class="portfolio-filter">
+                    <a href="#" data-portfolio-filter="*" class="current">@Localizer["InfoAll"]</a>
+                    <a href="#" data-portfolio-filter=".mockup" class="">@Localizer["InfoNew"]</a>
+                    <a href="#" data-portfolio-filter=".ui" class="">UI/UX</a>
+                </div>
+            </div> *@
+        </div>
+        <div class="row portfolio-grid" id="portfolio-masonry-wrap" style="position: relative; height: 3078px;">
+            @if (Model != null)
+            {
+                foreach (var _info in Model)
+                {
+                    <div class="col-md-6 col-lg-4 portfolio-item mockup" style="position: absolute; left: 0%; top: 0px;">
+                        <div class="portfolio-item-inner">
+                            <div class="portfolio-item-img">
+                                <img src="~/images/info/@_info.ImgUrl" alt="Portfolio image" class="img-fluid defined-item-img w-100">
+                                <a href="images/info/@_info.ImgUrl" class="portfolio-zoom-link">
+                                    <i class="fas fa-search"></i>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
+</section>

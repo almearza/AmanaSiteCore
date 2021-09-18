@@ -43,6 +43,16 @@ namespace AmanaSite.Repositories
             .ToListAsync();
             return projects;
         }
+        public async Task<IEnumerable<Project>> GetProjectsByIndexAsync(int pageIndex, int pageSize)
+        {
+            var projects = await _context.Projects
+            .OrderByDescending(n => n.ModifiedDate)
+            .Where(m => m.LangCode == _currentLang.Get() && m.Active)
+            .Skip((pageIndex * pageSize))
+            .Take(pageSize)
+            .ToListAsync();
+            return projects;
+        }
 
         public async Task<Project> GetProjectByIdAsync(int Id)
         {

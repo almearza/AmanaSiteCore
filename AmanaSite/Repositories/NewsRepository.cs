@@ -22,9 +22,11 @@ namespace AmanaSite.Repositories
         private readonly DContext _context;
         private readonly IMapper _mapper;
         private readonly IWebHostEnvironment _env;
+        private readonly ICurrentLang _currentLang;
 
-        public NewsRepository(DContext context, IMapper mapper, IWebHostEnvironment env)
+        public NewsRepository(DContext context, IMapper mapper, IWebHostEnvironment env, ICurrentLang currentLang)
         {
+            _currentLang = currentLang;
             this._env = env;
             this._mapper = mapper;
             this._context = context;
@@ -65,7 +67,7 @@ namespace AmanaSite.Repositories
             model.Active = true;
 
             var news = _mapper.Map<New>(model);
-            news.Type=null;
+            news.Type = null;
             await _context.News.AddAsync(news);
         }
 
@@ -88,19 +90,37 @@ namespace AmanaSite.Repositories
             return await _context.News.FindAsync(id);
         }
 
+        public async Task<IEnumerable<NewsVM>> GetNewsByIndexAsync(int pageIndex, int pageSize)
+        {
+            var news = await _context.News
+            .OrderByDescending(n => n.NewsDate)
+            .Where(m => m.LangCode ==_currentLang.Get()&&m.Active)
+            .Skip((pageIndex*pageSize))
+            .ProjectTo<NewsVM>(_mapper.ConfigurationProvider)
+            .Take(pageSize)
+            .ToListAsync();
+            return news;
+        }
+
         public async Task<IEnumerable<NewsVM>> GetTop5NewsAsync()
         {
             //2:ksa , 3:Madina , 4:Amana
             var topThreeNews = new List<NewsVM>();
-            var tops =await _context.News.ProjectTo<NewsVM>(_mapper.ConfigurationProvider).ToListAsync();
             for (var i = 2; i < 5; i++)
             {
-                var top =await _context.News.ProjectTo<NewsVM>(_mapper.ConfigurationProvider)
-                .OrderByDescending(n => n.NewsDate).Where(n => n.Active && n.TypeId == i).FirstOrDefaultAsync();
+                var top = await _context.News.ProjectTo<NewsVM>(_mapper.ConfigurationProvider)
+                .OrderByDescending(n => n.NewsDate)
+                .Where(n => n.Active && n.LangCode == _currentLang.Get() && n.TypeId == i)
+                .FirstOrDefaultAsync();
                 if (top != null)
                     topThreeNews.Add(top);
             }
             return topThreeNews;
+        }
+
+        public async Task<int> GetTotalAsync()
+        {
+            return await _context.News.CountAsync();
         }
 
         public async Task<IEnumerable<NewsType>> GetTypesAsync()
@@ -133,7 +153,7 @@ namespace AmanaSite.Repositories
                 }
                 news.ImgUrl = imgTitle;
             }
-            _context.Entry(news).State=EntityState.Modified;
+            _context.Entry(news).State = EntityState.Modified;
 
         }
     }

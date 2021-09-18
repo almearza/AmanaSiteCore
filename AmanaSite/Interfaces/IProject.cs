@@ -14,5 +14,6 @@ namespace AmanaSite.Interfaces
         Task Activate(int id);
         Task<PagingResponse<Project>> GetProjectsAsync(PagingRequest pagingRequest);
         Task<Project> GetProjectByIdAsync(int Id);
+        Task<IEnumerable<Project>> GetProjectsByIndexAsync(int pageIndex, int pageSize);
     }
 }

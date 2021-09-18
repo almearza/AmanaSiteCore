@@ -25,7 +25,7 @@ namespace AmanaSite.Repositories
 
         }
 
-        public INews News => new NewsRepository(_context, _mapper, _evn);
+        public INews News => new NewsRepository(_context, _mapper, _evn,_currentLang);
 
         public IAds Ads => new AdsRepository(_context, _mapper, _evn, _currentLang);
 

@@ -117,19 +117,19 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="SendTitle" xml:space="preserve">
-        <value>عملية الارسال</value>
+    <data name="Media" xml:space="preserve">
+        <value>وسائط الأمانة</value>
     </data>
-    <data name="SendOkBtn" xml:space="preserve">
-        <value>تم</value>
+    <data name="Facebook" xml:space="preserve">
+        <value>فيسبوك الأمانة</value>
     </data>
-    <data name="SendDescr" xml:space="preserve">
-        <value>تم الإرسال بنجاح</value>
+    <data name="Twitter" xml:space="preserve">
+        <value>تويتر الأمانة</value>
     </data>
-    <data name="IssueError" xml:space="preserve">
-        <value>الرجاء إختيار الموضوع</value>
+    <data name="Twittes" xml:space="preserve">
+        <value>تغريدات الأمانة</value>
     </data>
-    <data name="UploadedAt" xml:space="preserve">
-        <value>رفع بتاريخ</value>
+    <data name="AmanaTitle" xml:space="preserve">
+        <value>‎أمانة منطقة المدينة المنورة</value>
     </data>
 </root>

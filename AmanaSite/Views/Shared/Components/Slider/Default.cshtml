@@ -2,6 +2,9 @@
 @using System.Globalization
 @model IEnumerable<AmanaSite.Models.VM.SlidersShowVM>
 @inject IViewLocalizer Localizer    
+@{
+    var lang = CultureInfo.CurrentCulture;
+}
             <!--// Testimonial Section Start //-->
             <section class="section pb-minus-76 bg-primary-dark defined-slider" data-scroll-index="1">
                 <div class="container">
@@ -21,7 +24,7 @@
                                <div style="min-height: 250px;display: table;">
                                <h5 class="text-justify" style="display: table-cell;vertical-align: middle;width:100%;">@ads.Title</h5>
                                </div>
-                               <p>@ads.UploadDate.ToString("dddd, dd MMMM yyyy", new CultureInfo("ar-SA"))</p>
+                               <p>@ads.UploadDate.ToString("dddd, dd MMMM yyyy", new CultureInfo(lang.ToString()))</p>
                                 <div class="col-lg-12 defined-content-end">
                                     <div class="align-self-end">
                                     <a href="~/home/get-ads/@ads.Id" class="primary-btn ">

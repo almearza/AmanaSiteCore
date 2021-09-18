@@ -1,12 +1,17 @@
 <!--// Blog Section Start //-->
+@using Microsoft.AspNetCore.Mvc.Localization;
+@inject IViewLocalizer Localizer 
 @using System.Globalization
 @model IEnumerable<AmanaSite.Models.VM.NewsVM>
+@{
+    var lang = CultureInfo.CurrentCulture;
+}
 <section class="section pb-minus-76 defined-news-bg" id="NewsSection" data-scroll-index="4">
     <div class="container">
         <div class="row">
             <div class="col-md-6">
                 <div class="section-heading-left">
-                    <h2>الأخبار</h2>
+                    <h2>@Localizer["News"]</h2>
                 </div>
             </div>
         </div>
@@ -14,9 +19,9 @@
             @foreach (var news in Model)
             {
                 var newsTitle = news.Title;
-                if (newsTitle.Length > 200)
+                if (newsTitle.Length > 100)
                 {
-                    newsTitle = newsTitle.Substring(0, 200) + " ...";
+                    newsTitle = newsTitle.Substring(0, 100) + " ...";
                 }
                 var newsIcon = news.TypeName switch
                 {
@@ -38,14 +43,14 @@
                                 <a href="#"><span><i class="fa fas fa-globe"></i>@news.TypeName</span></a>
                                 <a href="#">
                                     <span><i class="far fa-calendar-alt"></i>
-                                        <small>@news.NewsDate.ToString("dddd, dd MMMM yyyy", new CultureInfo("ar-SA"))</small>
+                                        <small>@news.NewsDate.ToString("dddd, dd MMMM yyyy", new CultureInfo(lang.ToString()))</small>
                                     </span></a>
                             </div>
                             <p>
                                 @newsTitle
                             </p>
                             <a href="#" class="blog-link">
-                                إقرأ المزيد
+                                @Localizer["ReadMore"]
                                 <i class="fa fa-arrow-right"></i>
                             </a>
                         </div>

@@ -11,11 +11,13 @@ namespace AmanaSite.Interfaces
     public interface INews
     {
         Task CreateNewsAsync(NewsVM model, IFormFileCollection files);
-        Task UpdateNewsAsync(NewsVM newsVM,New news, IFormFileCollection files);
+        Task UpdateNewsAsync(NewsVM newsVM, New news, IFormFileCollection files);
         Task<New> GetNewsByIdAsync(int id);
         Task Activate(int id);
         Task<IEnumerable<NewsType>> GetTypesAsync();
-        Task<PagingResponse<NewsVM>> GetNewsAsync(PagingRequest pagingRequest);   
-        Task<IEnumerable<NewsVM>> GetTop5NewsAsync();   
+        Task<IEnumerable<NewsVM>> GetNewsByIndexAsync(int pageIndex,int pageSize);
+        Task<PagingResponse<NewsVM>> GetNewsAsync(PagingRequest pagingRequest);
+        Task<int> GetTotalAsync();
+        Task<IEnumerable<NewsVM>> GetTop5NewsAsync();
     }
 }

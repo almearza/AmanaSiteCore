@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -63,6 +64,15 @@ namespace AmanaSite.Repositories
              var query = _context.Info.OrderByDescending(n => n.ModifiedDate).AsQueryable();
             return await PagingResponse<Info>
             .GetPaggedList(pagingRequest, query.AsNoTracking());
+        }
+        public async Task<IEnumerable<Info>> GetLatest6InfoAsync()
+        {
+            var _info = await _context.Info
+            .Where(v=>v.LangCode == _currentLang.Get())
+            .OrderBy(v => v.ModifiedDate)
+            .Take(6)
+            .ToListAsync();
+            return _info;
         }
     }
 }

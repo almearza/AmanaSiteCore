@@ -117,19 +117,28 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="SendTitle" xml:space="preserve">
-        <value>عملية الارسال</value>
+    <data name="News" xml:space="preserve">
+        <value>الأخبار</value>
     </data>
-    <data name="SendOkBtn" xml:space="preserve">
-        <value>تم</value>
+    <data name="NewsList" xml:space="preserve">
+        <value>قائمة الأخبار</value>
     </data>
-    <data name="SendDescr" xml:space="preserve">
-        <value>تم الإرسال بنجاح</value>
-    </data>
-    <data name="IssueError" xml:space="preserve">
-        <value>الرجاء إختيار الموضوع</value>
-    </data>
-    <data name="UploadedAt" xml:space="preserve">
-        <value>رفع بتاريخ</value>
-    </data>
+    <data name="FacebookSharing" xml:space="preserve">
+    <value>مشاركة على فيسبوك</value>
+  </data>
+  <data name="TwitterSharing" xml:space="preserve">
+    <value>مشاركة على تويتر</value>
+  </data>
+  <data name="ShowMore" xml:space="preserve">
+    <value>إقرأ المزيد</value>
+  </data>
+  <data name="KsaTitle" xml:space="preserve">
+    <value>أخبار المملكة</value>
+  </data>
+  <data name="MadinahTitle" xml:space="preserve">
+    <value>أخبار المدينة</value>
+  </data>
+  <data name="AmanaTitle" xml:space="preserve">
+    <value>أخبار الأمانة</value>
+  </data>
 </root>

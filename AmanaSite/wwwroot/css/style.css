@@ -2240,6 +2240,7 @@ body[style], header[style] {
 /* 13.Services                        
 /* ---------------------------------------------------------------- */
 .services-item {
+  height: 360px;
   position: relative;
   text-align: center;
   margin-bottom: 80px;

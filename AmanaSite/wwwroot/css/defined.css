@@ -17,8 +17,13 @@
 }
 .defined-video-bg{
     background-image: url(../img/bg/video-bg.png);
-    /* background-attachment: fixed !important; */
     background-position: bottom left; 
+    background-repeat: no-repeat; 
+  
+}
+.defined-video-bg-left{
+    background-image: url(../img/bg/video-bg-left.png);
+    background-position: bottom right; 
     background-repeat: no-repeat; 
   
 }
@@ -57,7 +62,8 @@ box-shadow: 0 15px 30px 0 rgb(13 113 103 / 15%);
     color: #fff !important;
 }
 .defined-news-img {
-    height: 256px;
+    height: 256px !important;
+    min-width: 100%;
 }
 .defined-item-img{
     height: 300px !important;

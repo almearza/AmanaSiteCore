@@ -74,14 +74,14 @@
         });
     });
 
-    
+
     $("#ContactUsForm").submit(function (e) {
         if ($("#contactReason").val() == "") {
             let _errorEmpty = "@Localizer["IssueError"]";
             $("#contactReasonError").text(_errorEmpty);
             return false;
-        }else{
-             $("#contactReasonError").text('');
+        } else {
+            $("#contactReasonError").text('');
         }
         if (!$(this).valid()) {
             return false;
@@ -130,5 +130,19 @@
         $("#Loading-Overlay").hide();
         $('#errorMessages').append("403 : unexpected errors occured" + '<br />')
     }
+</script>
+<script>
+    $(".btnProjectDetial").on('click', function () {
+        let _uploadedAt = "@Localizer["UploadedAt"]";
+        let imgSrc = $(this).attr('img-src');
+        let projectLabel = $(this).attr('project-label');
+        let projectDetails = $(this).attr('project-detials');
+        let projectDate =_uploadedAt+' : '+ $(this).attr('project-date');
+        $("#projectImg").attr('src', imgSrc);
+        $("#projectLabel").html(projectLabel);
+        $("#projectDetails").html(projectDetails);
+        $("#projectDate").html(projectDate);
+        $("#projectModal").modal("show");
+    });
 </script>
 }
