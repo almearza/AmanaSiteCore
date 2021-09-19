@@ -14,6 +14,14 @@
                 <div class="row">
                     <div class="col-lg-8 col-md-8 col-sm-12">
                         <div class="form-group small-control">
+                            <label class="control-label">عنوان الدليل</label>
+                            <app-text-input formControlName='name'
+                                [label]='"عنوان الدليل"'>
+                            </app-text-input>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-12">
+                        <div class="form-group small-control">
                             <label class="control-label">ملف الدليل</label>
                             <app-text-input formControlName='docFile' type="file" (change)="setFiles($event)"
                                 [label]='"ملف الدليل"'>

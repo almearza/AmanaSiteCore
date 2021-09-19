@@ -37,7 +37,7 @@
                     <p>@Localizer["Docs"]</p>
                 </div>
                 <div class="div-top-lable">
-                    <i class="fa fa-sitemap"></i>
+                    <i class="fa fa-book"></i>
                     <span>@Localizer["AmanaDocs"]</span>
                     <div class="top-left-icon">
                         <a href="https://www.facebook.com/sharer/sharer.php?u=" title='@Localizer["FacebookSharing"]'
@@ -57,14 +57,18 @@
                             <div class="row">
                                 @if (Model != null)
                                 {
-                                    @foreach (var doc in Model)
-                                    {
-                                        <div class="col-12 alert-success">
-                                            <a href="~/pdfs/@doc.Link" class="col-12">
-                                                <i class="fa fa-pdf"></i>
-                                            </a>
-                                        </div>
-                                    }
+                                        @foreach (var doc in Model)
+                                        {
+                                            <div class="div-top-lable border-top-0">
+                                                <span class="d-inline">@doc.Name</span>
+                                                <div class="top-left-icon">
+                                                    <a href="~/pdfs/@doc.Link" class="col-4">
+                                                        <i class="fa fa-file-pdf"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                        }
                                 }
                             </div>
                         </div>
