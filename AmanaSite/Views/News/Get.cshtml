@@ -1,0 +1,156 @@
+<!--// Page Wrapper Start //-->
+@using Microsoft.AspNetCore.Mvc.Localization;
+@using System.Globalization;
+@inject IViewLocalizer Localizer;
+@model NewsBlog
+
+@{
+    var secBg = Url.Content("~/img/bg/news-sec-img.png");
+    var lang = CultureInfo.CurrentCulture;
+}
+<div class="page-wrapper" id="wrapper">
+    <!--// Main Area Start //-->
+    <main class="main-area">
+        <!--// Breadcrumb Section Start //-->
+        <section class="breadcrumb-section section" data-scroll-index="1" data-bg-image-path="@secBg">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--// Breadcrumb Section end //-->
+        <div id="DetialsPage">
+            <div class="div-details">
+                <div class="div-header">
+                    <a href="~/"><i class="fa fa-home"></i></a>
+                    @if (lang.ToString() == "en")
+                    {
+                        <i class="fa fa-chevron-circle-right"></i>
+                    }
+                    else
+                    {
+                        <i class="fa fa-chevron-circle-left"></i>
+                    }
+                    <p>@Localizer["News"]</p>
+                </div>
+                <div class="div-top-lable">
+                    <i class="fa fa-globe"></i>
+                    @if(Model!=null&&Model.NewsVM!=null){
+                   <span>@Model.NewsVM.Title</span>
+                    }
+                    <div class="top-left-icon">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=" title='@Localizer["FacebookSharing"]'
+                            target="_blank" id="facebook-sharing">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://twitter.com/intent/tweet?text=" title='@Localizer["TwitterSharing"]'
+                            target="_blank" id="twitter-sharing">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="page-details">
+                    <!--// Resume Section Start //-->
+                    <section class="section pb-minus-76">
+                        <div class="container">
+                            @if(Model != null&& Model.NewsVM != null)
+                            {
+                                 var _host = Context.Request.Host;
+                                 var _path = Context.Request.Path;
+                                var _url = _host+_path;
+                                var newsIcon = Model.NewsVM.TypeName switch
+                                {
+                                    "أخبار المملكة" => "ksa-52.png",
+                                    "أخبار المدينة" => "madinah-logo.png",
+                                    "أخبار الأمانة" => "amana-52.jpg",
+                                    _ => ""
+                                };
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-12">
+                                        <div class="services-detail-top">
+                                            <img  src="~/images/news/@Model.NewsVM.ImgUrl" alt="Services image"
+                                            class="img-fluid">
+                                            <span><img src="~/img/blog/@newsIcon" alt="news icon author image" class="blog-author-img"></span>
+                                        </div>
+                                        <div class="services-detail-inner">
+                                            <div class="text-justify">
+                                            @Html.Raw(Model.NewsVM.Descr)
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-4 col-md-12">
+                                        <div class="widget-sidebar">
+                                            <div class="sidebar-widgets">
+                                                <h5 class="inner-header-title">@Localizer["NewsDetails"]</h5>
+                                                <div class="sidebar-details-list">
+                                                    <ul>
+                                                        <li>
+                                                            <p>@Localizer["NewsType"] : <span>@Model.NewsVM.TypeName</span></p>
+                                                        </li>
+                                                        <li>
+                                                            <p>@Localizer["NewsUploadDate"] : <span>@Model.NewsVM.NewsDate.ToString("dddd, dd MMMM yyyy", new
+                                                                CultureInfo(lang.ToString()))</span></p>
+                                                        </li>
+                                                        <li>
+                                                            <p>@Localizer["NewsUploadBy"] : <span>@Model.NewsVM.NewsResource</span></p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="sidebar-widgets">
+                                                <h5 class="inner-header-title">@Localizer["RelatedNews"]</h5>
+                                            @foreach (var relatedNews in Model.NexNews)
+                                            {
+                                                var title= relatedNews.Title.Length>50?relatedNews.Title.Substring(0,46)+" ... ":relatedNews.Title;
+                                                <div class="recent-post-item clearfix">
+                                                    <div class="recent-post-img mr-3" style="border: 2px solid #e5e5e5;">
+                                                        <a href="~/news/get/@relatedNews.Id">
+                                                            <img width="80" height="80" src="~/images/news/@relatedNews.ImgUrl"
+                                                            alt="Recent Img">
+                                                        </a>
+                                                    </div>
+                                                    <div class="recent-post-body">
+                                                        <a href="~/news/get/@relatedNews.Id">
+                                                            <p class="recent-post-title d-block">@title
+                                                            </p>
+                                                        </a>
+                                                        <p class="recent-post-date d-block"><i class="far fa-calendar-alt"></i>@Model.NewsVM.NewsDate.ToString("dddd, dd MMMM yyyy", new
+                                                                CultureInfo(lang.ToString()))</p>
+                                                    </div>
+                                                </div>
+                                            }
+                                            </div>
+                                            <div class="sidebar-widgets">
+                                                <h5 class="inner-header-title">@Localizer["ShareVia"]</h5>
+                                                <ul class="sidebar-share clearfix">
+                                                    <li>
+                                                        <a href="https://www.facebook.com/sharer/sharer.php?u=@_url">
+                                                            <i class="fab fa-facebook-f"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="https://twitter.com/intent/tweet?text=@_url">
+                                                            <i class="fab fa-twitter"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </section>
+                    <!--// Resume Section End //-->
+                </div>
+            </div>
+        </div>
+    </main>
+    <!--// Main Area End //-->
+</div>
+<!--// Page Wrapper End //-->

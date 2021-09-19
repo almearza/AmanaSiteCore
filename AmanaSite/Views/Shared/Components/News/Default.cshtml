@@ -1,6 +1,6 @@
 <!--// Blog Section Start //-->
 @using Microsoft.AspNetCore.Mvc.Localization;
-@inject IViewLocalizer Localizer 
+@inject IViewLocalizer Localizer
 @using System.Globalization
 @model IEnumerable<AmanaSite.Models.VM.NewsVM>
 @{
@@ -40,16 +40,17 @@
                         <div class="blog-body">
                             <img src="~/img/blog/@newsIcon" alt="news icon author image" class="blog-author-img">
                             <div class="blog-meta" style="width: 100%;">
-                                <a href="#"><span><i class="fa fas fa-globe"></i>@news.TypeName</span></a>
-                                <a href="#">
+                                <a><span><i class="fa fas fa-globe"></i>@news.TypeName</span></a>
+                                <a>
                                     <span><i class="far fa-calendar-alt"></i>
-                                        <small>@news.NewsDate.ToString("dddd, dd MMMM yyyy", new CultureInfo(lang.ToString()))</small>
+                                        <small>@news.NewsDate.ToString("dddd, dd MMMM yyyy", new
+                                        CultureInfo(lang.ToString()))</small>
                                     </span></a>
                             </div>
                             <p>
                                 @newsTitle
                             </p>
-                            <a href="#" class="blog-link">
+                            <a href="~/news/get/@news.Id" class="blog-link">
                                 @Localizer["ReadMore"]
                                 <i class="fa fa-arrow-right"></i>
                             </a>
@@ -58,6 +59,16 @@
                 </div>
 
             }
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="row justify-content-end">
+                    <a href="/news/index?pageIndex=0" class="primary-btn">
+                        <span class="text">@Localizer["AllNews"]</span>
+                        <span class="icon"><i class="fa fa-globe"></i></span>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </section>

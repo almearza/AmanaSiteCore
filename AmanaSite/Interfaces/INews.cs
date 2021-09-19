@@ -19,5 +19,6 @@ namespace AmanaSite.Interfaces
         Task<PagingResponse<NewsVM>> GetNewsAsync(PagingRequest pagingRequest);
         Task<int> GetTotalAsync();
         Task<IEnumerable<NewsVM>> GetTop5NewsAsync();
+        Task<NewsBlog> GetActiveNewsByIdAsync(int id);
     }
 }

@@ -123,4 +123,7 @@
   <data name="ReadMore" xml:space="preserve">
     <value>إقرأ المزيد</value>
   </data>
+    <data name="AllNews" xml:space="preserve">
+        <value>كل الأخبار</value>
+    </data>
 </root>

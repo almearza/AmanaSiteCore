@@ -1,16 +1,15 @@
 using System;
 using System.Threading.Tasks;
 using AmanaSite.Interfaces;
-using AmanaSite.Models;
 using AmanaSite.Models.VM;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AmanaSite.Controllers
 {
-    public class NewsController : Controller
+    public class ProjectsController :Controller
     {
-        private readonly IUnitOfWork _unitOfWork;
-        public NewsController(IUnitOfWork unitOfWork)
+         private readonly IUnitOfWork _unitOfWork;
+        public ProjectsController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
 
@@ -19,20 +18,17 @@ namespace AmanaSite.Controllers
         {
             var pageSize=6;
             if (pageSize <= 0 ||pageIndex<0) return BadRequest("not allowed size");
-            var newsList = await _unitOfWork.News.GetNewsByIndexAsync(pageIndex,pageSize);
-            var _totalOfNews = await _unitOfWork.News.GetTotalAsync();
+            var projectsList = await _unitOfWork.Project.GetProjectsByIndexAsync(pageIndex,pageSize);
+            var _totalOfNews = await _unitOfWork.Project.GetTotalAsync();
             var _round=Math.Ceiling((double)_totalOfNews/pageSize);
-            var _pagination = new BlogPagination
+            var _pagination = new ProjectsPagination
             {
-                News = newsList,
+                Projects = projectsList,
                 PageTotal=(int)_round,
                 ActivePageIndex=pageIndex+1
             };
             return View(_pagination);
         }
-        public async Task<IActionResult>Get(int id){
-            var _news =await _unitOfWork.News.GetActiveNewsByIdAsync(id);
-            return View(_news);
-        }
+
     }
 }

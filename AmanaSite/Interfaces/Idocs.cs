@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AmanaSite.Helpers.DataTables;
 using AmanaSite.Models;
@@ -10,5 +11,6 @@ namespace AmanaSite.Interfaces
         Task<AmanaDocs> AddDocAsync(AmanaDocs model, IFormFile file);
         Task DeleteDoc(int id);
         Task<PagingResponse<AmanaDocs>> GetPaggedDocsAsync(PagingRequest pagingRequest);
+        Task<IEnumerable<AmanaDocs>> GetDocsAsync();
     }
 }

@@ -89,13 +89,34 @@ namespace AmanaSite.Repositories
         {
             return await _context.News.FindAsync(id);
         }
-
+        public async Task<NewsBlog> GetActiveNewsByIdAsync(int id)
+        {
+            var mainNews = await _context.News
+            .Where(m => (m.Id == id) && m.Active && m.LangCode == _currentLang.Get())
+            .ProjectTo<NewsVM>(_mapper.ConfigurationProvider)
+            .FirstOrDefaultAsync();
+            var nextNews  = new List<NewsVM>();
+            if (mainNews != null)
+            {
+                nextNews = await _context.News
+                .OrderByDescending(m => m.NewsDate)
+                .Where(m => m.Active && m.LangCode == _currentLang.Get() && m.NewsDate < mainNews.NewsDate && m.TypeId == mainNews.TypeId)
+                .ProjectTo<NewsVM>(_mapper.ConfigurationProvider)
+                .Take(3)
+                .ToListAsync();
+            }
+            return new NewsBlog
+            {
+                NewsVM = mainNews,
+                NexNews = nextNews
+            };
+        }
         public async Task<IEnumerable<NewsVM>> GetNewsByIndexAsync(int pageIndex, int pageSize)
         {
             var news = await _context.News
             .OrderByDescending(n => n.NewsDate)
-            .Where(m => m.LangCode ==_currentLang.Get()&&m.Active)
-            .Skip((pageIndex*pageSize))
+            .Where(m => m.LangCode == _currentLang.Get() && m.Active)
+            .Skip((pageIndex * pageSize))
             .ProjectTo<NewsVM>(_mapper.ConfigurationProvider)
             .Take(pageSize)
             .ToListAsync();

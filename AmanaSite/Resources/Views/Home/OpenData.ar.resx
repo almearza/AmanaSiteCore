@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="OpenData" xml:space="preserve">
+    <value>البيانات المفتوحة</value>
+  </data>
+  <data name="OpenDataDetails" xml:space="preserve">
+     <value>البيانات المفتوحة - أمانة منطقة المدينة المنورة</value>
+  </data>
+  <data name="FacebookSharing" xml:space="preserve">
+    <value>مشاركة على فيسبوك</value>
+  </data>
+  <data name="TwitterSharing" xml:space="preserve">
+    <value>مشاركة على تويتر</value>
+  </data>
+
+  <data name="T1" xml:space="preserve">
+    <value>مقدمة:</value>
+  </data>
+  <data name="P1" xml:space="preserve">
+    <value>
+    تعزيزاً لمبدأ الشفافية الذي تطبقه أمانة منطقة المدينة المنورة من خلال توفير المعلومات للجميع، بهدف إعادة الاستفادة منها في البحوث العلمية والرسائل الجامعية والدراسات المختلفة. فقد قامت أمانة منطقة المدينة المنورة بتوفير مجموعة من البيانات المفتوحة Open Data وهي بصيغة يمكن قراءتها بسهولة API, TXT, CSV, MHTML Txt, ويمكن للمستخدم الاستفادة منها وإعادة تشكيلها بصور وأشكال متنوعة تساعده في ذلك برامج الرسوم البيانية.
+    </value>
+  </data>
+  <data name="T2" xml:space="preserve">
+    <value>مستخدمو البيانات المفتوحة:
+</value>
+  </data>
+  <data name="P2" xml:space="preserve">
+    <value>
+    تتيح أمانة منطقة المدينة المنورة لمستخدمي البوابة الاطلاع على البيانات المفتوحة، كما أن لهم الحق في استخدام هذه البيانات على مسؤوليتهم الشخصية، وهذا الحق مكفول لكافة المستفيدين كما أنها تقدم مجانًا.
+</value>
+  </data>
+  <data name="T3" xml:space="preserve">
+    <value>مسؤولية مستخدمي البيانات:</value>
+  </data>
+  <data name="P3" xml:space="preserve">
+    <value>يكون مستخدم البيانات المفتوحة مسؤولاً عن إعادة استخدام البيانات ، ولا يجب أن ينتج عن إعادة استخدام هذه البيانات أي أخطاء تتعلق بمحتوى البيانات ومصدرها وتاريخها.</value>
+  </data>
+  <data name="T4" xml:space="preserve">
+    <value>مسؤولية الأمانة: </value>
+  </data>
+  <data name="P4" xml:space="preserve">
+    <value> إن أمانة منطقة المدينة المنورة غير مسؤولة عن أي ضرر أو سوء استخدام تتعرض له الجهات نتيجة استخدام هذه البيانات المنشورة بالبوابة الإلكترونية للأمانة. كما أن الأمانة لا تضمن استمرارية توافر هذه البيانات أو جزء منها. كما لا تتحمل الأمانة أي مسؤولية تجاه مستخدمي هذه البيانات، وما قد يقع عليهم من ضرر أو خسارة بسبب إعادة استخدامها. تقوم الأمانة بتقديم هذه البيانات مجاناً، ولكل مستخدم الحق في إعادة استخدام هذه البيانات على مسئوليته الشخصية شريطة المحافظة على التالي:</value>
+  </data>
+  <data name="P5" xml:space="preserve">
+    <value>1- أن لا ينتج عن إعادة الاستخدام تحوير أو تزوير في ماهية البيانات الأساسية.
+2- أن لا تستخدم البيانات في أي أغراض مخالفة للنظام ومن ذلك للأغراض السياسية، أو لدعم نشاط غير مشروع أو إجرامي، أو لتأجيج التمييز العنصري، أو التحريض أو أي أنشطة مخالفة للنظام العام.
+3- أن تتم الإشارة إلى مصدرها.   </value>
+  </data>
+  <data name="Th1" xml:space="preserve">
+  <value>مجال البيانات</value>
+  </data>
+  <data name="Lics" xml:space="preserve">
+  <value>رخص المحلات</value>
+  </data>
+  <data name="Lics2" xml:space="preserve">
+  <value>رخص الإنشاء</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+  <value>عرض</value>
+  </data>
+</root>

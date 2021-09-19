@@ -123,4 +123,7 @@
   <data name="Details" xml:space="preserve">
     <value>التفاصيل</value>
   </data>
+  <data name="AllProjects" xml:space="preserve">
+    <value>كل المشاريع</value>
+  </data>
 </root>

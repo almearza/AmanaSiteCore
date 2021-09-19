@@ -1,11 +1,11 @@
 <!--// Page Wrapper Start //-->
 @using Microsoft.AspNetCore.Mvc.Localization;
 @using System.Globalization;
-@inject IViewLocalizer Localizer
-@model BlogPagination
+@inject IViewLocalizer Localizer;
+@model ProjectsPagination;
 
 @{
-    var secBg = Url.Content("~/img/bg/news-sec-img.png");
+    var secBg = Url.Content("~/img/bg/projects-sec-img.png");
     var lang = CultureInfo.CurrentCulture;
 }
 
@@ -35,11 +35,11 @@
                     {
                         <i class="fa fa-chevron-circle-left"></i>
                     }
-                    <p>@Localizer["News"]</p>
+                    <p>@Localizer["Projects"]</p>
                 </div>
                 <div class="div-top-lable">
                     <i class="fa fa-globe"></i>
-                    <span>@Localizer["NewsList"]</span>
+                    <span>@Localizer["ProjectsList"]</span>
                     <div class="top-left-icon">
                         <a href="https://www.facebook.com/sharer/sharer.php?u=" title='@Localizer["FacebookSharing"]'
                             target="_blank" id="facebook-sharing">
@@ -55,64 +55,41 @@
                     <!--// Resume Section Start //-->
                     <section class="section pb-minus-76">
                         <div class="container">
-                            @if (Model != null && Model.News != null && Model.News.Count() > 0)
+                            @if (Model != null && Model.Projects != null && Model.Projects.Count()>0)
                             {
                                 <div class="row justify-content-center">
 
-                                    @foreach (var news in Model.News)
-                                    {
-                                        var newsTitle = news.Title;
-                                        if (newsTitle.Length > 50)
-                                        {
-                                            newsTitle = newsTitle.Substring(0, 50) + " ...";
-                                        }
-                                        var newsIcon = news.TypeName switch
-                                        {
-                                            "أخبار المملكة" => "ksa-52.png",
-                                            "أخبار المدينة" => "madinah-logo.png",
-                                            "أخبار الأمانة" => "amana-52.jpg",
-                                            _ => ""
-                                        };
-                                        var newTitle = news.TypeName switch
-                                        {
-                                            "أخبار المملكة" => Localizer["KsaTitle"],
-                                            "أخبار المدينة" => Localizer["MadinahTitle"],
-                                            _ => Localizer["AmanaTitle"]
-                                        };
-                                        <div class="col-4">
-                                            <div class="item">
-                                                <div class="blog-item">
-                                                    <div class="blog-img">
-                                                        <a href="blog-single.html">
-                                                            <img src="~/images/news/@news.ImgUrl" alt="news image"
-                                                        class="img-fluid defined-news-img">
-                                                        </a>
-                                                    </div>
-                                                    <div class="blog-body">
-                                                        <img src="~/img/blog/@newsIcon" alt="news icon author image"
-                                                    class="blog-author-img">
-                                                        <div class="blog-meta" style="width: 100%;">
-                                                            <a href="#"><span><i
-                                                                class="fa fas fa-globe"></i>@newTitle</span></a>
-                                                            <a href="#">
-                                                                <span><i class="far fa-calendar-alt"></i>
-                                                                    <small>@news.NewsDate.ToString("dddd, dd MMMM yyyy", new
-                                                                CultureInfo(lang.ToString()))</small>
-                                                                </span></a>
-                                                        </div>
-                                                        <p>
-                                                            @newsTitle
-                                                        </p>
-                                                        <a href="~/news/get/@news.Id" class="blog-link">
-                                                            @Localizer["ShowMore"]
-                                                            <i class="fa fa-arrow-right"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                   @{
+                                     var _projects = Model.Projects.ToArray();
+                                     for (var index = 0; index < _projects.Count(); index++)
+                                     {
+                                         var _project = _projects[index];
+                                         var intro = _project.Intro.Length > 100 ? _project.Intro.Substring(0, 96) + " ... " : _project.Intro;
+                                         <div class="col-lg-4 col-md-6 wow fadeInLeft" data-wow-duration="0.5s" data-wow-delay="0.1s">
+                                             <div class="services-item">
+                                                 <img src="~/images/projects/@_project.ImgUrl" alt="Services image" class="services-bg-img">
+                                                 <div class="body">
+                                                     <h4>@(index+1)</h4>
+                                                     <h5>@_project.Title</h5>
+                                                     <p class="d-block">@intro</p>
+                                                     @* <a href="services-detail.html">Read More <i class="fa fa-arrow-right"></i></a> *@
+                                                     <a class="btnProjectDetial d-block"
+                                                     img-src=@Url.Content("~/images/projects/"+_project.ImgUrl)
+                                                     project-label="@_project.Title"
+                                                     project-detials="@_project.Descr"
+                                                     project-date="@_project.ModifiedDate.ToString("dd/MM/yyyy")"
+                                                     >@Localizer["Details"] <i class="fa fa-arrow-right"></i></a>
+                                                 </div>
+                                                 <div class="icon">
+                                                     <span class="fas fa-business-time"></span>
+                                                 </div>
+                                                 <div class="icon-border"></div>
+                                             </div>
+                                         </div>
+                                     }
+                                   }
+                                    
 
-                                    }
                                 </div>
                                 var start = 0;
                                 var end = 0;
@@ -146,7 +123,7 @@
                                     @* prev and first *@
                                     @if (Model.ActivePageIndex > 1)
                                     {
-                                        <a href="~/news/index?pageIndex=@(Model.ActivePageIndex-2)" class="pagination-link">
+                                        <a href="~/Projects/index?pageIndex=@(Model.ActivePageIndex-2)" class="pagination-link">
                                             <i class="fa fa-arrow-left"></i></a>
                                     }
                                     else
@@ -163,13 +140,13 @@
                                         }
                                         else
                                         {
-                                            <a href="~/news/index?pageIndex=@(i-1)" class="pagination-link">@i</a>
+                                            <a href="~/Projects/index?pageIndex=@(i-1)" class="pagination-link">@i</a>
                                         }
                                     }
                                     @* next *@
                                     @if (Model.ActivePageIndex < Model.PageTotal)
                                     {
-                                        <a href="~/news/index?pageIndex=@(Model.ActivePageIndex)" class="pagination-link"><i
+                                        <a href="~/Projects/index?pageIndex=@(Model.ActivePageIndex)" class="pagination-link"><i
                                         class="fa fa-arrow-right"></i></a>
                                     }
                                     else
@@ -189,3 +166,48 @@
     <!--// Main Area End //-->
 </div>
 <!--// Page Wrapper End //-->
+
+<div class="modal fade custom-modal" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="projectLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header success">
+                <h5 class="modal-title" id="projectLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-popup-inner">
+                    <div class="form-body">
+                         <img src="" id="projectImg" alt="Services image" class="img-fluid">
+                         <p id="projectIntro"></p>
+                         <p id="projectDetails"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <p id="projectDate"></p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Success Modal End -->
+
+@section scripts{
+    
+<script>
+    $(".btnProjectDetial").on('click', function () {
+        let _uploadedAt = "@Localizer["UploadedAt"]";
+        let imgSrc = $(this).attr('img-src');
+        let projectLabel = $(this).attr('project-label');
+        let projectDetails = $(this).attr('project-detials');
+        let projectDate =_uploadedAt+' : '+ $(this).attr('project-date');
+        $("#projectImg").attr('src', imgSrc);
+        $("#projectLabel").html(projectLabel);
+        $("#projectDetails").html(projectDetails);
+        $("#projectDate").html(projectDate);
+        $("#projectModal").modal("show");
+    });
+</script>
+}

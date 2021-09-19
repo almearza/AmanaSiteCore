@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -71,6 +72,9 @@ namespace AmanaSite.Repositories
             //projecting and getting filtered list
             return await PagingResponse<AmanaDocs>
             .GetPaggedList(pagingRequest, query.AsNoTracking());
+        }
+        public async Task<IEnumerable<AmanaDocs>> GetDocsAsync(){
+            return await _context.AmanaDocs.ToListAsync();
         }
     }
 }

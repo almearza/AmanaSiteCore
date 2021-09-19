@@ -1,0 +1,82 @@
+<!--// Page Wrapper Start //-->
+@using Microsoft.AspNetCore.Mvc.Localization;
+@using System.Globalization;
+@inject IViewLocalizer Localizer
+
+@model IEnumerable<AmanaDocs>
+@{
+    var secBg = Url.Content("~/img/bg/Docs-sec-img.png");
+    var lang = CultureInfo.CurrentCulture;
+}
+<div class="page-wrapper" id="wrapper">
+    <!--// Main Area Start //-->
+    <main class="main-area">
+        <!--// Breadcrumb Section Start //-->
+        <section class="breadcrumb-section section" data-scroll-index="1" data-bg-image-path="@secBg">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--// Breadcrumb Section end //-->
+        <div id="DetialsPage">
+            <div class="div-details">
+                <div class="div-header">
+                    <a href="~/"><i class="fa fa-home"></i></a>
+                    @if (lang.ToString() == "en")
+                    {
+                        <i class="fa fa-chevron-circle-right"></i>
+                    }
+                    else
+                    {
+                        <i class="fa fa-chevron-circle-left"></i>
+                    }
+                    <p>@Localizer["Docs"]</p>
+                </div>
+                <div class="div-top-lable">
+                    <i class="fa fa-sitemap"></i>
+                    <span>@Localizer["AmanaDocs"]</span>
+                    <div class="top-left-icon">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=" title='@Localizer["FacebookSharing"]'
+                            target="_blank" id="facebook-sharing">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://twitter.com/intent/tweet?text=" title='@Localizer["TwitterSharing"]'
+                            target="_blank" id="twitter-sharing">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="page-details">
+                    <!--// Resume Section Start //-->
+                    <section class="section pb-minus-76">
+                        <div class="container">
+                            <div class="row">
+                                @if (Model != null)
+                                {
+                                    @foreach (var doc in Model)
+                                    {
+                                        <div class="col-12 alert-success">
+                                            <a href="~/pdfs/@doc.Link" class="col-12">
+                                                <i class="fa fa-pdf"></i>
+                                            </a>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </section>
+                    <!--// Resume Section End //-->
+                </div>
+            </div>
+        </div>
+
+
+
+    </main>
+    <!--// Main Area End //-->
+</div>
+<!--// Page Wrapper End //-->

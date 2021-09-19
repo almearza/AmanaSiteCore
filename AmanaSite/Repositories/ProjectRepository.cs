@@ -104,5 +104,10 @@ namespace AmanaSite.Repositories
             _pro.Active = true;
             if (_pro.Id == 0) await _context.Projects.AddAsync(_pro);
         }
+
+        public async Task<int> GetTotalAsync()
+        {
+            return await _context.Projects.CountAsync();
+        }
     }
 }
