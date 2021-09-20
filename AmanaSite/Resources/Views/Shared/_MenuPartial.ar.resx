@@ -171,4 +171,10 @@
   <data name="Lang" xml:space="preserve">
     <value>اللغة</value>
   </data>
+  <data name="BusinessArea" xml:space="preserve">
+    <value>قطاع الأعمال</value>
+  </data>
+  <data name="InvestTitle" xml:space="preserve">
+    <value>مركز دعم المستثمرين</value>
+  </data>
 </root>

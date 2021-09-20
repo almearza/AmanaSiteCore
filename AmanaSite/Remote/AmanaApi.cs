@@ -48,6 +48,24 @@ namespace AmanaSite.Remote
             return true;
         }
 
+        public async Task<bool> ContactInvest(ContactMun model)
+        {
+            try
+            {
+                var token = await _token.GetToken();
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                var reqBody = JsonSerializer.Serialize(model);
+                var response = await _httpClient.PostAsync(_config["ContactInvestUrl"], new StringContent(reqBody,
+                                                            Encoding.UTF8, "application/json"));
+                response.EnsureSuccessStatusCode();
+            }
+            catch (System.Exception)
+            {
+                return false;
+            }
+            return true;
+        }
+
         public async Task<bool> ContactAmeen(ContactMun model)
         {
             try
@@ -57,7 +75,7 @@ namespace AmanaSite.Remote
                 var reqBody = JsonSerializer.Serialize(model);
                 var response = await _httpClient.PostAsync(_config["ContactMayorUrl"], new StringContent(reqBody,
                                                             Encoding.UTF8, "application/json"));
-            response.EnsureSuccessStatusCode();
+                response.EnsureSuccessStatusCode();
             }
             catch (System.Exception)
             {

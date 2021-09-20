@@ -2,11 +2,11 @@
 @using Microsoft.AspNetCore.Mvc.Localization;
 @using System.Globalization;
 @inject IViewLocalizer Localizer
-@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 @model ContactMunVM
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 
 @{
-    var secBg = Url.Content("~/img/bg/structure-sec-img.png");
+    var secBg = Url.Content("~/img/bg/Invest-sec-img.png");
     var lang = CultureInfo.CurrentCulture;
 }
 <div class="page-wrapper" id="wrapper">
@@ -35,11 +35,11 @@
                     {
                         <i class="fa fa-chevron-circle-left"></i>
                     }
-                    <p>@Localizer["ContactUs"]</p>
+                    <p>@Localizer["Invest"]</p>
                 </div>
                 <div class="div-top-lable">
-                    <i class="fa fa-envelope-open-text"></i>
-                    <span>@Localizer["ContactUsDescr"]</span>
+                    <i class="fa fa-sitemap"></i>
+                    <span>@Localizer["AmanaInvest"]</span>
                     <div class="top-left-icon">
                         <a href="https://www.facebook.com/sharer/sharer.php?u=" title='@Localizer["FacebookSharing"]'
                             target="_blank" id="facebook-sharing">
@@ -55,18 +55,53 @@
                     <!--// Resume Section Start //-->
                     <section class="section pb-minus-76">
                         <div class="container">
-                            <div class="row">
-                                @using (Html.BeginForm("ContactMayor", "Contactus", FormMethod.Post))
-                                {
-                                    <section class="section" id="contact" data-scroll-index="7">
-                                        <div class="container">
-                                            <div class="row justify-content-center">
-                                                <div class="col-lg-6">
-                                                    <div class="section-heading">
-                                                        <h2>@Localizer["ContactAmeen"]</h2>
-                                                    </div>
-                                                </div>
-                                            </div>
+
+                            <div class="row mt-3">
+                                <div class="col-lg-6">
+                                    <div class="contact-info-item">
+                                        <div class="icon">
+                                            <span class="fa fa-chart-line"></span>
+                                        </div>
+                                        <div class="body">
+                                            <br>
+                                            <p>
+                                                <a href="https://services.amana-md.gov.sa/Home/GetServiceType/2#cat10" 
+                                                target="_blank">@Localizer["BusinessServices"]</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="contact-info-item">
+                                        <div class="icon">
+                                            <span class="fas fa-users"></span>
+                                        </div>
+                                         <div class="body">
+                                            <br>
+                                            <p> 
+                                                 <a href="https://services.amana-md.gov.sa/Home/GetServiceType/1#cat10" 
+                                                                    target="_blank">@Localizer["IndividualsServices"]</a>
+                                            </p>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center mt-5">
+                                <div class="col-lg-6">
+                                    <div class="section-heading">
+                                        <h2>@Localizer["ContactInvest"]</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-lg-12">
+                                    <div class="contact-form-wrap">
+                                         @using (Html.BeginForm("ContactInvest", "InvestmentCenter", FormMethod.Post))
+                                         {
+                                             <section class="section" id="contact" data-scroll-index="7">
+                                             <div class="container">
+                                           
                                             <div class="row">
                                                 <div class="col-12">
                                                     <div class="text-danger">
@@ -77,7 +112,7 @@
                                             <div class="row justify-content-center">
                                                 <div class="col-lg-12">
                                                     <div class="contact-form-wrap">
-                                                      
+                                                       
                                                             <div class="row">
                                                                 <div class="col-md-12">
                                                                     <div class="contact-form-group custom-select-wrapper">
@@ -148,17 +183,16 @@
                                                                         </button>
                                                                     </div>
                                                                 </div>
-
                                                             </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </section>
+                                             </div>
+                                             </section>
                                 }
-                                <!--// Contact Section End //-->
-
-
+                                           
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </section>
