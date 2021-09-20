@@ -30,7 +30,7 @@ namespace AmanaSite.Repositories
             var _doc = await _context.AmanaDocs.FindAsync(id);
             if (_doc == null) return;
 
-            var img_ServerPath = Path.Combine(_env.ContentRootPath, "wwwroot", "images", "docs");
+            var img_ServerPath = Path.Combine(_env.ContentRootPath, "wwwroot", "pdfs");
             var pathAndName = Path.Combine(img_ServerPath, _doc.Link);
             File.Delete(pathAndName);
             _context.AmanaDocs.Remove(_doc);
@@ -41,8 +41,8 @@ namespace AmanaSite.Repositories
             if (file != null)
             {
                 var imgExt = file.FileName.Substring(file.FileName.LastIndexOf(".")).Replace("\"", "");
-                var imgTitle = "img_" + DateTime.Now.ToString("yyyyMMdd_hhmmss") + imgExt;
-                var img_ServerSavePath = Path.Combine(_env.ContentRootPath, "wwwroot", "images", "docs");
+                var imgTitle = "pdf_" + DateTime.Now.ToString("yyyyMMdd_hhmmss") + imgExt;
+                var img_ServerSavePath = Path.Combine(_env.ContentRootPath, "wwwroot", "pdfs");
                 if (!Directory.Exists(img_ServerSavePath))
                 {
                     Directory.CreateDirectory(img_ServerSavePath);
@@ -74,7 +74,10 @@ namespace AmanaSite.Repositories
             .GetPaggedList(pagingRequest, query.AsNoTracking());
         }
         public async Task<IEnumerable<AmanaDocs>> GetDocsAsync(){
-            return await _context.AmanaDocs.ToListAsync();
+            return await _context.AmanaDocs
+            .Where(m=>m.LangCode==_currentLang.Get())
+            .OrderByDescending(m=>m.ModifiedDate)
+            .ToListAsync();
         }
     }
 }

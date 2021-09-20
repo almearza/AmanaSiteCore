@@ -40,6 +40,7 @@ export class CreateDocModalComponent implements OnInit {
 
   addDoc() {
     this.formData.append("langCode", this.docForm.get('langCode').value);
+    this.formData.append("name", this.docForm.get('name').value);
     this.addDocEvent.emit(this.formData);
     this.docForm.reset();
     this.formData = null;
