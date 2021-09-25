@@ -3,10 +3,10 @@
 @inject IViewLocalizer Localizer
 @{
     var lang = CultureInfo.CurrentCulture;
-      var ParentControllerName = ViewContext.RouteData.Values["controller"].ToString().ToUpper();
-      var ParentActionName = ViewContext.RouteData.Values["action"].ToString().ToUpper();
+    var ParentControllerName = ViewContext.RouteData.Values["controller"].ToString().ToUpper();
+    var ParentActionName = ViewContext.RouteData.Values["action"].ToString().ToUpper();
 }
-@if (ParentControllerName=="HOME" && ParentActionName=="INDEX")
+@if (ParentControllerName == "HOME" && (ParentActionName == "INDEX" ||ParentActionName == "SUCCESS"))
 {
     <header class="header fixed-top" id="header">
         <div id="nav-menu-wrap">
@@ -51,10 +51,16 @@
                                     <a class="dropdown-item" href="~/Survey/Index">@Localizer["SurveyTitle"]</a>
                                 </div>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link menu-link" href="#" data-scroll-nav="2">@Localizer["ProjectsTitle"]</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="BusinessArea" role="button" 
+                                data-toggle="dropdown" aria-haspopup="true" data-scroll-nav="2" aria-expanded="false">
+                                    @Localizer["BusinessArea"]
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="BusinessArea">
+                                    <a class="dropdown-item" href="#" data-scroll-nav="2">@Localizer["ProjectsTitle"]</a>
+                                    <a class="dropdown-item" href="~/investmentcenter/index">@Localizer["InvestTitle"]</a>
+                                </div>
                             </li>
-
                             <li class="nav-item">
                                 <a class="nav-link menu-link" href="#" data-scroll-nav="3">@Localizer["Completions"]</a>
                             </li>
@@ -218,10 +224,19 @@ else
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link menu-link"
-                                href="~/home/index#ProjectSection">@Localizer["ProjectsTitle"]</a>
-                            </li>
 
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="~/home/index#ProjectSection" id="BusinessArea"
+                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    @Localizer["BusinessArea"]
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="BusinessArea">
+                                    <a class="dropdown-item"
+                                    href="~/home/index#ProjectSection">@Localizer["ProjectsTitle"]</a>
+                                    <a class="dropdown-item" href="~/investmentcenter/index">@Localizer["InvestTitle"]</a>
+                                </div>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link menu-link" href="~/home/index#counters">@Localizer["Completions"]</a>
                             </li>
